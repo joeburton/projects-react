@@ -1,0 +1,19 @@
+
+db.projects.insert([{
+	"company": "Cambridge Assessment",
+	"projects": [{
+			"description": "n/a",
+			"link": "www.richinteractions.com",
+			"project": "Rich Interactions",
+			"skills": "html, javascript"
+	}]
+},
+{
+	"company": "Tribal Worldwide",
+	"projects": [{
+			"description": "n/a",
+			"link": "www.vw.com",
+			"project": "My Perfect",
+			"skills": "html, javascript"
+	}]
+}])
