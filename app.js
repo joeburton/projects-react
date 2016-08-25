@@ -30,8 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 app.get('/source', api.findAll); // get all projects
-// app.get('/source/:id', api.findById); // get project by id
-// app.post('/source', api.addProject); // add project
+app.get('/source/:id', api.findById); // get project by id
+app.post('/source', api.addProject); // add project
 // app.put('/source/:id', api.updateProject); // update project
 // app.delete('/source/:id', api.deleteProject); // delete project
 
