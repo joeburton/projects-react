@@ -16,7 +16,7 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:32769/projectDirectory';
+    url = 'mongodb://localhost:27017/projectDirectory';
 }
 
 
@@ -65,7 +65,7 @@ exports.logout = function (req, res) {
 // get all projects in the collection
 exports.findAll = function(req, res) {
 
-    let collection = dbObj.collection('projects');
+    var collection = dbObj.collection('projects');
     
     collection.find({}).toArray(function(err, projects) {
         res.write(JSON.stringify(projects));
