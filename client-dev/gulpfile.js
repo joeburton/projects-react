@@ -18,8 +18,8 @@ gulp.task('webpack', function() {
 // CSS minification
 gulp.task('css', function() {
 	gulp.src('app/css/*.css')
-    .pipe(minifyCSS())
     .pipe(concat('style.min.css'))
+    .pipe(minifyCSS())
     .pipe(gulp.dest('../public/css'))
 });
 

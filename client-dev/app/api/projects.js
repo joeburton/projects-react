@@ -30,6 +30,10 @@ let axiosAjax = {
 		axios.post('http://localhost:3000/source', postData)
 		.then(function (response) {
 			console.log(response);
+			// store.dispatch({
+	  //           type: 'ADD_PROJECT',
+	  //           project: data
+	  //       });
 		})
 		.catch(function (error) {
 			console.log(error);
