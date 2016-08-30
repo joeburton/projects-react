@@ -26,12 +26,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/populate-database', api.populateDatabase); // populate database
+app.get('/populate-database', api.populateDatabase); // populate database
 app.use(routes);
+console.log(api);
 
 app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id
-app.post('/source', api.addProject); // add project
+app.post('/addproject', api.addProject); // add addproject
+app.post('/addcompany', api.addCompany); // add addcompany
 // app.put('/source/:id', api.updateProject); // update project
 // app.delete('/source/:id', api.deleteProject); // delete project
 

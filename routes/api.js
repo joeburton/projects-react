@@ -16,7 +16,7 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:27017/projectDirectory';
+    url = 'mongodb://localhost:32768/projectDirectory';
 }
 
 
@@ -91,23 +91,59 @@ exports.findById = function(req, res) {
 };
 
 
-// add a new project
+// add a new project to an exisiting company
 exports.addProject = function(req, res) {
+    
+    var company = req.body;
+
+    //console.log('Add new project to exisiting company: ' + JSON.stringify(company));
+    
+    //console.log(company._id);
+    
+    var project = company.projects.pop();
+    
+    console.log(project);
+
+    // dbObj.collection('projects', function(err, collection) {
+    //     collection.update({'_id': new ObjectId(id)}, { _id: company._id },
+    //         { $push: { projects: project } }, {safe:true}, function(err, result) {
+    //         if (err) {
+    //             console.log('Error updating project: ' + err);
+    //             res.send({'error':'An error has occurred'});
+    //         } else {
+    //             console.log('' + result + ' document(s) updated');
+    //             res.send(project);
+    //         }
+    //     });
+    // });
+
+    dbObj.projects.update(
+        { _id: company._id },
+        { $push: {
+            projects: { project }
+        }
+        }
+    )
+
+}
+
+// add a new project and company
+exports.addCompany = function(req, res) {
     
     var project = req.body;
 
-    console.log('Adding Project: ' + JSON.stringify(project));
+    console.log('Add new project and company: ' + JSON.stringify(project));
 
-    dbObj.collection('projects', function(err, collection) {
-        collection.insert(project, {safe:true}, function(err, result) {
-            if (err) {
-                res.send({'Error': 'an error has occurred'});
-            } else {
-                console.log('Success: ' + JSON.stringify(result));
-                res.send(JSON.stringify(result));
-            }
-        });
-    });
+    // dbObj.collection('projects', function(err, collection) {
+    //     collection.insert(project, {safe:true}, function(err, result) {
+    //         if (err) {
+    //             res.send({'Error': 'an error has occurred'});
+    //         } else {
+    //             console.log('Success: ' + JSON.stringify(result));
+    //             res.send(JSON.stringify(result));
+    //         }
+    //     });
+    // });
 
 }
 

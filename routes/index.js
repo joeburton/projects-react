@@ -11,7 +11,6 @@ router.get('/projects', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
 /* GET companies. */
 router.get('/companies', function(req, res, next) {
   res.render('index', { title: 'Express' });

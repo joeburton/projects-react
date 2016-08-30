@@ -14,20 +14,25 @@ let axiosAjax = {
 	    });
 	},
 	addProject (data, projects) {
-		console.log(data, projects);
-		var postData;
+		let postData,
+			companyExists;
 
 		for (var i in projects) {
 		    if (projects[i]['company'] === data.company) {
   				projects[i].projects.push(data.projects[0]);
 				console.log('company already exists: ', projects);
-				postData = projects;
+				postData = projects[i];
+				companyExists = true;
+				break;
 		    } else {
+		    	companyExists = false;
 		    	postData = data;
 		    }
 		}
-
-		axios.post('http://localhost:3000/source', postData)
+		
+		let addType = (companyExists) ? 'addproject' : 'addcompany';
+		
+		axios.post('http://localhost:3000/' + addType, postData)
 		.then(function (response) {
 			console.log(response);
 			// store.dispatch({

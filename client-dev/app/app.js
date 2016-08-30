@@ -12,7 +12,6 @@ import Home from 'ui/home';
 import CompaniesContainer from 'ui/companies-container';
 import ProjectsContainer from 'ui/projects-container';
 
-
 ReactDOM.render((
     <Provider store={store}>
         <Router history={browserHistory}>
