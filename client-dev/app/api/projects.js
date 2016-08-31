@@ -19,9 +19,8 @@ let axiosAjax = {
 
 		for (var i in projects) {
 		    if (projects[i]['company'] === data.company) {
-  				projects[i].projects.push(data.projects[0]);
-				console.log('company already exists: ', projects);
-				postData = projects[i];
+				data.id = projects[i]['_id'];
+				postData = data;
 				companyExists = true;
 				break;
 		    } else {
@@ -31,7 +30,7 @@ let axiosAjax = {
 		}
 		
 		let addType = (companyExists) ? 'addproject' : 'addcompany';
-		
+
 		axios.post('http://localhost:3000/' + addType, postData)
 		.then(function (response) {
 			console.log(response);
