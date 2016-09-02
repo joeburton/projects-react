@@ -91,17 +91,12 @@ exports.findById = function(req, res) {
 };
 
 
-// add a new project to an exisiting company
+// add project to an exisiting company
 exports.addProject = function(req, res) {
     
-    var company = req.body;
-
-    console.log('Add new project to exisiting company: ' + JSON.stringify(company));
+    var company = req.body,
+        project = company.projects[0];
     
-    var project = company.projects[0];
-    
-    console.log(project);
-
     dbObj.collection('projects', function(err, collection) {
         
         collection.update({'_id': new ObjectId(company.id)},
@@ -110,8 +105,10 @@ exports.addProject = function(req, res) {
                 console.log('Error updating project: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
-                console.log('' + result + ' document(s) updated');
-                res.send(project);
+                collection.find({}).toArray(function(error, projects) {
+                    res.write(JSON.stringify(projects));
+                    res.end();
+                });
             }
         });
 
@@ -125,15 +122,15 @@ exports.addCompany = function(req, res) {
     
     var project = req.body;
 
-    console.log('Add new project and company: ' + JSON.stringify(project));
-
     dbObj.collection('projects', function(err, collection) {
         collection.insert(project, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'Error': 'an error has occurred'});
             } else {
-                console.log('Success: ' + JSON.stringify(result));
-                res.send(JSON.stringify(result));
+                collection.find({}).toArray(function(error, projects) {
+                    res.write(JSON.stringify(projects));
+                    res.end();
+                });
             }
         });
     });
@@ -142,41 +139,41 @@ exports.addCompany = function(req, res) {
 
 
 // update project
-exports.updateProject = function(req, res) {
-    var id = req.params.id;
-    var project = req.body;
-    delete project._id;
-    console.log('Project: ' + project);
-    console.log('Updating project: ' + id);
-    console.log(JSON.stringify(project));
-    dbObj.collection('projects', function(err, collection) {
-        collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
-            if (err) {
-                console.log('Error updating project: ' + err);
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('' + result + ' document(s) updated');
-                res.send(project);
-            }
-        });
-    });
-}
+// exports.updateProject = function(req, res) {
+//     var id = req.params.id;
+//     var project = req.body;
+//     delete project._id;
+//     console.log('Project: ' + project);
+//     console.log('Updating project: ' + id);
+//     console.log(JSON.stringify(project));
+//     dbObj.collection('projects', function(err, collection) {
+//         collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
+//             if (err) {
+//                 console.log('Error updating project: ' + err);
+//                 res.send({'error':'An error has occurred'});
+//             } else {
+//                 console.log('' + result + ' document(s) updated');
+//                 res.send(project);
+//             }
+//         });
+//     });
+// }
 
 // delete project
-exports.deleteProject = function(req, res) {
-    var id = req.params.id;
-    console.log('Deleting project: ' + id);
-    dbObj.collection('projects', function(err, collection) {
-        collection.remove({'_id':new ObjectId(id)}, {safe:true}, function(err, result) {
-            if (err) {
-                res.send({'error':'An error has occurred - ' + err});
-            } else {
-                console.log('' + result + ' document(s) deleted');
-                res.send(req.body);
-            }
-        });
-    });
-}
+// exports.deleteProject = function(req, res) {
+//     var id = req.params.id;
+//     console.log('Deleting project: ' + id);
+//     dbObj.collection('projects', function(err, collection) {
+//         collection.remove({'_id':new ObjectId(id)}, {safe:true}, function(err, result) {
+//             if (err) {
+//                 res.send({'error':'An error has occurred - ' + err});
+//             } else {
+//                 console.log('' + result + ' document(s) deleted');
+//                 res.send(req.body);
+//             }
+//         });
+//     });
+// }
 
 // populate database
 exports.populateDatabase = function (req, res) {

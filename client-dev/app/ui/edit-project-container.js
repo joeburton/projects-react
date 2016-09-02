@@ -22,7 +22,7 @@ const dispatchToProps = function(dispatch) {
         disptachProjectUpdate: (e, data) => {
             e.preventDefault();
             store.dispatch({
-                type: 'EDIT_PROJECT',
+                type: 'UPDATE_PROJECT',
                 project: {
                     '_id': data.id,
                     'key': data.key,

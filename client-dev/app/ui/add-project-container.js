@@ -24,10 +24,6 @@ const dispatchToProps = function(state) {
         disptachAddProject (e, data) {
             e.preventDefault();
             axiosAjax.addProject(data, this.state); 
-            // store.dispatch({
-            //     type: 'ADD_PROJECT',
-            //     project: data
-            // });
         }
     }
 }
