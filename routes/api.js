@@ -139,25 +139,26 @@ exports.addCompany = function(req, res) {
 
 
 // update project
-// exports.updateProject = function(req, res) {
-//     var id = req.params.id;
-//     var project = req.body;
-//     delete project._id;
-//     console.log('Project: ' + project);
-//     console.log('Updating project: ' + id);
-//     console.log(JSON.stringify(project));
-//     dbObj.collection('projects', function(err, collection) {
-//         collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
-//             if (err) {
-//                 console.log('Error updating project: ' + err);
-//                 res.send({'error':'An error has occurred'});
-//             } else {
-//                 console.log('' + result + ' document(s) updated');
-//                 res.send(project);
-//             }
-//         });
-//     });
-// }
+exports.updateProject = function(req, res) {
+
+    var id = req.params.id,
+        project = req.body;
+
+    console.log(JSON.stringify(project));
+    return;
+
+    dbObj.collection('projects', function(err, collection) {
+        collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
+            if (err) {
+                console.log('Error updating project: ' + err);
+                res.send({'error':'An error has occurred'});
+            } else {
+                console.log('' + result + ' document(s) updated');
+                res.send(project);
+            }
+        });
+    });
+}
 
 // delete project
 // exports.deleteProject = function(req, res) {

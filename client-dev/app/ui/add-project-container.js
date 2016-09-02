@@ -14,7 +14,7 @@ const AddProjectContainer = React.createClass({
 
 const stateToProps = function(state) {
     return {
-        state: state.projectReducer.projects
+        projects: state.projectReducer.projects
     }
 }
 
@@ -23,7 +23,7 @@ const dispatchToProps = function(state) {
     return {
         disptachAddProject (e, data) {
             e.preventDefault();
-            axiosAjax.addProject(data, this.state); 
+            axiosAjax.addProject(data, this.projects); 
         }
     }
 }

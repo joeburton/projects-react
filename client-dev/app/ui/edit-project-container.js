@@ -2,6 +2,7 @@ import React from 'react';
 import EditProject from './edit-project';
 import { connect } from 'react-redux';
 import store from 'store';
+import axiosAjax from 'api/projects';
 
 const EditProjectContainer = React.createClass({
     render: function() {
@@ -17,26 +18,27 @@ const stateToProps = function(state) {
     }
 }
 
-const dispatchToProps = function(dispatch) {
+const dispatchToProps = function(state) {
     return {
-        disptachProjectUpdate: (e, data) => {
+        disptachProjectUpdate (e, data) {
             e.preventDefault();
-            store.dispatch({
-                type: 'UPDATE_PROJECT',
-                project: {
-                    '_id': data.id,
-                    'key': data.key,
-                    'company': data.company,
-                    'project': data.name,
-                    'link': data.link,
-                    'skills': data.skills,
-                    'description': data.description
-                }
-            });
+            axiosAjax.updateProject(data, this.projects); 
+            // store.dispatch({
+            //     type: 'UPDATE_PROJECT',
+            //     project: {
+            //         '_id': data.id,
+            //         'key': data.key,
+            //         'company': data.company,
+            //         'project': data.name,
+            //         'link': data.link,
+            //         'skills': data.skills,
+            //         'description': data.description
+            //     }
+            // });
         }
     }
 }
 
-export default connect(stateToProps, dispatchToProps)(EditProjectContainer);
 
+export default connect(stateToProps, dispatchToProps)(EditProjectContainer);
 

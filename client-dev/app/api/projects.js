@@ -49,9 +49,10 @@ let axiosAjax = {
 		});
 
 	},
-	updateProject () {
-
+	updateProject (data, projects) {
+		console.log(data, projects);
 	}
+
 };
 
 export default axiosAjax;
