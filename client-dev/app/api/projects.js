@@ -51,8 +51,10 @@ let axiosAjax = {
 	},
 	updateProject (data, projects) {
 		console.log(data, projects);
+	},
+	deleteProject (id, projectIndex, projects) {
+		console.log(data, projectIndex, projects);
 	}
-
 };
 
 export default axiosAjax;

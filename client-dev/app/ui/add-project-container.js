@@ -1,7 +1,6 @@
 import React from 'react';
 import AddProject from './add-project';
 import { connect } from 'react-redux';
-import store from 'store';
 import axiosAjax from 'api/projects';
 
 const AddProjectContainer = React.createClass({
@@ -17,7 +16,6 @@ const stateToProps = function(state) {
         projects: state.projectReducer.projects
     }
 }
-
 
 const dispatchToProps = function(state) {
     return {

@@ -91,7 +91,7 @@ exports.findById = function(req, res) {
 };
 
 
-// add project to an exisiting company
+// add project to an exisiting company set
 exports.addProject = function(req, res) {
     
     var company = req.body,
@@ -117,7 +117,7 @@ exports.addProject = function(req, res) {
 }
 
 
-// add a new project and company
+// add a new project and new company
 exports.addCompany = function(req, res) {
     
     var project = req.body;
@@ -139,42 +139,50 @@ exports.addCompany = function(req, res) {
 
 
 // update project
-exports.updateProject = function(req, res) {
+// exports.updateProject = function(req, res) {
 
-    var id = req.params.id,
-        project = req.body;
+//     var id = req.params.id,
+//         project = req.body;
 
-    console.log(JSON.stringify(project));
-    return;
+//     console.log(JSON.stringify(project));
+//     return;
 
-    dbObj.collection('projects', function(err, collection) {
-        collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
-            if (err) {
-                console.log('Error updating project: ' + err);
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('' + result + ' document(s) updated');
-                res.send(project);
-            }
-        });
-    });
-}
+//     dbObj.collection('projects', function(err, collection) {
+//         collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
+//             if (err) {
+//                 console.log('Error updating project: ' + err);
+//                 res.send({'error':'An error has occurred'});
+//             } else {
+//                 console.log('' + result + ' document(s) updated');
+//                 res.send(project);
+//             }
+//         });
+//     });
+// }
+
 
 // delete project
 // exports.deleteProject = function(req, res) {
 //     var id = req.params.id;
 //     console.log('Deleting project: ' + id);
-//     dbObj.collection('projects', function(err, collection) {
-//         collection.remove({'_id':new ObjectId(id)}, {safe:true}, function(err, result) {
-//             if (err) {
-//                 res.send({'error':'An error has occurred - ' + err});
-//             } else {
-//                 console.log('' + result + ' document(s) deleted');
-//                 res.send(req.body);
-//             }
-//         });
-//     });
+    
+    // if () {
+
+    // } else {
+
+    // }
+    // dbObj.collection('projects', function(err, collection) {
+    //     collection.remove({'_id':new ObjectId(id)}, {safe:true}, function(err, result) {
+    //         if (err) {
+    //             res.send({'error':'An error has occurred - ' + err});
+    //         } else {
+    //             console.log('' + result + ' document(s) deleted');
+    //             res.send(req.body);
+    //         }
+    //     });
+    // });
 // }
+
 
 // populate database
 exports.populateDatabase = function (req, res) {

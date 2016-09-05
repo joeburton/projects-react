@@ -17,10 +17,11 @@ const stateToProps = function(state) {
     }
 }
 
-const dispatchToProps = function() {
+const dispatchToProps = function(state) {
     return {
-        openEditInput: (e) => {
-            
+        openEditInput (e, data) {
+            e.preventDefault();
+
             // edit field elements
             let editProjectEle = document.querySelectorAll('.edit-project')[0],
                 fieldsWrapper = editProjectEle.querySelectorAll('.edit-fields')[0],
@@ -32,28 +33,36 @@ const dispatchToProps = function() {
 
             // project values
             let projectContainerEl = e.target.parentElement,
-                // currentValueCompany = projectContainerEl.getElementsByClassName('company')[0],
+                projectContainerUl = projectContainerEl.parentNode,
+                currentValueCompany = projectContainerUl.parentNode.querySelector('.company-name').textContent.split(':')[1],
                 currentValueProject = projectContainerEl.getElementsByClassName('project')[0].textContent,
                 currentValueLink = projectContainerEl.getElementsByClassName('link')[0].textContent,
                 currentValueSkills = projectContainerEl.getElementsByClassName('skills')[0].textContent,
                 currentValueDescription = projectContainerEl.getElementsByClassName('description')[0].textContent;
 
             if (editProjectEle.classList.contains('hidden')) {
-                editProjectEle.classList.remove("hidden");    
+                editProjectEle.classList.remove('hidden');    
             }
 
             // set edit field values
-            // @TODO get vales from html or pass them as props? Need to research futher.
-            // @TODO extend futher as there are now nested projects
             fieldsWrapper.setAttribute('data-id', e.target.getAttribute('data-id'));
             fieldsWrapper.setAttribute('data-project-key', e.target.getAttribute('data-project-key'));
             
-            
-            company.value = 'company name';
+            company.value = currentValueCompany;
             project.value = currentValueProject;
             link.value = currentValueLink;
             skills.value = currentValueSkills;
             description.value = currentValueDescription;
+
+        },
+        deleteProject(e) {
+            e.preventDefault();
+
+            var ele = e.target,
+                id = ele.getAttribute('data-id'),
+                projectIndex = ele.getAttribute('data-project-key');
+
+            console.log(id, projectIndex, this.projects);
 
         }
     }
