@@ -2,19 +2,19 @@ import axios from 'axios';
 import store from 'store';
 
 let axiosAjax = {
-	getProjects () {
-	    
-	    return axios.get('http://localhost:3000/source').then(function(response) {
-	        store.dispatch({
-	            type: 'GET_PROJECTS',
-	            projects: response.data
-	        });
-	        return response;
-	    }).catch(function(err) {
-	        console.error(err);
-	    });
+    getProjects () {
 
-	},
+    	return axios.get('http://localhost:3000/source').then(function(response) {
+            store.dispatch({
+                type: 'GET_PROJECTS',
+                projects: response.data
+            });
+            return response;
+        }).catch(function(err) {
+            console.error(err);
+        });
+
+    },
 	addProject (data, projects) {
 		
 		let postData,
@@ -34,7 +34,7 @@ let axiosAjax = {
 		    	postData = data;
 		    }
 		}
-		
+
 		let addType = (companyExists) ? 'addproject' : 'addcompany';
 
 		axios.post('http://localhost:3000/' + addType, postData)
