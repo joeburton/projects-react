@@ -99,8 +99,7 @@ exports.addProject = function(req, res) {
     
     dbObj.collection('projects', function(err, collection) {
         
-        collection.update({'_id': new ObjectId(company.id)},
-            { $push: { projects: project } }, {safe:true}, function(err, result) {
+        collection.update({'_id': new ObjectId(company.id)}, { $push: { projects: project } }, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating project: ' + err);
                 res.send({'error':'An error has occurred'});
@@ -139,49 +138,67 @@ exports.addCompany = function(req, res) {
 
 
 // update project
-// exports.updateProject = function(req, res) {
+exports.updateProject = function(req, res) {
 
-//     var id = req.params.id,
-//         project = req.body;
+    var project = req.body;
 
-//     console.log(JSON.stringify(project));
-//     return;
+    console.log(JSON.stringify(project));
 
-//     dbObj.collection('projects', function(err, collection) {
-//         collection.update({'_id':new ObjectId(id)}, project, {safe:true}, function(err, result) {
-//             if (err) {
-//                 console.log('Error updating project: ' + err);
-//                 res.send({'error':'An error has occurred'});
-//             } else {
-//                 console.log('' + result + ' document(s) updated');
-//                 res.send(project);
-//             }
-//         });
-//     });
-// }
+    // if there's more than one project update the array don't delete company wrapper....
+    dbObj.collection('projects', function(err, collection) {
+
+        console.log('UPDATE PROJECTS ARRAY');
+
+        collection.update({ 
+            _id: new ObjectId(project.companyId)} , { $set: { company : project.company  } 
+        });
+        
+        collection.update(
+            { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
+            { '$set': { 'projects.$':  {  
+                id: project.projectId,
+                project: project.company,
+                link: project.link,
+                skills: project.skills,
+                description: project.description  
+            } }
+        });
+
+    });
+}
 
 
 // delete project
-// exports.deleteProject = function(req, res) {
-//     var id = req.params.id;
-//     console.log('Deleting project: ' + id);
+exports.deleteProject = function(req, res) {
     
-    // if () {
+    let postData = req.body,
+        companyId = postData.companyId,
+        projectId = postData.projectId,
+        projectListItemsLength = postData.projectListItemsLength;
+    
+    if (projectListItemsLength > 1) {
+        // if there's more than one project update the array don't delete company wrapper....
+        dbObj.collection('projects', function(err, collection) {
+            console.log('UPDATE PROJECTS ARRAY');
+            collection.update({ _id : new ObjectId(companyId) }, { $pull : {'projects' : { 'id' : new ObjectId(projectId) } } });
+        });
 
-    // } else {
+    } else {
+        // if there is only one item delete project and company record
+        dbObj.collection('projects', function(err, collection) {
+            console.log('DELETE COMPANY');
+            collection.remove({'_id':new ObjectId(companyId)}, {safe:true}, function(err, result) {
+                if (err) {
+                    res.send({'error':'An error has occurred - ' + err});
+                } else {
+                    console.log('' + result + ' document(s) deleted');
+                    res.send(req.body);
+                }
+            });
+        });
+    }
 
-    // }
-    // dbObj.collection('projects', function(err, collection) {
-    //     collection.remove({'_id':new ObjectId(id)}, {safe:true}, function(err, result) {
-    //         if (err) {
-    //             res.send({'error':'An error has occurred - ' + err});
-    //         } else {
-    //             console.log('' + result + ' document(s) deleted');
-    //             res.send(req.body);
-    //         }
-    //     });
-    // });
-// }
+}
 
 
 // populate database
@@ -190,11 +207,13 @@ exports.populateDatabase = function (req, res) {
     var projects = [{
         company: 'm.lastminute.com',
         projects: [{
+            id: new ObjectId(),
             project: 'm.lastminute.com',
             link: 'http://m.lastminute.com',
             skills: 'Backbone, JavaScript, Jasmine, Require',
             description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
         }, {
+            id: new ObjectId(),
             project: 'Responsive Search Forms',
             link: 'http://www.lastminute.com',
             skills: 'JavaScript, Require',
@@ -203,6 +222,7 @@ exports.populateDatabase = function (req, res) {
     }, {
         company: 'Bauer Media',
         projects: [{
+            id: new ObjectId(),
             project: 'Closer Magazine',
             link: 'http://www.closeronline.co.uk',
             skills: 'JavaScript, Backbone, Jasmine, Require',
@@ -211,6 +231,7 @@ exports.populateDatabase = function (req, res) {
     }, {
         company: 'Rank Interactive',
         projects: [{
+            id: new ObjectId(),
             project: 'Blue Star',
             link: 'http://joe-burton.com/bluestar/',
             skills: 'Backbone, JavaScript, Jasmine, Require',
@@ -219,6 +240,7 @@ exports.populateDatabase = function (req, res) {
     }, {
         company: 'Engine',
         projects: [{
+            id: new ObjectId(),
             project: 'Fabulous Magazine',
             link: 'http://www.thesun.co.uk/sol/homepage/fabulous',
             skills: 'HTML5, CSS3, JavaScript/jQuery',
@@ -227,6 +249,7 @@ exports.populateDatabase = function (req, res) {
     }, {
         company: 'SapientNitro',
         projects: [{
+            id: new ObjectId(),
             project: 'John Lewis',
             link: 'http://www.johnlewis.com',
             skills: 'HTML5, CSS3, JavaScript/jQuery',

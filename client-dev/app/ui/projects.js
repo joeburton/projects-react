@@ -23,7 +23,7 @@ export default React.createClass({
 
     renderProjects (projects, id) {
             return (
-            <ul ref={'proj'+id}>
+            <ul id={id}>
                 {projects.map((proj, i) => {
                     return (
                         <li key={i}>
@@ -31,7 +31,7 @@ export default React.createClass({
                         <div>URL: <span className='project-item link'> {proj.link} </span></div>
                         <div>Skills: <span className='project-item skills'> {proj.skills} </span></div>
                         <div>Description: <span className='project-item description'> {proj.description} </span></div>
-                        <a href='#' data-id={id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>edit</a> | <a href='#' data-id={id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>delete</a>
+                        <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>edit</a> | <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>delete</a>
                         </li>
                     );
                 })}
@@ -40,12 +40,7 @@ export default React.createClass({
     },
 
     deleteProject(e) {
-
-        var refID = e.target.getAttribute('ref')
-        
-        console.log(this.refs.refID);
         this.props.deleteProject(e);
-
     }
 
 });

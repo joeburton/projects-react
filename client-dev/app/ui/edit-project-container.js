@@ -22,12 +22,11 @@ const dispatchToProps = function(state) {
     return {
         disptachProjectUpdate (e, data) {
             e.preventDefault();
-            axiosAjax.updateProject(data, this.projects); 
+            axiosAjax.updateProject(data); 
             // store.dispatch({
             //     type: 'UPDATE_PROJECT',
             //     project: {
             //         '_id': data.id,
-            //         'key': data.key,
             //         'company': data.company,
             //         'project': data.name,
             //         'link': data.link,

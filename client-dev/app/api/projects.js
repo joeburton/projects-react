@@ -49,11 +49,33 @@ let axiosAjax = {
 		});
 
 	},
-	updateProject (data, projects) {
-		console.log(data, projects);
+	updateProject (data) {
+
+		axios.post('http://localhost:3000/updateproject', data)
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+
 	},
-	deleteProject (id, projectIndex, projects) {
-		console.log(data, projectIndex, projects);
+	deleteProject (companyId, projectId, projectListItemsLength) {
+
+		let postData = {
+			companyId, 
+			projectId,
+			projectListItemsLength
+		};
+
+		axios.post('http://localhost:3000/deleteproject', postData)
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+		
 	}
 };
 

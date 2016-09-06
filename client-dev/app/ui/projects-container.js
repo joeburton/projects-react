@@ -1,6 +1,7 @@
 import React from 'react';
 import Projects from './projects';
 import { connect } from 'react-redux';
+import axiosAjax from 'api/projects';
 
 const ProjectContainer = React.createClass({
     render: function() {
@@ -40,14 +41,16 @@ const dispatchToProps = function(state) {
                 currentValueSkills = projectContainerEl.getElementsByClassName('skills')[0].textContent,
                 currentValueDescription = projectContainerEl.getElementsByClassName('description')[0].textContent;
 
+            // open edit project form overlay
             if (editProjectEle.classList.contains('hidden')) {
                 editProjectEle.classList.remove('hidden');    
             }
 
             // set edit field values
-            fieldsWrapper.setAttribute('data-id', e.target.getAttribute('data-id'));
-            fieldsWrapper.setAttribute('data-project-key', e.target.getAttribute('data-project-key'));
-            
+            fieldsWrapper.setAttribute('data-company-id', e.target.getAttribute('data-company-id'));
+            fieldsWrapper.setAttribute('data-project-id', e.target.getAttribute('data-project-id'));
+
+            // set edit field values
             company.value = currentValueCompany;
             project.value = currentValueProject;
             link.value = currentValueLink;
@@ -58,12 +61,15 @@ const dispatchToProps = function(state) {
         deleteProject(e) {
             e.preventDefault();
 
-            var ele = e.target,
-                id = ele.getAttribute('data-id'),
-                projectIndex = ele.getAttribute('data-project-key');
+            let ele = e.target,
+                companyId = ele.getAttribute('data-company-id'),
+                projectId = ele.getAttribute('data-project-id'),
+                projectList = document.getElementById(companyId),
+                projectListItems = projectList.getElementsByTagName('li'),
+                projectListItemsLength = projectListItems.length;
 
-            console.log(id, projectIndex, this.projects);
-
+            axiosAjax.deleteProject(companyId, projectId, projectListItemsLength);
+            
         }
     }
 }

@@ -34,8 +34,8 @@ app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id
 app.post('/addproject', api.addProject); // add addproject
 app.post('/addcompany', api.addCompany); // add addcompany
-// app.put('/source/:id', api.updateProject); // update project
-// app.delete('/source/:id', api.deleteProject); // delete project
+app.post('/updateproject', api.updateProject); // update project
+app.post('/deleteproject', api.deleteProject); // delete project or company
 
 // app.post('/login', api.login); // login
 // app.get('/logout', api.logout); // logout

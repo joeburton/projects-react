@@ -54,9 +54,6 @@ export default React.createClass({
     },
 
     setValue (e) {
-
-        console.log(this.props);
-
         let fieldValues = this.getValues();
 
     	this.setState({
@@ -69,8 +66,8 @@ export default React.createClass({
 
         // send object to dispatch in container component.
         this.props.disptachProjectUpdate(e, {
-            id: fieldValues.id,
-            key: fieldValues.key,
+            companyId: fieldValues.companyId,
+            projectId: fieldValues.projectId,
             company: fieldValues.company,
             name: fieldValues.name,
             link: fieldValues.link,
@@ -96,18 +93,20 @@ export default React.createClass({
 
     getValues () {
         // wrapping el
-        let projectEl = document.getElementsByClassName('edit-fields')[0];
-        
-        // get elements
-        let company = projectEl.querySelectorAll('.company')[0];
-        let name = projectEl.querySelectorAll('.project-name')[0];
-        let link = projectEl.querySelectorAll('.link')[0];
-        let skills = projectEl.querySelectorAll('.skills')[0];
-        let description = projectEl.querySelectorAll('.description')[0];
+        let projectEl = document.getElementsByClassName('edit-fields')[0],
+
+            // get elements
+            companyId = projectEl.getAttribute('data-company-id'),
+            projectId = projectEl.getAttribute('data-project-id'),
+            company = projectEl.querySelectorAll('.company')[0],
+            name = projectEl.querySelectorAll('.project-name')[0],
+            link = projectEl.querySelectorAll('.link')[0],
+            skills = projectEl.querySelectorAll('.skills')[0],
+            description = projectEl.querySelectorAll('.description')[0];
 
         return {
-            id: projectEl.getAttribute('data-id'),
-            key: projectEl.getAttribute('data-project-key'),
+            companyId: companyId,
+            projectId: projectId,
             company: company.value,
             name: name.value,
             link: link.value,
