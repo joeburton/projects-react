@@ -156,12 +156,12 @@ exports.updateProject = function(req, res) {
         collection.update(
             { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
             { '$set': { 'projects.$':  {  
-                id: project.projectId,
-                project: project.company,
+                id: new ObjectId(project.projectId),
+                project: project.name,
                 link: project.link,
                 skills: project.skills,
                 description: project.description  
-            } }
+            }}
         });
 
     });
