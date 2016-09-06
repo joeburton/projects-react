@@ -8,10 +8,10 @@ export default React.createClass({
 		}
 	},
 
-    render () {
-        return (
-            <b>Directory of passed companies and projects</b>
-        )
-    }
+	render () {
+		return (
+			<b>Directory of passed companies and projects</b>
+		)
+	}
 
 });

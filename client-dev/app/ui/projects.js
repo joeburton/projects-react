@@ -22,7 +22,7 @@ export default React.createClass({
     },
 
     renderProjects (projects, id) {
-            return (
+        return (
             <ul id={id}>
                 {projects.map((proj, i) => {
                     return (

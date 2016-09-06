@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default React.createClass({
-	
-	getInitialState () {
+
+    getInitialState () {
         return {
             company: '',
             name: '',
@@ -10,7 +10,7 @@ export default React.createClass({
             skills: '',
             description: ''
         };
-	},
+    },
 
     render (state) {
         return (
