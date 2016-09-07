@@ -28,7 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/populate-database', api.populateDatabase); // populate database
 app.use(routes);
-console.log(api);
 
 app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id

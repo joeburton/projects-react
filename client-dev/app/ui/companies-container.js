@@ -3,13 +3,11 @@ import Companies from './companies';
 import { connect } from 'react-redux';
 
 const CompaniesContainer = React.createClass({
-
     render() {
         return (
             <Companies {...this.props} />
         )
     }
-
 });
 
 const stateToProps = function(state) {

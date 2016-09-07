@@ -7,11 +7,9 @@ import NumberProjects from 'ui/number-projects';
 import axiosAjax from 'api/projects';
 
 export default React.createClass({
-
     componentWillMount () {
         axiosAjax.getProjects();
     },
-
     closeEditInput () {
         let editProjectEle = document.querySelectorAll('.edit-project')[0]
 
@@ -19,7 +17,6 @@ export default React.createClass({
             editProjectEle.classList.add('hidden');    
         }
     },
-
     openAddProject (e) {
         e.preventDefault();
         let addProjectEle = document.querySelectorAll('.add-project')[0]
@@ -30,7 +27,6 @@ export default React.createClass({
             addProjectEle.classList.add('hidden'); 
         }
     },
-
     render (state) {
         return (
             <div className='app'>
@@ -48,5 +44,4 @@ export default React.createClass({
             </div>
         )
     }
-    
 });

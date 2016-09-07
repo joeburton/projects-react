@@ -97,6 +97,10 @@ exports.addProject = function(req, res) {
     var company = req.body,
         project = company.projects[0];
     
+    project.id = new ObjectId();
+    
+    console.log(JSON.stringify(project));
+
     dbObj.collection('projects', function(err, collection) {
         
         collection.update({'_id': new ObjectId(company.id)}, { $push: { projects: project } }, {safe:true}, function(err, result) {
@@ -119,10 +123,14 @@ exports.addProject = function(req, res) {
 // add a new project and new company
 exports.addCompany = function(req, res) {
     
-    var project = req.body;
+    var company = req.body;
+    
+    company.projects[0].id = new ObjectId();
 
+    console.log(JSON.stringify(company));
+    
     dbObj.collection('projects', function(err, collection) {
-        collection.insert(project, {safe:true}, function(err, result) {
+        collection.insert(company, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'Error': 'an error has occurred'});
             } else {
@@ -142,29 +150,44 @@ exports.updateProject = function(req, res) {
 
     var project = req.body;
 
-    console.log(JSON.stringify(project));
-
     // if there's more than one project update the array don't delete company wrapper....
     dbObj.collection('projects', function(err, collection) {
 
         console.log('UPDATE PROJECTS ARRAY');
-
-        collection.update({ 
-            _id: new ObjectId(project.companyId)} , { $set: { company : project.company  } 
-        });
         
-        collection.update(
-            { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
-            { '$set': { 'projects.$':  {  
-                id: new ObjectId(project.projectId),
-                project: project.name,
-                link: project.link,
-                skills: project.skills,
-                description: project.description  
-            }}
-        });
+        if (err) {
+
+            res.send({'Error': 'an error has occurred'});
+
+        } else {
+
+            console.log(JSON.stringify(project));
+            
+            collection.update(
+                { _id: new ObjectId(project.companyId)}, 
+                { $set: { company : project.company  } }
+            );
+            
+            collection.update(
+                { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
+                { '$set': { 'projects.$':  {  
+                    id: new ObjectId(project.projectId),
+                    project: project.name,
+                    link: project.link,
+                    skills: project.skills,
+                    description: project.description  
+                }}}
+            );
+
+            collection.find({}).toArray(function(error, projects) {
+                res.write(JSON.stringify(projects));
+                res.end();
+            });
+
+        }
 
     });
+
 }
 
 
@@ -176,27 +199,42 @@ exports.deleteProject = function(req, res) {
         projectId = postData.projectId,
         projectListItemsLength = postData.projectListItemsLength;
     
-    if (projectListItemsLength > 1) {
-        // if there's more than one project update the array don't delete company wrapper....
-        dbObj.collection('projects', function(err, collection) {
-            console.log('UPDATE PROJECTS ARRAY');
-            collection.update({ _id : new ObjectId(companyId) }, { $pull : {'projects' : { 'id' : new ObjectId(projectId) } } });
-        });
+    // if there's more than one project update the array don't delete company wrapper....
+    dbObj.collection('projects', function(err, collection) {
 
-    } else {
-        // if there is only one item delete project and company record
-        dbObj.collection('projects', function(err, collection) {
-            console.log('DELETE COMPANY');
-            collection.remove({'_id':new ObjectId(companyId)}, {safe:true}, function(err, result) {
-                if (err) {
-                    res.send({'error':'An error has occurred - ' + err});
-                } else {
+        if (err) {
+            
+            res.send({'error':'An error has occurred - ' + err});
+
+        } else {
+
+            if (projectListItemsLength > 1) {
+            
+                console.log('UPDATE PROJECTS ARRAY');
+
+                collection.update(
+                    {  _id : new ObjectId(companyId) }, 
+                    { $pull : {'projects' : { 'id' : new ObjectId(projectId) } } }, function (err, result) {
+                });
+            
+            } else {
+                
+                console.log('DELETE COMPANY');
+
+                collection.remove({'_id':new ObjectId(companyId)}, {safe:true}, function(err, result) {
                     console.log('' + result + ' document(s) deleted');
-                    res.send(req.body);
-                }
+                });
+
+            }
+
+            collection.find({}).toArray(function(error, projects) {
+                res.write(JSON.stringify(projects));
+                res.end();
             });
-        });
-    }
+
+        }
+
+    });
 
 }
 
@@ -222,6 +260,20 @@ exports.populateDatabase = function (req, res) {
     }, {
         company: 'Bauer Media',
         projects: [{
+            id: new ObjectId(),
+            project: 'Closer Magazine',
+            link: 'http://www.closeronline.co.uk',
+            skills: 'JavaScript, Backbone, Jasmine, Require',
+            description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
+        },
+        {
+            id: new ObjectId(),
+            project: 'Closer Magazine',
+            link: 'http://www.closeronline.co.uk',
+            skills: 'JavaScript, Backbone, Jasmine, Require',
+            description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
+        },
+        {
             id: new ObjectId(),
             project: 'Closer Magazine',
             link: 'http://www.closeronline.co.uk',

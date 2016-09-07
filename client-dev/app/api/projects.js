@@ -20,9 +20,9 @@ let axiosAjax = {
         let postData,
             companyExists;
 
-        // Logic to check if the company already exists. 
-        // If it does add the project to the exisiting company projects array
-        // If it does not set a flag to add a new company.
+        // logic to check if the company already exists. 
+        // if it does add the project to the exisiting company projects array
+        // if it does not set a flag to add a new company.
         for (var i in projects) {
             if (projects[i]['company'] === data.company) {
                 data.id = projects[i]['_id'];
@@ -40,8 +40,8 @@ let axiosAjax = {
         axios.post('http://localhost:3000/' + addType, postData)
         .then(function (response) {
             store.dispatch({
-            type: 'GET_PROJECTS',
-            projects: response.data
+                type: 'GET_PROJECTS',
+                projects: response.data
             });
         })
         .catch(function (error) {
@@ -53,7 +53,10 @@ let axiosAjax = {
 
         axios.post('http://localhost:3000/updateproject', data)
         .then(function (response) {
-            console.log(response);
+            store.dispatch({
+                type: 'GET_PROJECTS',
+                projects: response.data
+            });
         })
         .catch(function (error) {
             console.log(error);
@@ -70,7 +73,10 @@ let axiosAjax = {
 
         axios.post('http://localhost:3000/deleteproject', postData)
         .then(function (response) {
-            console.log(response);
+            store.dispatch({
+                type: 'GET_PROJECTS',
+                projects: response.data
+            });
         })
         .catch(function (error) {
             console.log(error);

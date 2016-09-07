@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default React.createClass({
-    
     render () {
         return (
             <div className='add-project hidden'>
@@ -36,7 +35,6 @@ export default React.createClass({
             </div>
         )
     },
-
     addProject (e) {
         // wrapping el
         let projectEl = document.getElementsByClassName('add-fields')[0];
@@ -60,7 +58,6 @@ export default React.createClass({
 
         this.closeOverlay();
     },
-
     closeOverlay () {
         let addProjectEle = document.querySelectorAll('.add-project')[0];
 
@@ -68,5 +65,4 @@ export default React.createClass({
             addProjectEle.classList.add('hidden');    
         }
     }
-
 });

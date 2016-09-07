@@ -10,6 +10,8 @@ export default function(state = projectsInitialState, action) {
 
 			var newState = Object.assign({}, state)
 			newState.projects = action.projects;
+
+			console.log(newState, action);
 			
 		return newState;
 

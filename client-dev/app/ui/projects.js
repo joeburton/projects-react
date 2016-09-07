@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default React.createClass({
-    
     render () {
         return (
             <div className='projects-page'>
@@ -20,7 +19,6 @@ export default React.createClass({
             </div>
         )
     },
-
     renderProjects (projects, id) {
         return (
             <ul id={id}>
@@ -38,9 +36,7 @@ export default React.createClass({
             </ul>
         )
     },
-
     deleteProject(e) {
         this.props.deleteProject(e);
     }
-
 });
