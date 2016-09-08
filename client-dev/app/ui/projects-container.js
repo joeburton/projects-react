@@ -51,11 +51,11 @@ const dispatchToProps = function(state) {
             fieldsWrapper.setAttribute('data-project-id', e.target.getAttribute('data-project-id'));
 
             // set edit field values
-            company.value = currentValueCompany;
-            project.value = currentValueProject;
-            link.value = currentValueLink;
-            skills.value = currentValueSkills;
-            description.value = currentValueDescription;
+            company.value = currentValueCompany.trim();
+            project.value = currentValueProject.trim();
+            link.value = currentValueLink.trim();
+            skills.value = currentValueSkills.trim();
+            description.value = currentValueDescription.trim();
 
         },
         deleteProject(e) {

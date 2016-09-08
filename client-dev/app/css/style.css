@@ -37,7 +37,11 @@ ul {
 }
 
 
-/* Generic overlay styles */
+
+/**
+ * Generic overlay styles
+ * 
+ */
 .close-icon {
     color: #fff;
     text-align: right;
@@ -50,7 +54,11 @@ ul {
 }
 
 
-/* edit project overlay */
+
+/**
+ * edit project overlay
+ * 
+ */
 .edit-project {
     width: 100%;
     height: 100%;
@@ -86,7 +94,10 @@ ul {
 
 
 
-/* add project overlay */
+/**
+ * add project overlay
+ * 
+ */
 .add-project {
     width: 100%;
     height: 100%;
@@ -125,34 +136,57 @@ ul {
     display: inline;
 }
 
-/* Generic form elements */
+
+
+
+/**
+ * Generic form elements
+ * 
+ */
+
 textarea {
     display: block;
     width: 100%;
     margin-bottom: 10px;
     font-size: 14px;
-    padding: 10px 0;
-    text-indent: 10px;
+    padding: 10px 0 10px 10px;
     min-height: 100px;
 }
 
 input[type="text"] {
     display: block;
     margin-bottom: 10px;
-    width: 100%;
+    width: 99.5%;
     font-size: 14px;
-    padding: 10px 0;
-    text-indent: 10px;
+    padding: 10px 0 10px 10px;
 }
 
 button {
     display: block;
-    margin-bottom: 10px;
-    width: 100%;
+    width: 20%;
     padding: 10px;
+    margin: 0 auto;
 }
 
 
+
+/**
+ * home page banner
+ * 
+ */
+.project-banner {
+    margin: 0 auto;
+}
+
+.project-banner b {
+    text-align: left;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.project-banner img {
+    margin-bottom: 20px;
+}
 
 
 

@@ -19,32 +19,17 @@ export default React.createClass({
                         
                         <a href='#' className='close-icon' onClick={this.closeEditProjectOverlay}>x</a>                        
 
-                        <input type='text' 
-                        className='company'
-                        value={this.state.company}
-                        onChange={this.handleChange} />
+                        <input type='text' className='company' value={this.state.company} onChange={this.handleChange} />
 
-                        <input type='text'
-                        className='project-name'
-                        value={this.state.name}
-                        onChange={this.handleChange} />
+                        <input type='text' className='project-name' value={this.state.name} onChange={this.handleChange} />
 
-                        <input type='text' 
-                        className='link'
-                        value={this.state.link}
-                        onChange={this.handleChange} />
+                        <input type='text' className='link' value={this.state.link} onChange={this.handleChange} />
 
-                        <textarea type='textarea' 
-                        className='skills'
-                        value={this.state.skills}
-                        onChange={this.handleChange} />
+                        <textarea type='textarea' className='skills' value={this.state.skills} onChange={this.handleChange} />
 
-                        <textarea type='textarea' 
-                        className='description'
-                        value={this.state.description}
-                        onChange={this.handleChange} />
+                        <textarea type='textarea' className='description' value={this.state.description} onChange={this.handleChange} />
 
-                        <button name='button' onClick={this.setValue}>GO</button>
+                        <button name='button' onClick={this.setValue}>UPDATE</button>
                     </div>
                 </div>
             </div>

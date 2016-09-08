@@ -1,10 +1,11 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-    entry: "./app/app.js",
+    entry: './app/app.js',
     output: {
-        filename: "../public/js/app.js",
-        sourceMapFilename: "../public/js/app.map"
+        filename: '../public/js/app.js',
+        sourceMapFilename: '../public/js/app.map'
     },
     devtool: '#source-map',
     module: {
@@ -22,5 +23,14 @@ module.exports = {
     resolve: {
         root: path.resolve('./app'),
         extenstions: ['', '.js']
-    }
+    },
+    // plugins: [
+    //     new webpack.optimize.UglifyJsPlugin({minimize: true}),
+    //     // new webpack.DefinePlugin({
+    //     //     'process.env': {
+    //     //     'NODE_ENV': JSON.stringify('production')
+    //     //     }
+    //     // })
+    // ],
+    watch: true
 }
