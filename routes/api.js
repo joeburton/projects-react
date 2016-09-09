@@ -31,6 +31,7 @@ MongoClient.connect(url, function(err, db) {
 exports.auth = function (req, res) {
     
     sess = req.session;
+
     sess.username = req.body.username;
     sess.password = req.body.password;
 
