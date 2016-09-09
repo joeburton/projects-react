@@ -1,24 +1,52 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+
+/* Index */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET projects. */
+
+/* Projects */
 router.get('/projects', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	res.render('index', { 
+		title: 'Express',
+		loggedin: req.session.authenticated  
+	});
 });
 
-/* GET companies. */
+
+/* Companies */
 router.get('/companies', function(req, res, next) {
   res.render('index', { title: 'Express' });
 })
 
-/* GET companies. */
+
+/* Contact */
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Express' });
 });
+
+
+/* Log in */
+router.get('/login', function(req, res, next) {
+	if (req.session.authenticated ) {
+		res.redirect('/projects');
+	} else {
+		res.render('login', { 
+			title: 'Please Login', 
+			loggedin: req.session.authenticated 
+		});
+		console.log('login: ', req.session.authenticated);
+	}
+});
+
+
+// /* Contact */
+// router.get('/logout', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
+
 
 module.exports = router;

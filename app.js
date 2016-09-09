@@ -26,7 +26,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'ssshhhhh',
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.get('/populate-database', api.populateDatabase); // populate database
+
 app.use(routes);
 
 app.get('/source', api.findAll); // get all projects
@@ -36,8 +45,8 @@ app.post('/addcompany', api.addCompany); // add addcompany
 app.post('/updateproject', api.updateProject); // update project
 app.post('/deleteproject', api.deleteProject); // delete project or company
 
-// app.post('/login', api.login); // login
-// app.get('/logout', api.logout); // logout
+app.post('/auth', api.auth); // login
+app.get('/logout', api.logout); // logout
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

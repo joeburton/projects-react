@@ -1,12 +1,17 @@
     <div class="main">
         <div class="intro">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Project Directory</h1>
-                        <p>React/ Redux, NodeJS and MongoDB CRUD Application</p>
-                    </div>
-                </div>
+                <h1>
+                Project Directory
+                </h1>
+                <a href="{{#if loggedin}}/logout{{else}}/login{{/if}}">
+                {{#if loggedin}}
+                    LOG OUT
+                {{else}}
+                    LOG IN
+                {{/if}}
+                </a>
+                <p class="introl-skills">React/ Redux, NodeJS and MongoDB CRUD Application</p>
             </div>
         </div>
 

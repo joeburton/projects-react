@@ -16,7 +16,7 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:32768/projectDirectory';
+    url = 'mongodb://localhost:32769/projectDirectory';
 }
 
 
@@ -28,17 +28,16 @@ MongoClient.connect(url, function(err, db) {
 
 
 // login
-exports.login = function (req, res) {
+exports.auth = function (req, res) {
     
     sess = req.session;
-
-    sess.user = req.body.user;
+    sess.username = req.body.username;
     sess.password = req.body.password;
 
-    if (sess.user === 'joe' && sess.password === 'projects') {
+    if (sess.username === 'admin' && sess.password === 'projects') {
         console.log('Login Successful');
         sess.authenticated = true;
-        res.redirect('/admin');
+        res.redirect('/projects');
     } else {
         console.log('Login Failed');
         res.redirect('/login');
@@ -55,7 +54,7 @@ exports.logout = function (req, res) {
             console.log(err);
         } else {
             console.log('Successful logout');
-            res.redirect('/login');
+            res.redirect('/');
         }
     });
 

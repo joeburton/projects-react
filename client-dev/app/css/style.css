@@ -36,7 +36,14 @@ ul {
     margin: 0 0 4px 0;
 }
 
+.container h1 {
+    display: inline-block;
+}
 
+.container a {
+    float: right;
+    margin-top: 23px;
+}
 
 /**
  * Generic overlay styles
@@ -153,7 +160,8 @@ textarea {
     min-height: 100px;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
     display: block;
     margin-bottom: 10px;
     width: 99.5%;
