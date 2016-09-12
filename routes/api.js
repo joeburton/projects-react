@@ -67,7 +67,7 @@ exports.findAll = function(req, res) {
 
     var collection = dbObj.collection('projects');
     
-    collection.find({}).toArray(function(err, projects) {
+    collection.find().toArray(function(err, projects) {
         res.write(JSON.stringify(projects));
         res.end();
     });
@@ -108,7 +108,7 @@ exports.addProject = function(req, res) {
                 console.log('Error updating project: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
-                collection.find({}).toArray(function(error, projects) {
+                collection.find().toArray(function(error, projects) {
                     res.write(JSON.stringify(projects));
                     res.end();
                 });
@@ -134,7 +134,7 @@ exports.addCompany = function(req, res) {
             if (err) {
                 res.send({'Error': 'an error has occurred'});
             } else {
-                collection.find({}).toArray(function(error, projects) {
+                collection.find().toArray(function(error, projects) {
                     res.write(JSON.stringify(projects));
                     res.end();
                 });
@@ -153,16 +153,12 @@ exports.updateProject = function(req, res) {
     // if there's more than one project update the array don't delete company wrapper....
     dbObj.collection('projects', function(err, collection) {
 
-        console.log('UPDATE PROJECTS ARRAY');
-        
         if (err) {
 
             res.send({'Error': 'an error has occurred'});
 
         } else {
 
-            console.log(JSON.stringify(project));
-            
             collection.update(
                 { _id: new ObjectId(project.companyId)}, 
                 { $set: { company : project.company  } }
@@ -176,13 +172,14 @@ exports.updateProject = function(req, res) {
                     link: project.link,
                     skills: project.skills,
                     description: project.description  
-                }}}
+                }}}, function () {
+                    collection.find().toArray(function(error, projects) {
+                        console.log('UPDATE PROJECTS ARRAY: ', JSON.stringify(projects));
+                        res.write(JSON.stringify(projects));
+                        res.end();
+                    });
+                }
             );
-
-            collection.find({}).toArray(function(error, projects) {
-                res.write(JSON.stringify(projects));
-                res.end();
-            });
 
         }
 
@@ -194,7 +191,7 @@ exports.updateProject = function(req, res) {
 // delete project
 exports.deleteProject = function(req, res) {
     
-    let postData = req.body,
+    var postData = req.body,
         companyId = postData.companyId,
         projectId = postData.projectId,
         projectListItemsLength = postData.projectListItemsLength;
@@ -210,27 +207,27 @@ exports.deleteProject = function(req, res) {
 
             if (projectListItemsLength > 1) {
             
-                console.log('UPDATE PROJECTS ARRAY');
-
                 collection.update(
                     {  _id : new ObjectId(companyId) }, 
                     { $pull : {'projects' : { 'id' : new ObjectId(projectId) } } }, function (err, result) {
+                    console.log('UPDATE PROJECTS ARRAY: ', JSON.stringify(result));
+                    collection.find().toArray(function(error, projects) {
+                        res.write(JSON.stringify(projects));
+                        res.end();
+                    });
                 });
             
             } else {
                 
-                console.log('DELETE COMPANY');
-
                 collection.remove({'_id':new ObjectId(companyId)}, {safe:true}, function(err, result) {
-                    console.log('' + result + ' document(s) deleted');
+                    console.log('DELETE COMPANY: ', JSON.stringify(result));
+                    collection.find().toArray(function(error, projects) {
+                        res.write(JSON.stringify(projects));
+                        res.end();
+                    });
                 });
 
             }
-
-            collection.find({}).toArray(function(error, projects) {
-                res.write(JSON.stringify(projects));
-                res.end();
-            });
 
         }
 
