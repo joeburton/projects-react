@@ -4,14 +4,15 @@ var router = express.Router();
 
 /* Index */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { 
+		loggedin: req.session.authenticated  
+	});
 });
 
 
 /* Projects */
 router.get('/projects', function(req, res, next) {
 	res.render('index', { 
-		title: 'Express',
 		loggedin: req.session.authenticated  
 	});
 });
@@ -19,13 +20,17 @@ router.get('/projects', function(req, res, next) {
 
 /* Companies */
 router.get('/companies', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	res.render('index', { 
+		loggedin: req.session.authenticated  
+	});
 })
 
 
 /* Contact */
 router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Express' });
+  res.render('contact', { 
+		loggedin: req.session.authenticated  
+	});
 });
 
 
@@ -35,18 +40,9 @@ router.get('/login', function(req, res, next) {
 		res.redirect('/projects');
 	} else {
 		res.render('login', { 
-			title: 'Please Login', 
 			loggedin: req.session.authenticated 
 		});
-		console.log('login: ', req.session.authenticated);
 	}
 });
-
-
-// /* Contact */
-// router.get('/logout', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
 
 module.exports = router;

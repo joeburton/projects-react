@@ -65,8 +65,9 @@ exports.logout = function (req, res) {
 // get all projects in the collection
 exports.findAll = function (req, res) {
 
-    var collection = dbObj.collection('projects');
-    var authenticated = (req.session.authenticated) ? true : false;
+    var collection = dbObj.collection('projects'),
+        authenticated = (req.session.authenticated) ? true : false;
+        
     collection.find().toArray(function (err, projects) {
         res.write(JSON.stringify({
             projects: projects,
