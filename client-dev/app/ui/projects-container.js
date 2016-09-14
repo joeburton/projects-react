@@ -14,7 +14,8 @@ const ProjectContainer = React.createClass({
 const stateToProps = function(state) {
     return {
         projects: state.projectReducer.projects,
-        numberProjects: state.projectReducer.projects.length
+        numberProjects: state.projectReducer.projects.length,
+        loggedin: state.authReducer.authorised
     }
 }
 
@@ -33,7 +34,7 @@ const dispatchToProps = function(state) {
                 description = editProjectEle.querySelectorAll('.description')[0];
 
             // project values
-            let projectContainerEl = e.target.parentElement,
+            let projectContainerEl = e.target.parentElement.parentNode,
                 projectContainerUl = projectContainerEl.parentNode,
                 currentValueCompany = projectContainerUl.parentNode.querySelector('.company-name').textContent.split(':')[1],
                 currentValueProject = projectContainerEl.getElementsByClassName('project')[0].textContent,

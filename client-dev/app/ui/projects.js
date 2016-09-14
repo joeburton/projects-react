@@ -25,11 +25,13 @@ export default React.createClass({
                 {projects.map((proj, i) => {
                     return (
                         <li key={i}>
-                        <div>Project: <span className='project-item project'> {proj.project} </span></div>
-                        <div>URL: <span className='project-item link'> {proj.link} </span></div>
-                        <div>Skills: <span className='project-item skills'> {proj.skills} </span></div>
-                        <div>Description: <span className='project-item description'> {proj.description} </span></div>
-                        <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>edit</a> | <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>delete</a>
+                            <div>Project: <span className='project-item project'> {proj.project} </span></div>
+                            <div>URL: <span className='project-item link'> {proj.link} </span></div>
+                            <div>Skills: <span className='project-item skills'> {proj.skills} </span></div>
+                            <div>Description: <span className='project-item description'> {proj.description} </span></div>
+                            { this.props.loggedin &&
+                                <div className="admin-controls"><a href='#' data-company-id={id} data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>edit</a> | <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>delete</a></div>
+                              }
                         </li>
                     );
                 })}
@@ -39,4 +41,5 @@ export default React.createClass({
     deleteProject(e) {
         this.props.deleteProject(e);
     }
+
 });

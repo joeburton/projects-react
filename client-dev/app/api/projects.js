@@ -7,7 +7,11 @@ let axiosAjax = {
     	return axios.get('http://localhost:3000/source').then(function(response) {
             store.dispatch({
                 type: 'GET_PROJECTS',
-                projects: response.data
+                projects: response.data.projects
+            });
+            store.dispatch({
+                type: 'LOGGED_IN',
+                authorised: response.data.authorised
             });
             return response;
         }).catch(function(err) {

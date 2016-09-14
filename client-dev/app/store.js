@@ -3,11 +3,12 @@ import thunk from 'redux-thunk';
 
 // App Reducers
 import projectReducer from './reducers/projects';
+import authReducer from './reducers/auth';
 
 // Combine Reducers
 var reducers = combineReducers({
-    projectReducer: projectReducer
-    // more if you want...
+    projectReducer: projectReducer,
+    authReducer: authReducer
 });
 
 // Create Store
