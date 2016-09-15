@@ -67,7 +67,7 @@ exports.findAll = function (req, res) {
 
     var collection = dbObj.collection('projects'),
         authenticated = (req.session.authenticated) ? true : false;
-        
+
     collection.find().toArray(function (err, projects) {
         res.write(JSON.stringify({
             projects: projects,
@@ -248,21 +248,49 @@ exports.deleteProject = function (req, res) {
 exports.populateDatabase = function (req, res) {
 
     var projects = [{
-        company: 'm.lastminute.com',
-        projects: [{
-            id: new ObjectId(),
-            project: 'm.lastminute.com',
-            link: 'http://m.lastminute.com',
-            skills: 'Backbone, JavaScript, Jasmine, Require',
-            description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
-        }, {
-                id: new ObjectId(),
-                project: 'Responsive Search Forms',
-                link: 'http://www.lastminute.com',
-                skills: 'JavaScript, Require',
-                description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
+        company: "Tribal Worldwide",
+        projects: [
+            {
+                project: "Perfect Volkswagen",
+                link: "https://perfect.volkswagen.co.uk",
+                skills: "Backbone, Require, Jasmine, jQuery, HTML5, CSS3/SASS & Gulp",
+                description: "My Perfect Volkswagen is a SPA built in Backbone using Require to manage modules, SASS for the CSS and Gulp to manage the client-side files. I was responsible for adding new features and introducing unit testing using Jasmine."
+            },
+            {
+                project: "Avios Group",
+                link: "https://aviosgroup.com/",
+                skills: "Node, Express, Handlebars, CSS3, JavaScript/ jQuery, Gulp",
+                description: "Avios Group is a Mobile First Responsive website I worked on whilst at Tribal Worldwide. It's built using Node, Express, Handlebars, CSS3 and Gulp to manage the client-side files."
             }]
-    }, {
+    },
+        {
+            company: 'Millimetre Media',
+            projects: [
+                {
+                    project: "Helix Property",
+                    link: "http://www.helixproperty.co.uk/",
+                    skills: "JavaScript, Browserify, CSS, PHP, Gulp",
+                    description: "I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow."
+                }
+            ]
+        },
+        {
+            company: 'm.lastminute.com',
+            projects: [{
+                id: new ObjectId(),
+                project: 'm.lastminute.com',
+                link: 'http://m.lastminute.com',
+                skills: 'Backbone, JavaScript, Jasmine, Require, Grunt',
+                description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
+            }, {
+                    id: new ObjectId(),
+                    project: 'Responsive Search Forms',
+                    link: 'http://www.lastminute.com',
+                    skills: 'JavaScript, HTML, CSS, Require, Grunt',
+                    description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
+                }]
+        },
+        {
             company: 'Bauer Media',
             projects: [{
                 id: new ObjectId(),
@@ -270,21 +298,7 @@ exports.populateDatabase = function (req, res) {
                 link: 'http://www.closeronline.co.uk',
                 skills: 'JavaScript, Backbone, Jasmine, Require',
                 description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
-            },
-                {
-                    id: new ObjectId(),
-                    project: 'Closer Magazine',
-                    link: 'http://www.closeronline.co.uk',
-                    skills: 'JavaScript, Backbone, Jasmine, Require',
-                    description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
-                },
-                {
-                    id: new ObjectId(),
-                    project: 'Closer Magazine',
-                    link: 'http://www.closeronline.co.uk',
-                    skills: 'JavaScript, Backbone, Jasmine, Require',
-                    description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
-                }]
+            }]
         }, {
             company: 'Rank Interactive',
             projects: [{
