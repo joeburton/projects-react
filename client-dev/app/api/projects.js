@@ -2,25 +2,25 @@ import axios from 'axios';
 import store from 'store';
 
 let axiosAjax = {
-    getProjects () {
+    getProjects() {
 
-    	return axios.get('http://localhost:3000/source').then(function(response) {
+        return axios.get('http://localhost:3000/source').then(function (response) {
             store.dispatch({
                 type: 'GET_PROJECTS',
                 projects: response.data.projects
             });
             store.dispatch({
-                type: 'LOGGED_IN',
+                type: 'LOG_IN',
                 authorised: response.data.authorised
             });
             return response;
-        }).catch(function(err) {
+        }).catch(function (err) {
             console.error(err);
         });
 
     },
-    addProject (data, projects) {
-    	
+    addProject(data, projects) {
+
         let postData,
             companyExists;
 
@@ -42,50 +42,50 @@ let axiosAjax = {
         let addType = (companyExists) ? 'addproject' : 'addcompany';
 
         axios.post('http://localhost:3000/' + addType, postData)
-        .then(function (response) {
-            store.dispatch({
-                type: 'GET_PROJECTS',
-                projects: response.data
+            .then(function (response) {
+                store.dispatch({
+                    type: 'GET_PROJECTS',
+                    projects: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
 
     },
-    updateProject (data) {
+    updateProject(data) {
 
         axios.post('http://localhost:3000/updateproject', data)
-        .then(function (response) {
-            store.dispatch({
-                type: 'GET_PROJECTS',
-                projects: response.data
+            .then(function (response) {
+                store.dispatch({
+                    type: 'GET_PROJECTS',
+                    projects: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
 
     },
-    deleteProject (companyId, projectId, projectListItemsLength) {
+    deleteProject(companyId, projectId, projectListItemsLength) {
 
         let postData = {
-            companyId, 
+            companyId,
             projectId,
             projectListItemsLength
         };
 
         axios.post('http://localhost:3000/deleteproject', postData)
-        .then(function (response) {
-            store.dispatch({
-                type: 'GET_PROJECTS',
-                projects: response.data
+            .then(function (response) {
+                store.dispatch({
+                    type: 'GET_PROJECTS',
+                    projects: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-    	
+
     }
 };
 

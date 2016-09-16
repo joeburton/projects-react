@@ -26,7 +26,7 @@ export default React.createClass({
                     return (
                         <li key={i}>
                             <div>Project: <span className='project-item project'> {proj.project} </span></div>
-                            <div>URL: <span className='project-item link'> {proj.link} </span></div>
+                            <div>URL: <span className='project-item link'> <a href={proj.link} target='_blank'>{proj.link}</a> </span></div>
                             <div>Skills: <span className='project-item skills'> {proj.skills} </span></div>
                             <div>Description: <span className='project-item description'> {proj.description} </span></div>
                             { this.props.loggedin &&

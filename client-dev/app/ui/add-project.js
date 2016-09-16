@@ -8,17 +8,11 @@ export default React.createClass({
                 <div className='add-fields-wrapper'>
                     <div className='add-fields'>
                         <a href='#' className='close-icon' onClick={this.closeOverlay}>x</a>                        
-
                         <input type='text' className='company' placeholder='Company name' />
-
                         <input type='text' className='project-name' placeholder='Project name' />
-
                         <input type='text' className='link' placeholder='Link' />
-
                         <textarea type='textarea' className='skills' placeholder='Skills used' />
-
                         <textarea type='textarea' className='description' placeholder='Description' />
-
                         <button name='button' onClick={this.addProject}>SAVE</button>
                     </div>
                 </div>

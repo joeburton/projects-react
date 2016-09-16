@@ -98,28 +98,37 @@ exports.findById = function (req, res) {
 // add project to an exisiting company set
 exports.addProject = function (req, res) {
 
-    var company = req.body,
-        project = company.projects[0];
+    if (req.session.authenticated) {
 
-    project.id = new ObjectId();
+        var company = req.body,
+            project = company.projects[0];
 
-    console.log(JSON.stringify(project));
+        project.id = new ObjectId();
 
-    dbObj.collection('projects', function (err, collection) {
+        console.log(JSON.stringify(project));
 
-        collection.update({ '_id': new ObjectId(company.id) }, { $push: { projects: project } }, { safe: true }, function (err, result) {
-            if (err) {
-                console.log('Error updating project: ' + err);
-                res.send({ 'error': 'An error has occurred' });
-            } else {
-                collection.find().toArray(function (error, projects) {
-                    res.write(JSON.stringify(projects));
-                    res.end();
-                });
-            }
+        dbObj.collection('projects', function (err, collection) {
+
+            collection.update({ '_id': new ObjectId(company.id) }, { $push: { projects: project } }, { safe: true }, function (err, result) {
+                if (err) {
+                    console.log('Error updating project: ' + err);
+                    res.send({ 'error': 'An error has occurred' });
+                } else {
+                    collection.find().toArray(function (error, projects) {
+                        res.write(JSON.stringify(projects));
+                        res.end();
+                    });
+                }
+            });
+
         });
 
-    });
+    } else {
+        res.write(JSON.stringify({
+            'message': 'You are nor authorised to view this page'
+        }));
+        res.end();
+    }
 
 }
 
@@ -127,24 +136,34 @@ exports.addProject = function (req, res) {
 // add a new project and new company
 exports.addCompany = function (req, res) {
 
-    var company = req.body;
+    if (req.session.authenticated) {
 
-    company.projects[0].id = new ObjectId();
+        var company = req.body;
 
-    console.log(JSON.stringify(company));
+        company.projects[0].id = new ObjectId();
 
-    dbObj.collection('projects', function (err, collection) {
-        collection.insert(company, { safe: true }, function (err, result) {
-            if (err) {
-                res.send({ 'Error': 'an error has occurred' });
-            } else {
-                collection.find().toArray(function (error, projects) {
-                    res.write(JSON.stringify(projects));
-                    res.end();
-                });
-            }
+        console.log(JSON.stringify(company));
+
+        dbObj.collection('projects', function (err, collection) {
+            collection.insert(company, { safe: true }, function (err, result) {
+                if (err) {
+                    res.send({ 'Error': 'an error has occurred' });
+                } else {
+                    collection.find().toArray(function (error, projects) {
+                        res.write(JSON.stringify(projects));
+                        res.end();
+                    });
+                }
+            });
         });
-    });
+
+    } else {
+        res.write(JSON.stringify({
+            'message': 'You are nor authorised to view this page'
+        }));
+        res.end();
+    }
+
 
 }
 
@@ -152,46 +171,55 @@ exports.addCompany = function (req, res) {
 // update project
 exports.updateProject = function (req, res) {
 
-    var project = req.body;
+    if (req.session.authenticated) {
 
-    // if there's more than one project update the array don't delete company wrapper....
-    dbObj.collection('projects', function (err, collection) {
+        var project = req.body;
 
-        if (err) {
+        // if there's more than one project update the array don't delete company wrapper....
+        dbObj.collection('projects', function (err, collection) {
 
-            res.send({ 'Error': 'an error has occurred' });
+            if (err) {
 
-        } else {
+                res.send({ 'Error': 'an error has occurred' });
 
-            collection.update(
-                { _id: new ObjectId(project.companyId) },
-                { $set: { company: project.company } }
-            );
+            } else {
 
-            collection.update(
-                { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
-                {
-                    '$set': {
-                        'projects.$': {
-                            id: new ObjectId(project.projectId),
-                            project: project.name,
-                            link: project.link,
-                            skills: project.skills,
-                            description: project.description
+                collection.update(
+                    { _id: new ObjectId(project.companyId) },
+                    { $set: { company: project.company } }
+                );
+
+                collection.update(
+                    { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
+                    {
+                        '$set': {
+                            'projects.$': {
+                                id: new ObjectId(project.projectId),
+                                project: project.name,
+                                link: project.link,
+                                skills: project.skills,
+                                description: project.description
+                            }
                         }
+                    }, function () {
+                        collection.find().toArray(function (error, projects) {
+                            console.log('UPDATE PROJECTS ARRAY: ', JSON.stringify(projects));
+                            res.write(JSON.stringify(projects));
+                            res.end();
+                        });
                     }
-                }, function () {
-                    collection.find().toArray(function (error, projects) {
-                        console.log('UPDATE PROJECTS ARRAY: ', JSON.stringify(projects));
-                        res.write(JSON.stringify(projects));
-                        res.end();
-                    });
-                }
-            );
+                );
 
-        }
+            }
 
-    });
+        });
+
+    } else {
+        res.write(JSON.stringify({
+            'message': 'You are nor authorised to view this page'
+        }));
+        res.end();
+    }
 
 }
 
@@ -199,47 +227,56 @@ exports.updateProject = function (req, res) {
 // delete project
 exports.deleteProject = function (req, res) {
 
-    var postData = req.body,
-        companyId = postData.companyId,
-        projectId = postData.projectId,
-        projectListItemsLength = postData.projectListItemsLength;
+    if (req.session.authenticated) {
 
-    // if there's more than one project update the array don't delete company wrapper....
-    dbObj.collection('projects', function (err, collection) {
+        var postData = req.body,
+            companyId = postData.companyId,
+            projectId = postData.projectId,
+            projectListItemsLength = postData.projectListItemsLength;
 
-        if (err) {
+        // if there's more than one project update the array don't delete company wrapper....
+        dbObj.collection('projects', function (err, collection) {
 
-            res.send({ 'error': 'An error has occurred - ' + err });
+            if (err) {
 
-        } else {
+                res.send({ 'error': 'An error has occurred - ' + err });
 
-            if (projectListItemsLength > 1) {
+            } else {
 
-                collection.update(
-                    { _id: new ObjectId(companyId) },
-                    { $pull: { 'projects': { 'id': new ObjectId(projectId) } } }, function (err, result) {
-                        console.log('UPDATE PROJECTS ARRAY: ', JSON.stringify(result));
+                if (projectListItemsLength > 1) {
+
+                    collection.update(
+                        { _id: new ObjectId(companyId) },
+                        { $pull: { 'projects': { 'id': new ObjectId(projectId) } } }, function (err, result) {
+                            console.log('UPDATE PROJECTS ARRAY: ', JSON.stringify(result));
+                            collection.find().toArray(function (error, projects) {
+                                res.write(JSON.stringify(projects));
+                                res.end();
+                            });
+                        });
+
+                } else {
+
+                    collection.remove({ '_id': new ObjectId(companyId) }, { safe: true }, function (err, result) {
+                        console.log('DELETE COMPANY: ', JSON.stringify(result));
                         collection.find().toArray(function (error, projects) {
                             res.write(JSON.stringify(projects));
                             res.end();
                         });
                     });
 
-            } else {
-
-                collection.remove({ '_id': new ObjectId(companyId) }, { safe: true }, function (err, result) {
-                    console.log('DELETE COMPANY: ', JSON.stringify(result));
-                    collection.find().toArray(function (error, projects) {
-                        res.write(JSON.stringify(projects));
-                        res.end();
-                    });
-                });
+                }
 
             }
 
-        }
+        });
 
-    });
+    } else {
+        res.write(JSON.stringify({
+            'message': 'You are nor authorised to view this page'
+        }));
+        res.end();
+    }
 
 }
 
