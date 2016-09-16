@@ -288,12 +288,14 @@ exports.populateDatabase = function (req, res) {
         company: "Tribal Worldwide",
         projects: [
             {
+                id: new ObjectId(),
                 project: "Perfect Volkswagen",
                 link: "https://perfect.volkswagen.co.uk",
                 skills: "Backbone, Require, Jasmine, jQuery, HTML5, CSS3/SASS & Gulp",
                 description: "My Perfect Volkswagen is a SPA built in Backbone using Require to manage modules, SASS for the CSS and Gulp to manage the client-side files. I was responsible for adding new features and introducing unit testing using Jasmine."
             },
             {
+                id: new ObjectId(),
                 project: "Avios Group",
                 link: "https://aviosgroup.com/",
                 skills: "Node, Express, Handlebars, CSS3, JavaScript/ jQuery, Gulp",
@@ -304,6 +306,7 @@ exports.populateDatabase = function (req, res) {
             company: 'Millimetre Media',
             projects: [
                 {
+                    id: new ObjectId(),
                     project: "Helix Property",
                     link: "http://www.helixproperty.co.uk/",
                     skills: "JavaScript, Browserify, CSS, PHP, Gulp",
