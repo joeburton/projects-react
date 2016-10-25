@@ -35,7 +35,7 @@ exports.auth = function (req, res) {
     sess.username = req.body.username;
     sess.password = req.body.password;
 
-    if (sess.username === 'admin' && sess.password === 'projects') {
+    if (sess.username === 'projects' && sess.password === 'admin') {
         console.log('Login Successful');
         sess.authenticated = true;
         res.redirect('/projects');
@@ -125,7 +125,7 @@ exports.addProject = function (req, res) {
 
     } else {
         res.write(JSON.stringify({
-            'message': 'You are nor authorised to view this page'
+            'message': 'You are not authorised to view this page'
         }));
         res.end();
     }
@@ -159,7 +159,7 @@ exports.addCompany = function (req, res) {
 
     } else {
         res.write(JSON.stringify({
-            'message': 'You are nor authorised to view this page'
+            'message': 'You are not authorised to view this page'
         }));
         res.end();
     }
@@ -216,7 +216,7 @@ exports.updateProject = function (req, res) {
 
     } else {
         res.write(JSON.stringify({
-            'message': 'You are nor authorised to view this page'
+            'message': 'You are not authorised to view this page'
         }));
         res.end();
     }
@@ -273,7 +273,7 @@ exports.deleteProject = function (req, res) {
 
     } else {
         res.write(JSON.stringify({
-            'message': 'You are nor authorised to view this page'
+            'message': 'You are not authorised to view this page'
         }));
         res.end();
     }
