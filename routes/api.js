@@ -1,14 +1,14 @@
 
 // Mongo objects
-var MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
+let MongoClient = require('mongodb').MongoClient;
+let ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = false;
+let production = false;
 
-var url;
-var dbObj;
-var sess;
+let url;
+let dbObj;
+let sess;
 
 // Connection URL 
 if (production) {
@@ -16,13 +16,13 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:32769/projectDirectory';
+    url = 'mongodb://localhost:32768/projectDirectory';
 }
 
 
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function (err, db) {
-    console.log('Connected correctly to server');
+    console.log('Connected correctly to server: http://localhost:3000');
     dbObj = db;
 });
 
@@ -65,7 +65,7 @@ exports.logout = function (req, res) {
 // get all projects in the collection
 exports.findAll = function (req, res) {
 
-    var collection = dbObj.collection('projects'),
+    let collection = dbObj.collection('projects'),
         authenticated = (req.session.authenticated) ? true : false;
 
     collection.find().toArray(function (err, projects) {
@@ -82,7 +82,7 @@ exports.findAll = function (req, res) {
 // get projects by id
 exports.findById = function (req, res) {
 
-    var id = req.params.id;
+    let id = req.params.id;
 
     console.log('Retrieving project: ' + id);
 
@@ -100,7 +100,7 @@ exports.addProject = function (req, res) {
 
     if (req.session.authenticated) {
 
-        var company = req.body,
+        let company = req.body,
             project = company.projects[0];
 
         project.id = new ObjectId();
@@ -138,7 +138,7 @@ exports.addCompany = function (req, res) {
 
     if (req.session.authenticated) {
 
-        var company = req.body;
+        let company = req.body;
 
         company.projects[0].id = new ObjectId();
 
@@ -173,7 +173,7 @@ exports.updateProject = function (req, res) {
 
     if (req.session.authenticated) {
 
-        var project = req.body;
+        let project = req.body;
 
         // if there's more than one project update the array don't delete company wrapper....
         dbObj.collection('projects', function (err, collection) {
@@ -229,7 +229,7 @@ exports.deleteProject = function (req, res) {
 
     if (req.session.authenticated) {
 
-        var postData = req.body,
+        let postData = req.body,
             companyId = postData.companyId,
             projectId = postData.projectId,
             projectListItemsLength = postData.projectListItemsLength;
@@ -285,21 +285,21 @@ exports.deleteProject = function (req, res) {
 exports.populateDatabase = function (req, res) {
 
     var projects = [{
-        company: "Tribal Worldwide",
+        company: 'Tribal Worldwide',
         projects: [
             {
                 id: new ObjectId(),
-                project: "Perfect Volkswagen",
-                link: "https://perfect.volkswagen.co.uk",
-                skills: "Backbone, Require, Jasmine, jQuery, HTML5, CSS3/SASS & Gulp",
-                description: "My Perfect Volkswagen is a SPA built in Backbone using Require to manage modules, SASS for the CSS and Gulp to manage the client-side files. I was responsible for adding new features and introducing unit testing using Jasmine."
+                project: 'Perfect Volkswagen',
+                link: 'https://perfect.volkswagen.co.uk',
+                skills: 'Backbone, Require, Jasmine, jQuery, HTML5, CSS3/SASS & Gulp',
+                description: 'My Perfect Volkswagen is a SPA built in Backbone using Require to manage modules, SASS for the CSS and Gulp to manage the client-side files. I was responsible for adding new features and introducing unit testing using Jasmine.'
             },
             {
                 id: new ObjectId(),
-                project: "Avios Group",
-                link: "https://aviosgroup.com/",
-                skills: "Node, Express, Handlebars, CSS3, JavaScript/ jQuery, Gulp",
-                description: "Avios Group is a Mobile First Responsive website I worked on whilst at Tribal Worldwide. It's built using Node, Express, Handlebars, CSS3 and Gulp to manage the client-side files."
+                project: 'Avios Group',
+                link: 'https://aviosgroup.com/',
+                skills: 'Node, Express, Handlebars, CSS3, JavaScript/ jQuery, Gulp',
+                description: 'Avios Group is a Mobile First Responsive website I worked on whilst at Tribal Worldwide. It\'s built using Node, Express, Handlebars, CSS3 and Gulp to manage the client-side files.'
             }]
     },
         {
@@ -307,10 +307,10 @@ exports.populateDatabase = function (req, res) {
             projects: [
                 {
                     id: new ObjectId(),
-                    project: "Helix Property",
-                    link: "http://www.helixproperty.co.uk/",
-                    skills: "JavaScript, Browserify, CSS, PHP, Gulp",
-                    description: "I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow."
+                    project: 'Helix Property',
+                    link: 'http://www.helixproperty.co.uk/',
+                    skills: 'JavaScript, Browserify, CSS, PHP, Gulp',
+                    description: 'I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow.'
                 }
             ]
         },
