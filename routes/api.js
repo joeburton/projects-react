@@ -13,7 +13,7 @@ var url,
 // Connection URL 
 if (production) {
     // production
-    url = 'mongodb://projectDirectory:2cc5d0bb1f919803e30c64daa4e78c23@dokku-mongo-projectDirectory:27017/projectDirectory';
+    url = 'mongodb://projectDirectory:61362920568bf4bc8b407246d565ade8@dokku-mongo-projectDirectory:27017/projectDirectory';
 } else {
     // local dev
     url = 'mongodb://localhost:32768/projectDirectory';
