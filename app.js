@@ -48,6 +48,10 @@ app.post('/devareproject', api.devareProject); // devare project or company
 app.post('/auth', api.auth); // login
 app.get('/logout', api.logout); // logout
 
+app.use('/js', express.static('/js'));
+app.use('/css', express.static('/css'));
+app.use('/images', express.static('/images'));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
