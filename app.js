@@ -52,14 +52,14 @@ app.get('/logout', api.logout); // logout
 
 // define paths
 var appPaths = {
-    js: path.resolve('/js'),
-    css: path.resolve('/css'),
-    images: path.resolve('/img')
+    js: path.resolve('js'),
+    css: path.resolve('css'),
+    images: path.resolve('img')
 };
 
-app.use('/js', express.static(appPaths.js));
-app.use('/css', express.static(appPaths.css));
-app.use('/images', express.static(appPaths.images));
+app.use('js', express.static(appPaths.js));
+app.use('css', express.static(appPaths.css));
+app.use('images', express.static(appPaths.images));
 
 
 // catch 404 and forward to error handler
