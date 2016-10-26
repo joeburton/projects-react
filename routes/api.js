@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = false;
+var production = true;
 
 var url;
 var dbObj;
@@ -13,7 +13,8 @@ var sess;
 // Connection URL 
 if (production) {
     // production
-    url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
+    url = 'mongodb://projectDirectory:4075a7a30c57f3e94a683de4ed4a3865@dokku-mongo-projectDirectory:27017/projectDirectory';
+    //url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
     url = 'mongodb://localhost:32768/projectDirectory';
