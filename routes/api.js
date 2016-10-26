@@ -13,8 +13,7 @@ var sess;
 // Connection URL 
 if (production) {
     // production
-    url = 'mongodb://projectDirectory:e58a81ddeb16c6e99869fec66a0c83e7@dokku-mongo-projectDirectory:27017/projectDirectory';
-    //url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
+    url = 'mongodb://projectDirectory:2cc5d0bb1f919803e30c64daa4e78c23@dokku-mongo-projectDirectory:27017/projectDirectory';
 } else {
     // local dev
     url = 'mongodb://localhost:32768/projectDirectory';
