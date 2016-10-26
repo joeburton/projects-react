@@ -5,15 +5,14 @@ var ObjectId = require('mongodb').ObjectID;
 
 // API
 var production = true;
-
-var url,
-	dbObj,
-	sess;
+var url;
+var dbObj;
+var sess;
 
 // Connection URL 
 if (production) {
     // production
-    url = 'mongodb://projectDirectory:61362920568bf4bc8b407246d565ade8@dokku-mongo-projectDirectory:27017/projectDirectory';
+    url = 'mongodb://projectDirectory:f63f339f3f171d17473f3995a570e290@dokku-mongo-projectDirectory:27017/projectDirectory';
 } else {
     // local dev
     url = 'mongodb://localhost:32768/projectDirectory';
