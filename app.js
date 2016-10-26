@@ -1,16 +1,16 @@
-let express = require('express');
-let exphbs = require('express-handlebars');
-let path = require('path');
-let favicon = require('serve-favicon');
-let logger = require('morgan');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
-let session = require('express-session');
+var express = require('express');
+var exphbs = require('express-handlebars');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
-let routes = require('./routes/routes');
-let api = require('./routes/api');
+var routes = require('./routes/routes');
+var api = require('./routes/api');
 
-let app = express();
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,14 +43,14 @@ app.get('/source/:id', api.findById); // get project by id
 app.post('/addproject', api.addProject); // add addproject
 app.post('/addcompany', api.addCompany); // add addcompany
 app.post('/updateproject', api.updateProject); // update project
-app.post('/deleteproject', api.deleteProject); // delete project or company
+app.post('/devareproject', api.devareProject); // devare project or company
 
 app.post('/auth', api.auth); // login
 app.get('/logout', api.logout); // logout
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  let err = new Error('Not Found');
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

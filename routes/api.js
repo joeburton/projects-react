@@ -1,14 +1,14 @@
 
 // Mongo objects
-let MongoClient = require('mongodb').MongoClient;
-let ObjectId = require('mongodb').ObjectID;
+var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 
 // API
-let production = false;
+var production = false;
 
-let url;
-let dbObj;
-let sess;
+var url;
+var dbObj;
+var sess;
 
 // Connection URL 
 if (production) {
@@ -65,7 +65,7 @@ exports.logout = function (req, res) {
 // get all projects in the collection
 exports.findAll = function (req, res) {
 
-    let collection = dbObj.collection('projects'),
+    var collection = dbObj.collection('projects'),
         authenticated = (req.session.authenticated) ? true : false;
 
     collection.find().toArray(function (err, projects) {
@@ -82,7 +82,7 @@ exports.findAll = function (req, res) {
 // get projects by id
 exports.findById = function (req, res) {
 
-    let id = req.params.id;
+    var id = req.params.id;
 
     console.log('Retrieving project: ' + id);
 
@@ -100,7 +100,7 @@ exports.addProject = function (req, res) {
 
     if (req.session.authenticated) {
 
-        let company = req.body,
+        var company = req.body,
             project = company.projects[0];
 
         project.id = new ObjectId();
@@ -138,7 +138,7 @@ exports.addCompany = function (req, res) {
 
     if (req.session.authenticated) {
 
-        let company = req.body;
+        var company = req.body;
 
         company.projects[0].id = new ObjectId();
 
@@ -173,9 +173,9 @@ exports.updateProject = function (req, res) {
 
     if (req.session.authenticated) {
 
-        let project = req.body;
+        var project = req.body;
 
-        // if there's more than one project update the array don't delete company wrapper....
+        // if there's more than one project update the array don't devare company wrapper....
         dbObj.collection('projects', function (err, collection) {
 
             if (err) {
@@ -224,17 +224,17 @@ exports.updateProject = function (req, res) {
 }
 
 
-// delete project
-exports.deleteProject = function (req, res) {
+// devare project
+exports.devareProject = function (req, res) {
 
     if (req.session.authenticated) {
 
-        let postData = req.body,
+        var postData = req.body,
             companyId = postData.companyId,
             projectId = postData.projectId,
             projectListItemsLength = postData.projectListItemsLength;
 
-        // if there's more than one project update the array don't delete company wrapper....
+        // if there's more than one project update the array don't devare company wrapper....
         dbObj.collection('projects', function (err, collection) {
 
             if (err) {
@@ -258,7 +258,7 @@ exports.deleteProject = function (req, res) {
                 } else {
 
                     collection.remove({ '_id': new ObjectId(companyId) }, { safe: true }, function (err, result) {
-                        console.log('DELETE COMPANY: ', JSON.stringify(result));
+                        console.log('DEvarE COMPANY: ', JSON.stringify(result));
                         collection.find().toArray(function (error, projects) {
                             res.write(JSON.stringify(projects));
                             res.end();
@@ -346,7 +346,7 @@ exports.populateDatabase = function (req, res) {
                 project: 'Blue Star',
                 link: 'http://joe-burton.com/bluestar/',
                 skills: 'Backbone, JavaScript, Jasmine, Require',
-                description: 'I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tablet and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.'
+                description: 'I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tabvar and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.'
             }]
         }, {
             company: 'Engine',
