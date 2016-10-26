@@ -6,9 +6,9 @@ var ObjectId = require('mongodb').ObjectID;
 // API
 var production = true;
 
-var url;
-var dbObj;
-var sess;
+var url,
+	dbObj,
+	sess;
 
 // Connection URL 
 if (production) {
