@@ -6,9 +6,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var config = require('config');
 var routes = require('./routes/routes');
 var api = require('./routes/api');
+
+var config = require('config');
 
 var app = express();
 
@@ -25,8 +26,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//app.use('/public/', express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'ssshhhhh',
@@ -49,18 +48,6 @@ app.post('/deleteproject', api.deleteProject); // delete project or company
 
 app.post('/auth', api.auth); // login
 app.get('/logout', api.logout); // logout
-
-// define paths
-// var appPaths = {
-//     js: path.resolve('js'),
-//     css: path.resolve('css'),
-//     images: path.resolve('img')
-// };
-
-// app.use('js', express.static(appPaths.js));
-// app.use('css', express.static(appPaths.css));
-// app.use('images', express.static(appPaths.images));
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
