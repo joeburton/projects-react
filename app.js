@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var config = require('config');
 var routes = require('./routes/routes');
 var api = require('./routes/api');
 
@@ -38,14 +38,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/populate-database', api.populateDatabase); // populate database
 
-app.use(routes);
+app.use(routes(config));
 
 app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id
 app.post('/addproject', api.addProject); // add addproject
 app.post('/addcompany', api.addCompany); // add addcompany
 app.post('/updateproject', api.updateProject); // update project
-app.post('/devareproject', api.devareProject); // devare project or company
+app.post('/deleteproject', api.deleteProject); // delete project or company
 
 app.post('/auth', api.auth); // login
 app.get('/logout', api.logout); // logout

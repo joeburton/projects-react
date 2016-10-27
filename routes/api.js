@@ -2,9 +2,10 @@
 // Mongo objects
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var config = require('config');
 
 // API
-var production = true;
+var production = (config.env === 'prod') ? true : false;
 var url;
 var dbObj;
 var sess;
@@ -174,7 +175,7 @@ exports.updateProject = function (req, res) {
 
         var project = req.body;
 
-        // if there's more than one project update the array don't devare company wrapper....
+        // if there's more than one project update the array don't delete company wrapper....
         dbObj.collection('projects', function (err, collection) {
 
             if (err) {
@@ -223,8 +224,8 @@ exports.updateProject = function (req, res) {
 }
 
 
-// devare project
-exports.devareProject = function (req, res) {
+// delete project
+exports.deleteProject = function (req, res) {
 
     if (req.session.authenticated) {
 
@@ -233,7 +234,7 @@ exports.devareProject = function (req, res) {
             projectId = postData.projectId,
             projectListItemsLength = postData.projectListItemsLength;
 
-        // if there's more than one project update the array don't devare company wrapper....
+        // if there's more than one project update the array don't delete company wrapper....
         dbObj.collection('projects', function (err, collection) {
 
             if (err) {
@@ -257,7 +258,7 @@ exports.devareProject = function (req, res) {
                 } else {
 
                     collection.remove({ '_id': new ObjectId(companyId) }, { safe: true }, function (err, result) {
-                        console.log('DEvarE COMPANY: ', JSON.stringify(result));
+                        console.log('DELETE COMPANY: ', JSON.stringify(result));
                         collection.find().toArray(function (error, projects) {
                             res.write(JSON.stringify(projects));
                             res.end();

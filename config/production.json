@@ -1,0 +1,5 @@
+{
+    "debug": true,
+    "url": "http://138.68.153.11/source",
+    "env": "prod"
+}

@@ -3,8 +3,10 @@ import store from 'store';
 
 let axiosAjax = {
     getProjects() {
+        
+        let dataApi = document.querySelector('data-api-url');
 
-        return axios.get('http://localhost:3000/source').then(function (response) {
+        return axios.get(dataApi).then(function (response) {
             store.dispatch({
                 type: 'GET_PROJECTS',
                 projects: response.data.projects
