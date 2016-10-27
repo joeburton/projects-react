@@ -3,10 +3,11 @@ import store from 'store';
 
 let axiosAjax = {
     getProjects() {
-        
-        let dataApi = document.querySelector('data-api-url');
 
-        return axios.get(dataApi + '/source').then(function (response) {
+        let main = document.querySelector('.main');
+        let apiUrl = main.dataset.apiUrl;
+
+        return axios.get(apiUrl + '/source').then(function (response) {
             store.dispatch({
                 type: 'GET_PROJECTS',
                 projects: response.data.projects
@@ -24,9 +25,11 @@ let axiosAjax = {
     addProject(data, projects) {
 
         let postData,
-            companyExists;
+            companyExists,
+            dataApi;
 
-        let dataApi = document.querySelector('data-api-url');
+        let main = document.querySelector('.main');
+        let apiUrl = main.dataset.apiUrl;
 
         // logic to check if the company already exists. 
         // if it does add the project to the exisiting company projects array
@@ -59,7 +62,8 @@ let axiosAjax = {
     },
     updateProject(data) {
 
-        let dataApi = document.querySelector('data-api-url');
+        let main = document.querySelector('.main');
+        let apiUrl = main.dataset.apiUrl;
 
         axios.post(dataApi + '/updateproject', data)
             .then(function (response) {
@@ -81,7 +85,8 @@ let axiosAjax = {
             projectListItemsLength
         };
 
-        let dataApi = document.querySelector('data-api-url');
+        let main = document.querySelector('.main');
+        let apiUrl = main.dataset.apiUrl;
 
         axios.post(dataApi + '/deleteproject', postData)
             .then(function (response) {

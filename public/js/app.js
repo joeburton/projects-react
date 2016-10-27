@@ -27392,9 +27392,10 @@
 	var axiosAjax = {
 	    getProjects: function getProjects() {
 	
-	        var dataApi = document.querySelector('data-api-url');
+	        var main = document.querySelector('.main');
+	        var apiUrl = main.dataset.apiUrl;
 	
-	        return _axios2.default.get(dataApi + '/source').then(function (response) {
+	        return _axios2.default.get(apiUrl + '/source').then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data.projects
@@ -27411,9 +27412,11 @@
 	    addProject: function addProject(data, projects) {
 	
 	        var postData = void 0,
-	            companyExists = void 0;
+	            companyExists = void 0,
+	            dataApi = void 0;
 	
-	        var dataApi = document.querySelector('data-api-url');
+	        var main = document.querySelector('.main');
+	        var apiUrl = main.dataset.apiUrl;
 	
 	        // logic to check if the company already exists. 
 	        // if it does add the project to the exisiting company projects array
@@ -27443,7 +27446,8 @@
 	    },
 	    updateProject: function updateProject(data) {
 	
-	        var dataApi = document.querySelector('data-api-url');
+	        var main = document.querySelector('.main');
+	        var apiUrl = main.dataset.apiUrl;
 	
 	        _axios2.default.post(dataApi + '/updateproject', data).then(function (response) {
 	            _store2.default.dispatch({
@@ -27462,7 +27466,8 @@
 	            projectListItemsLength: projectListItemsLength
 	        };
 	
-	        var dataApi = document.querySelector('data-api-url');
+	        var main = document.querySelector('.main');
+	        var apiUrl = main.dataset.apiUrl;
 	
 	        _axios2.default.post(dataApi + '/deleteproject', postData).then(function (response) {
 	            _store2.default.dispatch({
