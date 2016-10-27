@@ -29,4 +29,4 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['webpack', 'css']);
+gulp.task('production', ['css']);
