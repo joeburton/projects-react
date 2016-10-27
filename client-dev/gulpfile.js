@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var serve = require('gulp-serve');
-var jsonServer = require('json-server');
 
 // all for the love of squished css
 var concat = require('gulp-concat');
