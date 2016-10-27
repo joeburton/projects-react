@@ -6,7 +6,7 @@ let axiosAjax = {
         
         let dataApi = document.querySelector('data-api-url');
 
-        return axios.get(dataApi).then(function (response) {
+        return axios.get(dataApi + '/source').then(function (response) {
             store.dispatch({
                 type: 'GET_PROJECTS',
                 projects: response.data.projects
@@ -26,6 +26,8 @@ let axiosAjax = {
         let postData,
             companyExists;
 
+        let dataApi = document.querySelector('data-api-url');
+
         // logic to check if the company already exists. 
         // if it does add the project to the exisiting company projects array
         // if it does not set a flag to add a new company.
@@ -43,7 +45,7 @@ let axiosAjax = {
 
         let addType = (companyExists) ? 'addproject' : 'addcompany';
 
-        axios.post('http://localhost:3000/' + addType, postData)
+        axios.post(dataApi + '/' + addType, postData)
             .then(function (response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
@@ -57,7 +59,9 @@ let axiosAjax = {
     },
     updateProject(data) {
 
-        axios.post('http://localhost:3000/updateproject', data)
+        let dataApi = document.querySelector('data-api-url');
+
+        axios.post(dataApi + '/updateproject', data)
             .then(function (response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
@@ -77,7 +81,9 @@ let axiosAjax = {
             projectListItemsLength
         };
 
-        axios.post('http://localhost:3000/deleteproject', postData)
+        let dataApi = document.querySelector('data-api-url');
+
+        axios.post(dataApi + '/deleteproject', postData)
             .then(function (response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
