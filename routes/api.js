@@ -9,6 +9,7 @@ var url;
 var dbObj;
 var sess;
 
+
 // Connection URL 
 if (production) {
     // production
