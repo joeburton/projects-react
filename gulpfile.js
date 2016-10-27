@@ -12,6 +12,7 @@ var rename = require('gulp-rename');
 gulp.task('webpack', function() {
   return gulp.src('./app/app.js')
     .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('./'));
 });
 
 // CSS minification

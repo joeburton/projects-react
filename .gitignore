@@ -1,4 +1,4 @@
 node_modules
 client-dev/node_modules
-#public/css
-#public/js
+public/css
+public/js

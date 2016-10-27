@@ -58,27 +58,27 @@
 	
 	var _reactRedux = __webpack_require__(222);
 	
-	var _store = __webpack_require__(243);
+	var _store = __webpack_require__(244);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _app = __webpack_require__(247);
+	var _app = __webpack_require__(248);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _home = __webpack_require__(272);
+	var _home = __webpack_require__(273);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _login = __webpack_require__(273);
+	var _login = __webpack_require__(274);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _companiesContainer = __webpack_require__(274);
+	var _companiesContainer = __webpack_require__(275);
 	
 	var _companiesContainer2 = _interopRequireDefault(_companiesContainer);
 	
-	var _projectsContainer = __webpack_require__(276);
+	var _projectsContainer = __webpack_require__(277);
 	
 	var _projectsContainer2 = _interopRequireDefault(_projectsContainer);
 	
@@ -22417,8 +22417,6 @@
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _Actions = __webpack_require__(171);
-	
 	var _computeChangedRoutes2 = __webpack_require__(189);
 	
 	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
@@ -22465,10 +22463,6 @@
 	    }
 	
 	    return (0, _isActive3.default)(location, indexOnly, state.location, state.routes, state.params);
-	  }
-	
-	  function createLocationFromRedirectInfo(location) {
-	    return history.createLocation(location, _Actions.REPLACE);
 	  }
 	
 	  var partialNextState = void 0;
@@ -22528,7 +22522,7 @@
 	    }
 	
 	    function handleErrorOrRedirect(error, redirectInfo) {
-	      if (error) callback(error);else callback(null, createLocationFromRedirectInfo(redirectInfo));
+	      if (error) callback(error);else callback(null, redirectInfo);
 	    }
 	  }
 	
@@ -22691,7 +22685,7 @@
 	          if (error) {
 	            listener(error);
 	          } else if (redirectLocation) {
-	            history.transitionTo(redirectLocation);
+	            history.replace(redirectLocation);
 	          } else if (nextState) {
 	            listener(null, nextState);
 	          } else {
@@ -23859,7 +23853,7 @@
 	  },
 	
 	  propTypes: {
-	    to: oneOfType([string, object]).isRequired,
+	    to: oneOfType([string, object]),
 	    query: object,
 	    hash: string,
 	    state: object,
@@ -23920,6 +23914,11 @@
 	
 	
 	    if (router) {
+	      // If user does not specify a `to` prop, return an empty anchor tag.
+	      if (to == null) {
+	        return _react2.default.createElement('a', props);
+	      }
+	
 	      var location = createLocationDescriptor(to, { query: query, hash: hash, state: state });
 	      props.href = router.createHref(location);
 	
@@ -24674,6 +24673,8 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
+	var _Actions = __webpack_require__(171);
+	
 	var _invariant = __webpack_require__(167);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
@@ -24732,7 +24733,7 @@
 	  history = (0, _RouterUtils.createRoutingHistory)(history, transitionManager);
 	
 	  transitionManager.match(location, function (error, redirectLocation, nextState) {
-	    callback(error, redirectLocation, nextState && _extends({}, nextState, {
+	    callback(error, redirectLocation && router.createLocation(redirectLocation, _Actions.REPLACE), nextState && _extends({}, nextState, {
 	      history: history,
 	      router: router,
 	      matchContext: { history: history, transitionManager: transitionManager, router: router }
@@ -26066,27 +26067,27 @@
 	
 	var _createStore2 = _interopRequireDefault(_createStore);
 	
-	var _combineReducers = __webpack_require__(238);
+	var _combineReducers = __webpack_require__(239);
 	
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 	
-	var _bindActionCreators = __webpack_require__(240);
+	var _bindActionCreators = __webpack_require__(241);
 	
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 	
-	var _applyMiddleware = __webpack_require__(241);
+	var _applyMiddleware = __webpack_require__(242);
 	
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 	
-	var _compose = __webpack_require__(242);
+	var _compose = __webpack_require__(243);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
-	var _warning = __webpack_require__(239);
+	var _warning = __webpack_require__(240);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	/*
 	* This is a dummy function to check if the function name has been altered by minification.
@@ -26095,14 +26096,14 @@
 	function isCrushed() {}
 	
 	if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
-	  (0, _warning2["default"])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+	  (0, _warning2['default'])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
 	}
 	
-	exports.createStore = _createStore2["default"];
-	exports.combineReducers = _combineReducers2["default"];
-	exports.bindActionCreators = _bindActionCreators2["default"];
-	exports.applyMiddleware = _applyMiddleware2["default"];
-	exports.compose = _compose2["default"];
+	exports.createStore = _createStore2['default'];
+	exports.combineReducers = _combineReducers2['default'];
+	exports.bindActionCreators = _bindActionCreators2['default'];
+	exports.applyMiddleware = _applyMiddleware2['default'];
+	exports.compose = _compose2['default'];
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
@@ -26113,17 +26114,17 @@
 	
 	exports.__esModule = true;
 	exports.ActionTypes = undefined;
-	exports["default"] = createStore;
+	exports['default'] = createStore;
 	
 	var _isPlainObject = __webpack_require__(231);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _symbolObservable = __webpack_require__(236);
+	var _symbolObservable = __webpack_require__(235);
 	
 	var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	/**
 	 * These are private action types reserved by Redux.
@@ -26146,7 +26147,7 @@
 	 * @param {Function} reducer A function that returns the next state tree, given
 	 * the current state tree and the action to handle.
 	 *
-	 * @param {any} [initialState] The initial state. You may optionally specify it
+	 * @param {any} [preloadedState] The initial state. You may optionally specify it
 	 * to hydrate the state from the server in universal apps, or to restore a
 	 * previously serialized user session.
 	 * If you use `combineReducers` to produce the root reducer function, this must be
@@ -26160,12 +26161,12 @@
 	 * @returns {Store} A Redux store that lets you read the state, dispatch actions
 	 * and subscribe to changes.
 	 */
-	function createStore(reducer, initialState, enhancer) {
+	function createStore(reducer, preloadedState, enhancer) {
 	  var _ref2;
 	
-	  if (typeof initialState === 'function' && typeof enhancer === 'undefined') {
-	    enhancer = initialState;
-	    initialState = undefined;
+	  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+	    enhancer = preloadedState;
+	    preloadedState = undefined;
 	  }
 	
 	  if (typeof enhancer !== 'undefined') {
@@ -26173,7 +26174,7 @@
 	      throw new Error('Expected the enhancer to be a function.');
 	    }
 	
-	    return enhancer(createStore)(reducer, initialState);
+	    return enhancer(createStore)(reducer, preloadedState);
 	  }
 	
 	  if (typeof reducer !== 'function') {
@@ -26181,7 +26182,7 @@
 	  }
 	
 	  var currentReducer = reducer;
-	  var currentState = initialState;
+	  var currentState = preloadedState;
 	  var currentListeners = [];
 	  var nextListeners = currentListeners;
 	  var isDispatching = false;
@@ -26273,7 +26274,7 @@
 	   * return something else (for example, a Promise you can await).
 	   */
 	  function dispatch(action) {
-	    if (!(0, _isPlainObject2["default"])(action)) {
+	    if (!(0, _isPlainObject2['default'])(action)) {
 	      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
 	    }
 	
@@ -26338,7 +26339,6 @@
 	       * be used to unsubscribe the observable from the store, and prevent further
 	       * emission of values from the observable.
 	       */
-	
 	      subscribe: function subscribe(observer) {
 	        if (typeof observer !== 'object') {
 	          throw new TypeError('Expected the observer to be an object.');
@@ -26354,7 +26354,7 @@
 	        var unsubscribe = outerSubscribe(observeState);
 	        return { unsubscribe: unsubscribe };
 	      }
-	    }, _ref[_symbolObservable2["default"]] = function () {
+	    }, _ref[_symbolObservable2['default']] = function () {
 	      return this;
 	    }, _ref;
 	  }
@@ -26369,7 +26369,7 @@
 	    subscribe: subscribe,
 	    getState: getState,
 	    replaceReducer: replaceReducer
-	  }, _ref2[_symbolObservable2["default"]] = observable, _ref2;
+	  }, _ref2[_symbolObservable2['default']] = observable, _ref2;
 	}
 
 /***/ },
@@ -26377,8 +26377,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var getPrototype = __webpack_require__(232),
-	    isHostObject = __webpack_require__(234),
-	    isObjectLike = __webpack_require__(235);
+	    isObjectLike = __webpack_require__(234);
 	
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -26432,8 +26431,7 @@
 	 * // => true
 	 */
 	function isPlainObject(value) {
-	  if (!isObjectLike(value) ||
-	      objectToString.call(value) != objectTag || isHostObject(value)) {
+	  if (!isObjectLike(value) || objectToString.call(value) != objectTag) {
 	    return false;
 	  }
 	  var proto = getPrototype(value);
@@ -26486,32 +26484,6 @@
 /***/ function(module, exports) {
 
 	/**
-	 * Checks if `value` is a host object in IE < 9.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
-	 */
-	function isHostObject(value) {
-	  // Many host objects are `Object` objects that can coerce to strings
-	  // despite having improperly defined `toString` methods.
-	  var result = false;
-	  if (value != null && typeof value.toString != 'function') {
-	    try {
-	      result = !!(value + '');
-	    } catch (e) {}
-	  }
-	  return result;
-	}
-	
-	module.exports = isHostObject;
-
-
-/***/ },
-/* 235 */
-/***/ function(module, exports) {
-
-	/**
 	 * Checks if `value` is object-like. A value is object-like if it's not `null`
 	 * and has a `typeof` result of "object".
 	 *
@@ -26536,39 +26508,90 @@
 	 * // => false
 	 */
 	function isObjectLike(value) {
-	  return !!value && typeof value == 'object';
+	  return value != null && typeof value == 'object';
 	}
 	
 	module.exports = isObjectLike;
 
 
 /***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(236);
+
+
+/***/ },
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(global, module) {'use strict';
 	
-	module.exports = __webpack_require__(237)(global || window || this);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+	var _ponyfill = __webpack_require__(238);
+	
+	var _ponyfill2 = _interopRequireDefault(_ponyfill);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var root; /* global window */
+	
+	
+	if (typeof self !== 'undefined') {
+	  root = self;
+	} else if (typeof window !== 'undefined') {
+	  root = window;
+	} else if (typeof global !== 'undefined') {
+	  root = global;
+	} else if (true) {
+	  root = module;
+	} else {
+	  root = Function('return this')();
+	}
+	
+	var result = (0, _ponyfill2['default'])(root);
+	exports['default'] = result;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(237)(module)))
 
 /***/ },
 /* 237 */
 /***/ function(module, exports) {
 
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 238 */
+/***/ function(module, exports) {
+
 	'use strict';
 	
-	module.exports = function symbolObservablePonyfill(root) {
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports['default'] = symbolObservablePonyfill;
+	function symbolObservablePonyfill(root) {
 		var result;
-		var Symbol = root.Symbol;
+		var _Symbol = root.Symbol;
 	
-		if (typeof Symbol === 'function') {
-			if (Symbol.observable) {
-				result = Symbol.observable;
+		if (typeof _Symbol === 'function') {
+			if (_Symbol.observable) {
+				result = _Symbol.observable;
 			} else {
-				result = Symbol('observable');
-				Symbol.observable = result;
+				result = _Symbol('observable');
+				_Symbol.observable = result;
 			}
 		} else {
 			result = '@@observable';
@@ -26577,15 +26600,14 @@
 		return result;
 	};
 
-
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	exports.__esModule = true;
-	exports["default"] = combineReducers;
+	exports['default'] = combineReducers;
 	
 	var _createStore = __webpack_require__(230);
 	
@@ -26593,11 +26615,11 @@
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _warning = __webpack_require__(239);
+	var _warning = __webpack_require__(240);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function getUndefinedStateErrorMessage(key, action) {
 	  var actionType = action && action.type;
@@ -26606,20 +26628,24 @@
 	  return 'Given action ' + actionName + ', reducer "' + key + '" returned undefined. ' + 'To ignore an action, you must explicitly return the previous state.';
 	}
 	
-	function getUnexpectedStateShapeWarningMessage(inputState, reducers, action) {
+	function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
 	  var reducerKeys = Object.keys(reducers);
-	  var argumentName = action && action.type === _createStore.ActionTypes.INIT ? 'initialState argument passed to createStore' : 'previous state received by the reducer';
+	  var argumentName = action && action.type === _createStore.ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
 	
 	  if (reducerKeys.length === 0) {
 	    return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
 	  }
 	
-	  if (!(0, _isPlainObject2["default"])(inputState)) {
+	  if (!(0, _isPlainObject2['default'])(inputState)) {
 	    return 'The ' + argumentName + ' has unexpected type of "' + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + '". Expected argument to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"');
 	  }
 	
 	  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
-	    return !reducers.hasOwnProperty(key);
+	    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+	  });
+	
+	  unexpectedKeys.forEach(function (key) {
+	    unexpectedKeyCache[key] = true;
 	  });
 	
 	  if (unexpectedKeys.length > 0) {
@@ -26664,11 +26690,22 @@
 	  var finalReducers = {};
 	  for (var i = 0; i < reducerKeys.length; i++) {
 	    var key = reducerKeys[i];
+	
+	    if (process.env.NODE_ENV !== 'production') {
+	      if (typeof reducers[key] === 'undefined') {
+	        (0, _warning2['default'])('No reducer provided for key "' + key + '"');
+	      }
+	    }
+	
 	    if (typeof reducers[key] === 'function') {
 	      finalReducers[key] = reducers[key];
 	    }
 	  }
 	  var finalReducerKeys = Object.keys(finalReducers);
+	
+	  if (process.env.NODE_ENV !== 'production') {
+	    var unexpectedKeyCache = {};
+	  }
 	
 	  var sanityError;
 	  try {
@@ -26686,9 +26723,9 @@
 	    }
 	
 	    if (process.env.NODE_ENV !== 'production') {
-	      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action);
+	      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
 	      if (warningMessage) {
-	        (0, _warning2["default"])(warningMessage);
+	        (0, _warning2['default'])(warningMessage);
 	      }
 	    }
 	
@@ -26712,13 +26749,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports) {
 
 	'use strict';
 	
 	exports.__esModule = true;
-	exports["default"] = warning;
+	exports['default'] = warning;
 	/**
 	 * Prints a warning in the console if it exists.
 	 *
@@ -26742,13 +26779,13 @@
 	}
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports) {
 
 	'use strict';
 	
 	exports.__esModule = true;
-	exports["default"] = bindActionCreators;
+	exports['default'] = bindActionCreators;
 	function bindActionCreator(actionCreator, dispatch) {
 	  return function () {
 	    return dispatch(actionCreator.apply(undefined, arguments));
@@ -26798,7 +26835,7 @@
 	}
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26807,13 +26844,13 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	exports["default"] = applyMiddleware;
+	exports['default'] = applyMiddleware;
 	
-	var _compose = __webpack_require__(242);
+	var _compose = __webpack_require__(243);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	/**
 	 * Creates a store enhancer that applies middleware to the dispatch method
@@ -26837,8 +26874,8 @@
 	  }
 	
 	  return function (createStore) {
-	    return function (reducer, initialState, enhancer) {
-	      var store = createStore(reducer, initialState, enhancer);
+	    return function (reducer, preloadedState, enhancer) {
+	      var store = createStore(reducer, preloadedState, enhancer);
 	      var _dispatch = store.dispatch;
 	      var chain = [];
 	
@@ -26851,7 +26888,7 @@
 	      chain = middlewares.map(function (middleware) {
 	        return middleware(middlewareAPI);
 	      });
-	      _dispatch = _compose2["default"].apply(undefined, chain)(store.dispatch);
+	      _dispatch = _compose2['default'].apply(undefined, chain)(store.dispatch);
 	
 	      return _extends({}, store, {
 	        dispatch: _dispatch
@@ -26861,7 +26898,7 @@
 	}
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -26888,25 +26925,23 @@
 	    return function (arg) {
 	      return arg;
 	    };
-	  } else {
-	    var _ret = function () {
-	      var last = funcs[funcs.length - 1];
-	      var rest = funcs.slice(0, -1);
-	      return {
-	        v: function v() {
-	          return rest.reduceRight(function (composed, f) {
-	            return f(composed);
-	          }, last.apply(undefined, arguments));
-	        }
-	      };
-	    }();
-	
-	    if (typeof _ret === "object") return _ret.v;
 	  }
+	
+	  if (funcs.length === 1) {
+	    return funcs[0];
+	  }
+	
+	  var last = funcs[funcs.length - 1];
+	  var rest = funcs.slice(0, -1);
+	  return function () {
+	    return rest.reduceRight(function (composed, f) {
+	      return f(composed);
+	    }, last.apply(undefined, arguments));
+	  };
 	}
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26917,15 +26952,15 @@
 	
 	var _redux = __webpack_require__(229);
 	
-	var _reduxThunk = __webpack_require__(244);
+	var _reduxThunk = __webpack_require__(245);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _projects = __webpack_require__(245);
+	var _projects = __webpack_require__(246);
 	
 	var _projects2 = _interopRequireDefault(_projects);
 	
-	var _auth = __webpack_require__(246);
+	var _auth = __webpack_require__(247);
 	
 	var _auth2 = _interopRequireDefault(_auth);
 	
@@ -26946,7 +26981,7 @@
 	exports.default = store;
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26965,7 +27000,7 @@
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26975,7 +27010,7 @@
 	});
 	
 	exports.default = function () {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? projectsInitialState : arguments[0];
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : projectsInitialState;
 		var action = arguments[1];
 	
 	
@@ -27001,7 +27036,7 @@
 	};
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27011,7 +27046,7 @@
 	});
 	
 	exports.default = function () {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? projectsInitialState : arguments[0];
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : projectsInitialState;
 		var action = arguments[1];
 	
 	
@@ -27037,7 +27072,7 @@
 	};
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27052,23 +27087,23 @@
 	
 	var _reactRouter = __webpack_require__(159);
 	
-	var _editProjectContainer = __webpack_require__(248);
+	var _editProjectContainer = __webpack_require__(249);
 	
 	var _editProjectContainer2 = _interopRequireDefault(_editProjectContainer);
 	
-	var _addProjectContainer = __webpack_require__(268);
+	var _addProjectContainer = __webpack_require__(269);
 	
 	var _addProjectContainer2 = _interopRequireDefault(_addProjectContainer);
 	
-	var _numberCompanies = __webpack_require__(270);
+	var _numberCompanies = __webpack_require__(271);
 	
 	var _numberCompanies2 = _interopRequireDefault(_numberCompanies);
 	
-	var _numberProjects = __webpack_require__(271);
+	var _numberProjects = __webpack_require__(272);
 	
 	var _numberProjects2 = _interopRequireDefault(_numberProjects);
 	
-	var _projects = __webpack_require__(250);
+	var _projects = __webpack_require__(251);
 	
 	var _projects2 = _interopRequireDefault(_projects);
 	
@@ -27158,7 +27193,7 @@
 	});
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27171,13 +27206,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _editProject = __webpack_require__(249);
+	var _editProject = __webpack_require__(250);
 	
 	var _editProject2 = _interopRequireDefault(_editProject);
 	
 	var _reactRedux = __webpack_require__(222);
 	
-	var _projects = __webpack_require__(250);
+	var _projects = __webpack_require__(251);
 	
 	var _projects2 = _interopRequireDefault(_projects);
 	
@@ -27209,7 +27244,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(EditProjectContainer);
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27335,7 +27370,7 @@
 	});
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27344,11 +27379,11 @@
 	    value: true
 	});
 	
-	var _axios = __webpack_require__(251);
+	var _axios = __webpack_require__(252);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _store = __webpack_require__(243);
+	var _store = __webpack_require__(244);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -27357,7 +27392,9 @@
 	var axiosAjax = {
 	    getProjects: function getProjects() {
 	
-	        return _axios2.default.get('http://localhost:3000/source').then(function (response) {
+	        var dataApi = document.querySelector('data-api-url');
+	
+	        return _axios2.default.get(dataApi + '/source').then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data.projects
@@ -27376,6 +27413,8 @@
 	        var postData = void 0,
 	            companyExists = void 0;
 	
+	        var dataApi = document.querySelector('data-api-url');
+	
 	        // logic to check if the company already exists. 
 	        // if it does add the project to the exisiting company projects array
 	        // if it does not set a flag to add a new company.
@@ -27393,7 +27432,7 @@
 	
 	        var addType = companyExists ? 'addproject' : 'addcompany';
 	
-	        _axios2.default.post('http://localhost:3000/' + addType, postData).then(function (response) {
+	        _axios2.default.post(dataApi + '/' + addType, postData).then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data
@@ -27404,7 +27443,9 @@
 	    },
 	    updateProject: function updateProject(data) {
 	
-	        _axios2.default.post('http://localhost:3000/updateproject', data).then(function (response) {
+	        var dataApi = document.querySelector('data-api-url');
+	
+	        _axios2.default.post(dataApi + '/updateproject', data).then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data
@@ -27421,7 +27462,9 @@
 	            projectListItemsLength: projectListItemsLength
 	        };
 	
-	        _axios2.default.post('http://localhost:3000/deleteproject', postData).then(function (response) {
+	        var dataApi = document.querySelector('data-api-url');
+	
+	        _axios2.default.post(dataApi + '/deleteproject', postData).then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data
@@ -27435,25 +27478,25 @@
 	exports.default = axiosAjax;
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(252);
+	module.exports = __webpack_require__(253);
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var defaults = __webpack_require__(253);
-	var utils = __webpack_require__(254);
-	var dispatchRequest = __webpack_require__(255);
-	var InterceptorManager = __webpack_require__(263);
-	var isAbsoluteURL = __webpack_require__(264);
-	var combineURLs = __webpack_require__(265);
-	var bind = __webpack_require__(266);
-	var transformData = __webpack_require__(259);
+	var defaults = __webpack_require__(254);
+	var utils = __webpack_require__(255);
+	var dispatchRequest = __webpack_require__(256);
+	var InterceptorManager = __webpack_require__(264);
+	var isAbsoluteURL = __webpack_require__(265);
+	var combineURLs = __webpack_require__(266);
+	var bind = __webpack_require__(267);
+	var transformData = __webpack_require__(260);
 	
 	function Axios(defaultConfig) {
 	  this.defaults = utils.merge({}, defaultConfig);
@@ -27536,7 +27579,7 @@
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(267);
+	axios.spread = __webpack_require__(268);
 	
 	// Expose interceptors
 	axios.interceptors = defaultInstance.interceptors;
@@ -27567,12 +27610,12 @@
 
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -27636,7 +27679,7 @@
 
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27886,7 +27929,7 @@
 
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -27908,10 +27951,10 @@
 	        adapter = config.adapter;
 	      } else if (typeof XMLHttpRequest !== 'undefined') {
 	        // For browsers use XHR adapter
-	        adapter = __webpack_require__(256);
+	        adapter = __webpack_require__(257);
 	      } else if (typeof process !== 'undefined') {
 	        // For node use HTTP adapter
-	        adapter = __webpack_require__(256);
+	        adapter = __webpack_require__(257);
 	      }
 	
 	      if (typeof adapter === 'function') {
@@ -27927,17 +27970,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
-	var buildURL = __webpack_require__(257);
-	var parseHeaders = __webpack_require__(258);
-	var transformData = __webpack_require__(259);
-	var isURLSameOrigin = __webpack_require__(260);
-	var btoa = window.btoa || __webpack_require__(261);
+	var utils = __webpack_require__(255);
+	var buildURL = __webpack_require__(258);
+	var parseHeaders = __webpack_require__(259);
+	var transformData = __webpack_require__(260);
+	var isURLSameOrigin = __webpack_require__(261);
+	var btoa = window.btoa || __webpack_require__(262);
 	
 	module.exports = function xhrAdapter(resolve, reject, config) {
 	  var requestData = config.data;
@@ -28012,7 +28055,7 @@
 	  // This is only done if running in a standard browser environment.
 	  // Specifically not if we're in a web worker, or react-native.
 	  if (utils.isStandardBrowserEnv()) {
-	    var cookies = __webpack_require__(262);
+	    var cookies = __webpack_require__(263);
 	
 	    // Add xsrf header
 	    var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
@@ -28063,12 +28106,12 @@
 
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -28136,12 +28179,12 @@
 
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	/**
 	 * Parse headers into an object
@@ -28179,12 +28222,12 @@
 
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -28205,12 +28248,12 @@
 
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -28279,7 +28322,7 @@
 
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28321,12 +28364,12 @@
 
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -28380,12 +28423,12 @@
 
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(254);
+	var utils = __webpack_require__(255);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -28438,7 +28481,7 @@
 
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28458,7 +28501,7 @@
 
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28476,7 +28519,7 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28493,7 +28536,7 @@
 
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28526,7 +28569,7 @@
 
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28539,13 +28582,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _addProject = __webpack_require__(269);
+	var _addProject = __webpack_require__(270);
 	
 	var _addProject2 = _interopRequireDefault(_addProject);
 	
 	var _reactRedux = __webpack_require__(222);
 	
-	var _projects = __webpack_require__(250);
+	var _projects = __webpack_require__(251);
 	
 	var _projects2 = _interopRequireDefault(_projects);
 	
@@ -28577,7 +28620,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(AddProjectContainer);
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28657,7 +28700,7 @@
 	});
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28695,7 +28738,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(NumCompanies);
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28733,7 +28776,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(NumberProjects);
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28770,7 +28813,7 @@
 	});
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28827,7 +28870,7 @@
 	});
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28840,7 +28883,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _companies = __webpack_require__(275);
+	var _companies = __webpack_require__(276);
 	
 	var _companies2 = _interopRequireDefault(_companies);
 	
@@ -28864,7 +28907,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(CompaniesContainer);
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28907,7 +28950,7 @@
 	});
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28920,13 +28963,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _projects = __webpack_require__(277);
+	var _projects = __webpack_require__(278);
 	
 	var _projects2 = _interopRequireDefault(_projects);
 	
 	var _reactRedux = __webpack_require__(222);
 	
-	var _projects3 = __webpack_require__(250);
+	var _projects3 = __webpack_require__(251);
 	
 	var _projects4 = _interopRequireDefault(_projects3);
 	
@@ -29005,7 +29048,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(ProjectContainer);
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
