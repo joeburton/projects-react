@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "node ./bin/www",
-        "postinstall": "./node_modules/.bin/gulp --gulpfile ./client-dev/gulpfile.js production"
+        "postinstall": "gulp --gulpfile ./client-dev/gulpfile.js production"
     },
     "engines": {
         "node": "6.8.1",
