@@ -4,8 +4,8 @@ var webpack = require('webpack');
 module.exports = {
     entry: './app/app.js',
     output: {
-        filename: '../public/js/app.js',
-        sourceMapFilename: '../public/js/app.map'
+        filename: './public/js/app.js',
+        sourceMapFilename: './public/js/app.map'
     },
     devtool: '#source-map',
     module: {
