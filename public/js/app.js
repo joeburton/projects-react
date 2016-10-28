@@ -27392,8 +27392,7 @@
 	var axiosAjax = {
 	    getProjects: function getProjects() {
 	
-	        var main = document.querySelector('.main');
-	        var apiUrl = main.dataset.apiUrl;
+	        var apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 	
 	        return _axios2.default.get(apiUrl + '/source').then(function (response) {
 	            _store2.default.dispatch({
@@ -27415,8 +27414,7 @@
 	            companyExists = void 0,
 	            dataApi = void 0;
 	
-	        var main = document.querySelector('.main');
-	        var apiUrl = main.dataset.apiUrl;
+	        var apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 	
 	        // logic to check if the company already exists. 
 	        // if it does add the project to the exisiting company projects array
@@ -27435,7 +27433,7 @@
 	
 	        var addType = companyExists ? 'addproject' : 'addcompany';
 	
-	        _axios2.default.post(dataApi + '/' + addType, postData).then(function (response) {
+	        _axios2.default.post(apiUrl + '/' + addType, postData).then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data
@@ -27446,10 +27444,9 @@
 	    },
 	    updateProject: function updateProject(data) {
 	
-	        var main = document.querySelector('.main');
-	        var apiUrl = main.dataset.apiUrl;
+	        var apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 	
-	        _axios2.default.post(dataApi + '/updateproject', data).then(function (response) {
+	        _axios2.default.post(apiUrl + '/updateproject', data).then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data
@@ -27466,10 +27463,9 @@
 	            projectListItemsLength: projectListItemsLength
 	        };
 	
-	        var main = document.querySelector('.main');
-	        var apiUrl = main.dataset.apiUrl;
+	        var apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 	
-	        _axios2.default.post(dataApi + '/deleteproject', postData).then(function (response) {
+	        _axios2.default.post(apiUrl + '/deleteproject', postData).then(function (response) {
 	            _store2.default.dispatch({
 	                type: 'GET_PROJECTS',
 	                projects: response.data

@@ -4,8 +4,7 @@ import store from 'store';
 let axiosAjax = {
     getProjects() {
 
-        let main = document.querySelector('.main');
-        let apiUrl = main.dataset.apiUrl;
+        let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
         return axios.get(apiUrl + '/source').then(function (response) {
             store.dispatch({
@@ -28,8 +27,7 @@ let axiosAjax = {
             companyExists,
             dataApi;
 
-        let main = document.querySelector('.main');
-        let apiUrl = main.dataset.apiUrl;
+        let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
         // logic to check if the company already exists. 
         // if it does add the project to the exisiting company projects array
@@ -48,7 +46,7 @@ let axiosAjax = {
 
         let addType = (companyExists) ? 'addproject' : 'addcompany';
 
-        axios.post(dataApi + '/' + addType, postData)
+        axios.post(apiUrl + '/' + addType, postData)
             .then(function (response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
@@ -62,10 +60,9 @@ let axiosAjax = {
     },
     updateProject(data) {
 
-        let main = document.querySelector('.main');
-        let apiUrl = main.dataset.apiUrl;
+        let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
-        axios.post(dataApi + '/updateproject', data)
+        axios.post(apiUrl + '/updateproject', data)
             .then(function (response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
@@ -85,10 +82,9 @@ let axiosAjax = {
             projectListItemsLength
         };
 
-        let main = document.querySelector('.main');
-        let apiUrl = main.dataset.apiUrl;
+        let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
-        axios.post(dataApi + '/deleteproject', postData)
+        axios.post(apiUrl + '/deleteproject', postData)
             .then(function (response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
