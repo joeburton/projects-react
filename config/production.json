@@ -1,5 +1,5 @@
 {
     "debug": true,
-    "url": "http://directory.joe-burton.com/",
+    "url": "http://directory.joe-burton.com",
     "env": "prod"
 }
