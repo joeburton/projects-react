@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
-import EditProjectContainer from 'ui/edit-project-container';
-import AddProjectContainer from 'ui/add-project-container';
-import NumberCompanies from 'ui/number-companies';
-import NumberProjects from 'ui/number-projects';
-import axiosAjax from 'api/projects';
+import EditProjectContainer from '../ui/edit-project-container';
+import AddProjectContainer from '../ui/add-project-container';
+import NumberCompanies from '../ui/number-companies';
+import NumberProjects from '../ui/number-projects';
+import axiosAjax from '../api/projects';
 
 export default React.createClass({
     componentWillMount() {

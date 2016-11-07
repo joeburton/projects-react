@@ -1,7 +1,7 @@
 import React from 'react';
 import EditProject from './edit-project';
 import { connect } from 'react-redux';
-import axiosAjax from 'api/projects';
+import axiosAjax from '../api/projects';
 
 const EditProjectContainer = React.createClass({
     render: function() {
