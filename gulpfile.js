@@ -8,6 +8,9 @@ var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
 
 gulp.task('process-images', () => {
 
@@ -29,6 +32,15 @@ gulp.task('webpack', function () {
         .pipe(gulp.dest('./'));
 });
 
+// Build js
+gulp.task('js', function () {
+    return browserify({entries: './app/app.js', extensions: ['.js'], debug: true})
+        .transform('babelify', {presets: ['es2015', 'react']})
+        .bundle()
+        .pipe(source('app.js'))
+        .pipe(gulp.dest('public/js'));
+});
+
 // CSS minification
 gulp.task('css', function () {
     gulp.src('./app/css/style.css')
@@ -40,9 +52,9 @@ gulp.task('css', function () {
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch('./app/**/*', ['webpack', 'css', 'process-images'])
+    gulp.watch('./app/**/*', ['js', 'css', 'process-images'])
 });
 
 gulp.task('default', ['watch', 'process-images']);
 
-gulp.task('production', ['webpack', 'css', 'process-images']);
+gulp.task('production', ['js', 'css', 'process-images']);
