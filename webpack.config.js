@@ -11,7 +11,7 @@ module.exports = {
         filename: './public/js/app.js',
         sourceMapFilename: './public/js/app.map'
     },
-    devtool: '#source-map',
+    devtool: '#source-map', // change to false to remove source maps
     module: {
         loaders: [
             {
