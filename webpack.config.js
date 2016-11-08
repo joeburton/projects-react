@@ -1,6 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
 
+// wabpack source-maps translated minified file back in to actual files.
+// set devtools to false to remove source maps
+// @todo need to toggle source-maps for production code
+
 module.exports = {
     entry: './app/app.js',
     output: {

@@ -24,7 +24,6 @@ gulp.task('process-images', () => {
     return ret;
 });
 
-
 // Webpack
 gulp.task('webpack', function () {
     return gulp.src('./app/app.js')
@@ -32,9 +31,11 @@ gulp.task('webpack', function () {
         .pipe(gulp.dest('./'));
 });
 
-// Build js
+// Build js - [not currently used]
+// Turn debug to false to remove source maps
+// http://egorsmirnov.me/2015/05/22/react-and-es6-part1.html
 gulp.task('js', function () {
-    return browserify({entries: './app/app.js', extensions: ['.js'], debug: true})
+    return browserify({entries: './app/app.js', extensions: ['.js'], debug: false})
         .transform('babelify', {presets: ['es2015', 'react']})
         .bundle()
         .pipe(source('app.js'))
@@ -49,7 +50,6 @@ gulp.task('css', function () {
         .pipe(gulp.dest('./public/css'))
 });
 
-
 // Watch
 gulp.task('watch', function () {
     gulp.watch('./app/**/*', ['webpack', 'css', 'process-images'])
@@ -57,4 +57,4 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['watch', 'process-images']);
 
-gulp.task('production', ['webpack', 'css', 'process-images']);
+gulp.task('production', ['js', 'css', 'process-images']);
