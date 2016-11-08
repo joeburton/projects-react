@@ -11,6 +11,9 @@ var api = require('./routes/api');
 
 var config = require('config');
 
+// set static file directory
+var staticFileDir = (config.env === 'prod') ? 'public' : 'app'; 
+
 var app = express();
 
 // view engine setup
@@ -38,6 +41,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/populate-database', api.populateDatabase); // populate database
 
 app.use(routes(config));
+
+console.log(config, staticFileDir);
 
 app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id

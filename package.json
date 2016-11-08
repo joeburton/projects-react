@@ -35,6 +35,8 @@
     "gulp-react": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-serve": "^1.2.0",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^2.0.0",
     "json-server": "^0.8.6",
     "mongodb": "^2.2.9",
     "morgan": "~1.7.0",

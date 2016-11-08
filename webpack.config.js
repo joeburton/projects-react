@@ -6,7 +6,7 @@ var webpack = require('webpack');
 // @todo need to toggle source-maps for production code
 
 module.exports = {
-    entry: './app/app.js',
+    entry: './app/js/app.js',
     output: {
         filename: './public/js/app.js',
         sourceMapFilename: './public/js/app.map'
@@ -25,7 +25,7 @@ module.exports = {
         ]
     },
     resolve: {
-        root: path.resolve('./app'),
+        root: path.resolve('./app/js'),
         extenstions: ['', '.js']
     },
     plugins: [
