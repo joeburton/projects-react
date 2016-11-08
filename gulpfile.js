@@ -52,9 +52,9 @@ gulp.task('css', function () {
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch('./app/**/*', ['js', 'css', 'process-images'])
+    gulp.watch('./app/**/*', ['webpack', 'css', 'process-images'])
 });
 
 gulp.task('default', ['watch', 'process-images']);
 
-gulp.task('production', ['js', 'css', 'process-images']);
+gulp.task('production', ['webpack', 'css', 'process-images']);

@@ -24,13 +24,13 @@ module.exports = {
         root: path.resolve('./app'),
         extenstions: ['', '.js']
     },
-    // plugins: [
-    //     new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    //     // new webpack.DefinePlugin({
-    //     //     'process.env': {
-    //     //     'NODE_ENV': JSON.stringify('production')
-    //     //     }
-    //     // })
-    // ],
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({minimize: true}),
+        new webpack.DefinePlugin({
+            'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+            }
+        })
+    ],
     watch: false
 }
