@@ -81,6 +81,7 @@ let axiosAjax = {
             projectId,
             projectListItemsLength
         };
+        console.log(postData);
 
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
