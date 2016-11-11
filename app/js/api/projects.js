@@ -2,6 +2,7 @@ import axios from 'axios';
 import store from '../store';
 
 let axiosAjax = {
+    
     getProjects() {
 
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
@@ -21,6 +22,7 @@ let axiosAjax = {
         });
 
     },
+
     addProject(data, projects) {
 
         let postData,
@@ -58,6 +60,7 @@ let axiosAjax = {
             });
 
     },
+
     updateProject(data) {
 
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
@@ -74,6 +77,7 @@ let axiosAjax = {
             });
 
     },
+
     deleteProject(companyId, projectId, projectListItemsLength) {
 
         let postData = {
@@ -97,6 +101,7 @@ let axiosAjax = {
             });
 
     }
+    
 };
 
 export default axiosAjax;
