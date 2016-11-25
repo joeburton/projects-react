@@ -7,6 +7,7 @@ import store from './store';
 // Layouts
 import App from './layouts/app';
 
+
 // Components
 import Home from './ui/home';
 import LoginIn from './ui/login';
@@ -22,7 +23,7 @@ ReactDOM.render((
                 <Route path="/companies" component={CompaniesContainer} />
             </Route>
             <Route>
-                <Route path="/contact"  />
+                <Route path="/contact" />
                 <Route path="/login" component={LoginIn} />
                 <Route path="/logout" />
             </Route>

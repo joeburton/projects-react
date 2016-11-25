@@ -302,71 +302,71 @@ exports.populateDatabase = function (req, res) {
                 description: 'Avios Group is a Mobile First Responsive website I worked on whilst at Tribal Worldwide. It\'s built using Node, Express, Handlebars, CSS3 and Gulp to manage the client-side files.'
             }]
     },
-        {
-            company: 'Millimetre Media',
-            projects: [
-                {
-                    id: new ObjectId(),
-                    project: 'Helix Property',
-                    link: 'http://www.helixproperty.co.uk/',
-                    skills: 'JavaScript, Browserify, CSS, PHP, Gulp',
-                    description: 'I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow.'
-                }
-            ]
-        },
-        {
-            company: 'm.lastminute.com',
-            projects: [{
+    {
+        company: 'Millimetre Media',
+        projects: [
+            {
                 id: new ObjectId(),
-                project: 'm.lastminute.com',
-                link: 'http://m.lastminute.com',
-                skills: 'Backbone, JavaScript, Jasmine, Require, Grunt',
-                description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
-            }, {
-                    id: new ObjectId(),
-                    project: 'Responsive Search Forms',
-                    link: 'http://www.lastminute.com',
-                    skills: 'JavaScript, HTML, CSS, Require, Grunt',
-                    description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
-                }]
-        },
-        {
-            company: 'Bauer Media',
-            projects: [{
-                id: new ObjectId(),
-                project: 'Closer Magazine',
-                link: 'http://www.closeronline.co.uk',
-                skills: 'JavaScript, Backbone, Jasmine, Require',
-                description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
-            }]
+                project: 'Helix Property',
+                link: 'http://www.helixproperty.co.uk/',
+                skills: 'JavaScript, Browserify, CSS, PHP, Gulp',
+                description: 'I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow.'
+            }
+        ]
+    },
+    {
+        company: 'm.lastminute.com',
+        projects: [{
+            id: new ObjectId(),
+            project: 'm.lastminute.com',
+            link: 'http://m.lastminute.com',
+            skills: 'Backbone, JavaScript, Jasmine, Require, Grunt',
+            description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
         }, {
-            company: 'Rank Interactive',
-            projects: [{
-                id: new ObjectId(),
-                project: 'Blue Star',
-                link: 'http://joe-burton.com/bluestar/',
-                skills: 'Backbone, JavaScript, Jasmine, Require',
-                description: 'I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tabvar and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.'
-            }]
-        }, {
-            company: 'Engine',
-            projects: [{
-                id: new ObjectId(),
-                project: 'Fabulous Magazine',
-                link: 'http://www.thesun.co.uk/sol/homepage/fabulous',
-                skills: 'HTML5, CSS3, JavaScript/jQuery',
-                description: 'I worked for Jam @ The Engine Group in Soho as a Mobile Front-end Developer building HTML5, CSS3, JavaScript/jQuery smart-phone and desktop websites. This contract was a great opportunity to develop my Mobile development skills working on the mobile version of the fabulous magazine http://fabulousmag.co.uk and several small Sky mobile promotional sites.'
-            }]
-        }, {
-            company: 'SapientNitro',
-            projects: [{
-                id: new ObjectId(),
-                project: 'John Lewis',
-                link: 'http://www.johnlewis.com',
-                skills: 'HTML5, CSS3, JavaScript/jQuery',
-                description: 'Whilst working for Sapient on this contract I was based client side at John Lewis, working in a team of Front-end Developers in an Agile Software Development Environment. I was responsible for creating well structured JavaScript/jQuery functionality and clean HTML/CSS template components keeping all code as re-usable and standards compliant as possible. We introduced HTML5 and CSS3 to the project using a progressive enhancement approach so as not to limit the site to just the latest browsers.'
-            }]
-        }];
+            id: new ObjectId(),
+            project: 'Responsive Search Forms',
+            link: 'http://www.lastminute.com',
+            skills: 'JavaScript, HTML, CSS, Require, Grunt',
+            description: 'Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling.'
+        }]
+    },
+    {
+        company: 'Bauer Media',
+        projects: [{
+            id: new ObjectId(),
+            project: 'Closer Magazine',
+            link: 'http://www.closeronline.co.uk',
+            skills: 'JavaScript, Backbone, Jasmine, Require',
+            description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
+        }]
+    }, {
+        company: 'Rank Interactive',
+        projects: [{
+            id: new ObjectId(),
+            project: 'Blue Star',
+            link: 'http://joe-burton.com/bluestar/',
+            skills: 'Backbone, JavaScript, Jasmine, Require',
+            description: 'I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tabvar and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.'
+        }]
+    }, {
+        company: 'Engine',
+        projects: [{
+            id: new ObjectId(),
+            project: 'Fabulous Magazine',
+            link: 'http://www.thesun.co.uk/sol/homepage/fabulous',
+            skills: 'HTML5, CSS3, JavaScript/jQuery',
+            description: 'I worked for Jam @ The Engine Group in Soho as a Mobile Front-end Developer building HTML5, CSS3, JavaScript/jQuery smart-phone and desktop websites. This contract was a great opportunity to develop my Mobile development skills working on the mobile version of the fabulous magazine http://fabulousmag.co.uk and several small Sky mobile promotional sites.'
+        }]
+    }, {
+        company: 'SapientNitro',
+        projects: [{
+            id: new ObjectId(),
+            project: 'John Lewis',
+            link: 'http://www.johnlewis.com',
+            skills: 'HTML5, CSS3, JavaScript/jQuery',
+            description: 'Whilst working for Sapient on this contract I was based client side at John Lewis, working in a team of Front-end Developers in an Agile Software Development Environment. I was responsible for creating well structured JavaScript/jQuery functionality and clean HTML/CSS template components keeping all code as re-usable and standards compliant as possible. We introduced HTML5 and CSS3 to the project using a progressive enhancement approach so as not to limit the site to just the latest browsers.'
+        }]
+    }];
 
     dbObj.collection('projects', function (err, collection) {
         collection.insert(projects, { safe: true }, function (err, result) {

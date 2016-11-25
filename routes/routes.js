@@ -1,12 +1,12 @@
 
-module.exports = function(config) {
+module.exports = function (config) {
 
     var express = require('express');
     var router = express.Router();
-    
+
     /* Index */
-    router.get('/', function(req, res, next) {
-    res.render('index', { 
+    router.get('/', function (req, res, next) {
+        res.render('index', {
             loggedin: req.session.authenticated,
             config: config
         });
@@ -14,39 +14,39 @@ module.exports = function(config) {
 
 
     /* Projects */
-    router.get('/projects', function(req, res, next) {
-        res.render('index', { 
+    router.get('/projects', function (req, res, next) {
+        res.render('index', {
             loggedin: req.session.authenticated,
-            config: config  
+            config: config
         });
     });
 
 
     /* Companies */
-    router.get('/companies', function(req, res, next) {
-        res.render('index', { 
+    router.get('/companies', function (req, res, next) {
+        res.render('index', {
             loggedin: req.session.authenticated,
-            config: config 
+            config: config
         });
     })
 
 
     /* Contact */
-    router.get('/contact', function(req, res, next) {
-    res.render('contact', { 
+    router.get('/contact', function (req, res, next) {
+        res.render('contact', {
             loggedin: req.session.authenticated,
-            config: config 
+            config: config
         });
     });
 
 
     /* Log in */
-    router.get('/login', function(req, res, next) {
-        if (req.session.authenticated ) {
+    router.get('/login', function (req, res, next) {
+        if (req.session.authenticated) {
             res.redirect('/projects');
         } else {
-            res.render('login', { 
-                loggedin: req.session.authenticated 
+            res.render('login', {
+                loggedin: req.session.authenticated
             });
         }
     });
