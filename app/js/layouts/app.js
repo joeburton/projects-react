@@ -20,7 +20,7 @@ export default React.createClass({
             addProjectEle.classList.add('hidden');
         }
     },
-    render(state) {
+    render() {
         return (
             <div className='app'>
                 <ul className='main-nav'>
