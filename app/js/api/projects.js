@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../store';
 
 let axiosAjax = {
-    
+
     getProjects() {
 
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
@@ -101,7 +101,7 @@ let axiosAjax = {
             });
 
     }
-    
+
 };
 
 export default axiosAjax;
