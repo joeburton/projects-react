@@ -17,7 +17,7 @@ if (production) {
     url = 'mongodb://projectDirectory:f63f339f3f171d17473f3995a570e290@dokku-mongo-projectDirectory:27017/projectDirectory';
 } else {
     // local dev
-    url = 'mongodb://localhost:32768/projectDirectory';
+    url = 'mongodb://localhost:27017/projectDirectory';
 }
 
 // Use connect method to connect to the Server 
@@ -69,6 +69,7 @@ exports.findAll = function (req, res) {
         authenticated = (req.session.authenticated) ? true : false;
 
     collection.find().toArray(function (err, projects) {
+        console.log(projects);
         res.write(JSON.stringify({
             projects: projects,
             authorised: authenticated
@@ -163,7 +164,6 @@ exports.addCompany = function (req, res) {
         }));
         res.end();
     }
-
 
 }
 

@@ -1,4 +1,3 @@
-
 db.projects.insert([{
 	"company": "Cambridge Assessment",
 	"projects": [{
