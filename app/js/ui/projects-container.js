@@ -11,6 +11,7 @@ const ProjectContainer = React.createClass({
     }
 });
 
+// pass in state data as props data
 const stateToProps = function(state) {
     return {
         projects: state.projectReducer.projects,
@@ -19,6 +20,7 @@ const stateToProps = function(state) {
     }
 }
 
+// pass down events as props
 const dispatchToProps = function(state) {
     return {
         openEditInput (e, data) {

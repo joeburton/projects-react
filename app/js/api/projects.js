@@ -2,12 +2,12 @@ import axios from 'axios';
 import store from '../store';
 
 let axiosAjax = {
-    
+
     getProjects() {
 
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
-        return axios.get(apiUrl + '/source').then(function (response) {
+        return axios.get(apiUrl + '/source').then(function(response) {
             store.dispatch({
                 type: 'GET_PROJECTS',
                 projects: response.data.projects
@@ -16,8 +16,7 @@ let axiosAjax = {
                 type: 'LOG_IN',
                 authorised: response.data.authorised
             });
-            return response;
-        }).catch(function (err) {
+        }).catch(function(err) {
             console.error(err);
         });
 
@@ -49,13 +48,13 @@ let axiosAjax = {
         let addType = (companyExists) ? 'addproject' : 'addcompany';
 
         axios.post(apiUrl + '/' + addType, postData)
-            .then(function (response) {
+            .then(function(response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
                     projects: response.data
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
 
@@ -66,13 +65,13 @@ let axiosAjax = {
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
         axios.post(apiUrl + '/updateproject', data)
-            .then(function (response) {
+            .then(function(response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
                     projects: response.data
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
 
@@ -90,18 +89,18 @@ let axiosAjax = {
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
         axios.post(apiUrl + '/deleteproject', postData)
-            .then(function (response) {
+            .then(function(response) {
                 store.dispatch({
                     type: 'GET_PROJECTS',
                     projects: response.data
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
 
     }
-    
+
 };
 
 export default axiosAjax;

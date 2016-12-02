@@ -3,20 +3,15 @@ import EditProject from './edit-project';
 import { connect } from 'react-redux';
 import axiosAjax from '../api/projects';
 
-const EditProjectContainer = React.createClass({
-    render: function() {
+class EditProjectContainer extends React.Component {
+    render() {
         return (
             <EditProject {...this.props} />
         )
     }
-});
+};
 
-const stateToProps = function(state) {
-    return {
-        projects: state.projectReducer.projects
-    }
-}
-
+// pass down events as props
 const dispatchToProps = function(state) {
     return {
         disptachProjectUpdate (e, data) {
@@ -26,6 +21,5 @@ const dispatchToProps = function(state) {
     }
 }
 
-
-export default connect(stateToProps, dispatchToProps)(EditProjectContainer);
+export default connect(dispatchToProps)(EditProjectContainer);
 
