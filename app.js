@@ -1,20 +1,20 @@
-var express = require('express');
-var exphbs = require('express-handlebars');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var routes = require('./routes/routes');
-var api = require('./routes/api');
+const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const routes = require('./routes/routes');
+const api = require('./routes/api');
 
-var config = require('config');
+const config = require('config');
 
 // set static file directory
-var staticFileDir = (config.env === 'prod') ? 'public' : 'app';
+const staticFileDir = (config.env === 'prod') ? 'public' : 'app';
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,7 +56,7 @@ app.get('/logout', api.logout); // logout
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
