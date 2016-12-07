@@ -4,7 +4,7 @@ var serve = require('gulp-serve');
 
 // all for the love of squished css
 var concat = require('gulp-concat');
-var minifyCSS = require('gulp-minify-css');
+var minifyCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 
