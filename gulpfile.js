@@ -15,17 +15,17 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 
-gulp.task('process-images', () => {
+// gulp.task('process-images', () => {
 
-    const ret = gulp.src(['./app/images/**/*.+(png|jpg|jpeg|gif|svg)'])
-        // .pipe(imagemin({
-        //     interlaced: true,
-        //     progressive: true
-        // }))
-        .pipe(gulp.dest('public/images'));
+//     const ret = gulp.src(['./app/images/**/*.+(png|jpg|jpeg|gif|svg)'])
+//         // .pipe(imagemin({
+//         //     interlaced: true,
+//         //     progressive: true
+//         // }))
+//         .pipe(gulp.dest('public/images'));
 
-    return ret;
-});
+//     return ret;
+// });
 
 // Webpack - not currently used
 gulp.task('webpack', function () {
@@ -72,4 +72,4 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['js-prod', 'css', 'process-images']);
+gulp.task('production', ['js-prod', 'css']);
