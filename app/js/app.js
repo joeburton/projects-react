@@ -7,7 +7,6 @@ import store from './store';
 // Layouts
 import App from './layouts/app';
 
-
 // Components
 import Home from './ui/home';
 import LoginIn from './ui/login';
