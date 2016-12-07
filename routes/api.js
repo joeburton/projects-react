@@ -67,7 +67,7 @@ exports.findAll = function (req, res) {
 
     var collection = dbObj.collection('projects'),
         authenticated = (req.session.authenticated) ? true : false;
-
+            
     collection.find().toArray(function (err, projects) {
         console.log(projects);
         res.write(JSON.stringify({
@@ -184,11 +184,13 @@ exports.updateProject = function (req, res) {
 
             } else {
 
+                // update the company name
                 collection.update(
                     { _id: new ObjectId(project.companyId) },
                     { $set: { company: project.company } }
                 );
 
+                // update the nested array of porjects
                 collection.update(
                     { '_id': new ObjectId(project.companyId), 'projects.id': new ObjectId(project.projectId) },
                     {
