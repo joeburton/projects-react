@@ -18,10 +18,10 @@ var streamify = require('gulp-streamify');
 gulp.task('process-images', () => {
 
     const ret = gulp.src(['./app/images/**/*.+(png|jpg|jpeg|gif|svg)'])
-        .pipe(imagemin({
-            interlaced: true,
-            progressive: true
-        }))
+        // .pipe(imagemin({
+        //     interlaced: true,
+        //     progressive: true
+        // }))
         .pipe(gulp.dest('public/images'));
 
     return ret;
