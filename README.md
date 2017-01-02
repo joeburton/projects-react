@@ -1,7 +1,7 @@
 ### Node, Express, Handlebars, MongoDB, React & Redux CRUD Apllication
 
 ```
-// Install MongoDB locally.
+// Step 1: Install MongoDB and cd in to it's directory
 $ cd /usr/local/mongodb
 
 // Step 2: start mongoDB
