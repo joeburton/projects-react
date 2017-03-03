@@ -1,7 +1,7 @@
 import React from 'react';
 import AddProject from './add-project';
 import { connect } from 'react-redux';
-import axiosAjax from '../api/projects';
+import axiosAjax from '../api/requests';
 
 const AddProjectContainer = React.createClass({
     render: function() {
