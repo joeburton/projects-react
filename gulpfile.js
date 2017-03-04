@@ -15,6 +15,8 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 
+var sass = require('gulp-sass');
+
 gulp.task('process-images', () => {
 
     const ret = gulp.src(['./app/images/**/*.+(png|jpg|jpeg|gif|svg)'])
@@ -38,9 +40,9 @@ gulp.task('webpack', function () {
 // Turn debug to false to remove source maps
 // http://egorsmirnov.me/2015/05/22/react-and-es6-part1.html
 gulp.task('js-dev', function () {
-    
-    return browserify({entries: './app/js/app.js', extensions: ['.js'], debug: true})
-        .transform('babelify', {presets: ['es2015', 'react']})
+
+    return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: true })
+        .transform('babelify', { presets: ['es2015', 'react'] })
         .bundle()
         .pipe(source('app.js'))
         .pipe(gulp.dest('public/js'));
@@ -48,8 +50,8 @@ gulp.task('js-dev', function () {
 
 gulp.task('js-prod', function () {
     // make sure debug is false otherwise output JS is MASSIVE!
-    return browserify({entries: './app/js/app.js', extensions: ['.js'], debug: false})
-        .transform('babelify', {presets: ['es2015', 'react']})
+    return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: false })
+        .transform('babelify', { presets: ['es2015', 'react'] })
         .bundle()
         .pipe(source('app.js'))
         .pipe(streamify(uglify()))
@@ -58,11 +60,23 @@ gulp.task('js-prod', function () {
 
 // CSS minification
 gulp.task('css', function () {
-    
+
     gulp.src('./app/css/style.css')
         .pipe(concat('style.min.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('./public/css'))
+});
+
+
+// CSS minification
+gulp.task('sass', function () {
+
+    return gulp.src('./app/css/app.scss')
+        .pipe(sass({
+            includePaths: ['node_modules/bootstrap-sass/assets/stylesheets'],
+        }))
+        .pipe(gulp.dest('./public/css/'));
+
 });
 
 // Watch
