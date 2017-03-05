@@ -12,8 +12,7 @@ export default React.createClass({
         axiosAjax.getProjects();
     },
     openModalAddProject(e) {
-        // e.preventDefault();
-        console.log('open add project')
+        e.preventDefault();
         $('#add').modal('show');
     },
     render() {

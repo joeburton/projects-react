@@ -105,10 +105,6 @@ export default React.createClass({
         };      
     },
     closeEditProjectOverlay () {
-        let editProjectEle = document.querySelectorAll('.edit-project')[0];
-
-        if (!editProjectEle.classList.contains('hidden')) {
-            editProjectEle.classList.add('hidden');    
-        }
+        $('#edit').modal('hide');
     }
 });

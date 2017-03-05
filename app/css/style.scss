@@ -56,7 +56,7 @@ li.company li {
     list-style: none;
 }
 
-input[name="username"],
-input[name="password"] {
+.navbar-form input[type="text"],
+.navbar-form input[type="password"] {
     margin-right: 5px;
 }
