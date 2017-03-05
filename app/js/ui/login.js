@@ -32,7 +32,7 @@ const Login = React.createClass({
 					</div>
 					<div id="navbar" className="navbar-collapse collapse">
 						{this.props.loggedin ? (
-						<div className="navbar-form navbar-right">
+						<div className="navbar-form navbar-right clearfix">
 							<a className="btn btn-default log-out pull-right" href="/logout">LOG OUT</a>
 						</div>
 						) : (
