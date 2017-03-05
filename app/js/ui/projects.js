@@ -6,7 +6,7 @@ export default React.createClass({
         return (
             <div className='container'>
                 <h3>Projects ({this.props.numberProjects})</h3>
-                <ul ref='projectscontainer'>
+                <ul ref='projects-container'>
                     {this.props.projects.map((proj, i) => {
                         return (
                             <li className='company' key={i}>
@@ -24,13 +24,13 @@ export default React.createClass({
             <ul id={id}>
                 {projects.map((proj, i) => {
                     return (
-                        <li key={i}>
+                        <li key={i} className="project">
                             <div>Project: <span className='project-item project'> {proj.project} </span></div>
                             <div>URL: <span className='project-item link'> <a href={proj.link} target='_blank'>{proj.link}</a> </span></div>
                             <div>Skills: <span className='project-item skills'> {proj.skills} </span></div>
                             <div>Description: <span className='project-item description'> {proj.description} </span></div>
                             { this.props.loggedin &&
-                                <div className="admin-controls"><a href='#' data-company-id={id} data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>edit</a> | <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>delete</a></div>
+                                <div className="admin-controls btn btn-default"><a href='#' data-company-id={id} data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>edit</a> | <a href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>delete</a></div>
                               }
                         </li>
                     );
