@@ -15,7 +15,7 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 
-// var sass = require('gulp-sass');
+var sass = require('gulp-sass');
 
 gulp.task('process-images', () => {
 
@@ -48,7 +48,7 @@ gulp.task('js-dev', ['js-bootstrap'], function () {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('js-prod',  function () {
+gulp.task('js-prod', ['js-bootstrap'],  function () {
     // make sure debug is false otherwise output JS is MASSIVE!
     return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: false })
         .transform('babelify', { presets: ['es2015', 'react'] })
@@ -64,17 +64,17 @@ gulp.task('js-bootstrap', function () {
 });
 
 // CSS minification
-// gulp.task('sass', function () {
+gulp.task('sass', function () {
 
-//     return gulp.src(['./app/css/normalize.css', './app/css/app.scss', './app/css/style.scss'])
-//         .pipe(sass({
-//             includePaths: ['node_modules/bootstrap-sass/assets/stylesheets'],
-//         }))
-//         .pipe(concat('style.min.css'))
-//         //.pipe(minifyCSS())
-//         .pipe(gulp.dest('./public/css/'));
+    return gulp.src(['./app/css/normalize.css', './app/css/app.scss', './app/css/style.scss'])
+        .pipe(sass({
+            includePaths: ['node_modules/bootstrap-sass/assets/stylesheets'],
+        }))
+        .pipe(concat('style.min.css'))
+        //.pipe(minifyCSS())
+        .pipe(gulp.dest('./public/css/'));
 
-// });
+});
 
 // Watch
 gulp.task('watch', function () {
@@ -83,4 +83,4 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['js-prod', 'process-images']);
+gulp.task('production', ['js-prod', 'sass', 'process-images']);
