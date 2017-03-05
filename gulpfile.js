@@ -48,7 +48,7 @@ gulp.task('js-dev', ['js-bootstrap'], function () {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('js-prod', ['js-bootstrap'],  function () {
+gulp.task('js-prod', function () {
     // make sure debug is false otherwise output JS is MASSIVE!
     return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: false })
         .transform('babelify', { presets: ['es2015', 'react'] })
