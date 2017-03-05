@@ -70,7 +70,9 @@ gulp.task('sass', function () {
         // style: 'compressed',
         loadPath: ['node_modules/bootstrap-sass/assets/stylesheets']
     })
+
         .pipe(concat('style.min.css'))
+        
         // .pipe(minifyCSS())
         .pipe(gulp.dest('./public/css/'));
 
