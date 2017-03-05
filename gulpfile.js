@@ -92,4 +92,4 @@ gulp.task('watch', function () {
     
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['js-prod', 'css', 'process-images']);
+gulp.task('production', ['css', 'process-images']);
