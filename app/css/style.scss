@@ -1,10 +1,14 @@
 .intro-skills {
     margin-top: 50px;
-    // margin-left: 15px;
 }
 
 .jumbotron {
     padding-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs {
+    border-bottom: 0;
 }
 
 .splash h3 {
@@ -17,6 +21,7 @@
     display: block;
     margin: 0 auto;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .normal-footer {
@@ -49,4 +54,9 @@ li.company li {
 
 .companies-container li {
     list-style: none;
+}
+
+input[name="username"],
+input[name="password"] {
+    margin-right: 5px;
 }

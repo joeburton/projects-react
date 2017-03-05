@@ -12,17 +12,34 @@ export default React.createClass({
     },
     render (state) {
         return (
-            <div className='edit-project hidden'>
-                <div className='edit-project-overlay'></div>
-                <div className='edit-fields-wrapper'>
-                    <div className='edit-fields' data-id={this.props.id}>
-                        <a href='#' className='close-icon' onClick={this.closeEditProjectOverlay}>x</a>                        
-                        <input type='text' className='company' value={this.state.company} onChange={this.handleChange} />
-                        <input type='text' className='project-name' value={this.state.name} onChange={this.handleChange} />
-                        <input type='text' className='link' value={this.state.link} onChange={this.handleChange} />
-                        <textarea type='textarea' className='skills' value={this.state.skills} onChange={this.handleChange} />
-                        <textarea type='textarea' className='description' value={this.state.description} onChange={this.handleChange} />
-                        <button name='button' onClick={this.setValue}>UPDATE</button>
+            <div className="modal fade" id="edit" role="dialog" aria-labelledby="edit">
+                <div className='edit-project modal-dialog'>
+                    <div className='modal-content'>
+                        <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 className="modal-title" id="edit">Edit Project</h4>
+                        </div>
+                        <div className='modal-body edit-fields' data-id={this.props.id}>
+                            <div className="form-group">
+                                <input type='text' className='company form-control' value={this.state.company} onChange= {this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <input type='text' className='project-name form-control' value={this.state.name} onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <input type='text' className='link form-control' value={this.state.link} onChange={this.handleChange} />
+                            </div> 
+                            <div className="form-group">
+                                <textarea type='textarea' className='skills form-control' value={this.state.skills} onChange={this.handleChange} />
+                            </div>
+                            <div className="form-group">
+                                <textarea type='textarea' className='description form-control' value={this.state.description} onChange={this.handleChange} />
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button name='button' className="btn btn-default" data-dismiss="modal">CANCEL</button>
+                            <button name='button' className="btn btn-primary" onClick={this.setValue}>UPDATE</button>
+                        </div>
                     </div>
                 </div>
             </div>

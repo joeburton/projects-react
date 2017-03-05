@@ -26,6 +26,8 @@ const dispatchToProps = function(state) {
         openEditInput (e, data) {
             e.preventDefault();
 
+            $('#edit').modal('show');
+            
             // edit field elements
             let editProjectEle = document.querySelectorAll('.edit-project')[0],
                 fieldsWrapper = editProjectEle.querySelectorAll('.edit-fields')[0],

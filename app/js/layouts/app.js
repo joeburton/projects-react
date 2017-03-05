@@ -11,15 +11,10 @@ export default React.createClass({
     componentWillMount() {
         axiosAjax.getProjects();
     },
-    addProject(e) {
-        e.preventDefault();
-        let addProjectEle = document.querySelectorAll('.add-project')[0]
-
-        if (addProjectEle.classList.contains('hidden')) {
-            addProjectEle.classList.remove('hidden');
-        } else {
-            addProjectEle.classList.add('hidden');
-        }
+    openModalAddProject(e) {
+        // e.preventDefault();
+        console.log('open add project')
+        $('#add').modal('show');
     },
     render() {
         return (
@@ -31,7 +26,7 @@ export default React.createClass({
                     <ul className='nav nav-tabs'>
                         <li role="presentation"><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
                         <li role="presentation"><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
-                        <li role="presentation"><a href='#' onClick={this.addProject}>Add New Project / Company</a></li>
+                        <li role="presentation"><a href='#' onClick={this.openModalAddProject}>Add New Project / Company</a></li>
                     </ul>
                 </div>
                 </div>

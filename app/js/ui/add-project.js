@@ -3,17 +3,34 @@ import React from 'react';
 export default React.createClass({
     render () {
         return (
-            <div className='add-project hidden'>
-                <div className='add-project-overlay'></div>
-                <div className='add-fields-wrapper'>
-                    <div className='add-fields'>
-                        <a href='#' className='close-icon' onClick={this.closeOverlay}>x</a>                        
-                        <input type='text' className='company' placeholder='Company name' />
-                        <input type='text' className='project-name' placeholder='Project name' />
-                        <input type='text' className='link' placeholder='Link' />
-                        <textarea type='textarea' className='skills' placeholder='Skills used' />
-                        <textarea type='textarea' className='description' placeholder='Description' />
-                        <button name='button' onClick={this.addProject}>SAVE</button>
+            <div className="modal fade" id="add" role="dialog" aria-labelledby="add">
+                <div className='modal-dialog'>
+                    <div className='modal-content'>
+                        <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 className="modal-title" id="add">Add a new Project or Company</h4>
+                        </div>
+                        <div className='modal-body add-fields'>
+                            <div className="form-group">
+                                <input type='text' className='company form-control' placeholder='Company name' />
+                            </div>
+                            <div className="form-group">
+                                <input type='text' className='project-name form-control' placeholder='Project name' />
+                            </div>
+                            <div className="form-group">
+                                <input type='text' className='link form-control' placeholder='Link' />
+                            </div>
+                            <div className="form-group">
+                                <textarea type='textarea' className='skills form-control' placeholder='Skills used' />
+                            </div>
+                            <div className="form-group">
+                                <textarea type='textarea' className='description form-control' placeholder='Description' />
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button name='button' className="btn btn-default" data-dismiss="modal">CANCEL</button>
+                            <button name='button' className="btn btn-primary" onClick={this.addProject}>SAVE</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,10 +60,6 @@ export default React.createClass({
         this.closeOverlay();
     },
     closeOverlay () {
-        let addProjectEle = document.querySelectorAll('.add-project')[0];
-
-        if (!addProjectEle.classList.contains('hidden')) {
-            addProjectEle.classList.add('hidden');    
-        }
+        $('#add').modal('hide');
     }
 });
