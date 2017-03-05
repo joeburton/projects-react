@@ -77,6 +77,14 @@ gulp.task('sass', function () {
 });
 
 
+// CSS minification
+gulp.task('css', function () {
+    
+    gulp.src('./app/css/style.min.css')
+        .pipe(gulp.dest('./public/css'))
+});
+
+
 // Watch
 gulp.task('watch', function () {
     gulp.watch('./app/**/*', ['js-dev', 'sass', 'process-images'])
@@ -84,4 +92,4 @@ gulp.task('watch', function () {
     
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['js-prod', 'sass', 'process-images']);
+gulp.task('production', ['js-prod', 'css', 'process-images']);
