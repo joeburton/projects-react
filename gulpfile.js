@@ -30,11 +30,11 @@ gulp.task('process-images', () => {
 });
 
 // Webpack - not currently used
-gulp.task('webpack', function () {
-    return gulp.src('./app/js/app.js')
-        .pipe(webpack(require('./webpack.config.js')))
-        .pipe(gulp.dest('./'));
-});
+// gulp.task('webpack', function () {
+//     return gulp.src('./app/js/app.js')
+//         .pipe(webpack(require('./webpack.config.js')))
+//         .pipe(gulp.dest('./'));
+// });
 
 // Build js - [not currently used]
 // Turn debug to false to remove source maps
@@ -78,11 +78,11 @@ gulp.task('sass', function () {
 
 
 // CSS minification
-gulp.task('css', function () {
+// gulp.task('css', function () {
     
-    gulp.src('./app/css/style.min.css')
-        .pipe(gulp.dest('./public/css'))
-});
+//     gulp.src('./app/css/style.min.css')
+//         .pipe(gulp.dest('./public/css'))
+// });
 
 
 // Watch
@@ -92,4 +92,4 @@ gulp.task('watch', function () {
     
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['css', 'process-images']);
+gulp.task('production', ['js-prod', 'sass', 'process-images']);
