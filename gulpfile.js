@@ -39,7 +39,7 @@ gulp.task('webpack', function () {
 // Build js - [not currently used]
 // Turn debug to false to remove source maps
 // http://egorsmirnov.me/2015/05/22/react-and-es6-part1.html
-gulp.task('js-dev', function () {
+gulp.task('js-dev', ['js-bootstrap'], function () {
 
     return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: true })
         .transform('babelify', { presets: ['es2015', 'react'] })
@@ -48,7 +48,7 @@ gulp.task('js-dev', function () {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('js-prod', function () {
+gulp.task('js-prod', ['js-bootstrap'],  function () {
     // make sure debug is false otherwise output JS is MASSIVE!
     return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: false })
         .transform('babelify', { presets: ['es2015', 'react'] })
@@ -58,32 +58,29 @@ gulp.task('js-prod', function () {
         .pipe(gulp.dest('public/js'));
 });
 
-// CSS minification
-gulp.task('css', function () {
-
-    gulp.src('./app/css/style.css')
-        .pipe(concat('style.min.css'))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('./public/css'))
+gulp.task('js-bootstrap', function () {
+    gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
+        .pipe(gulp.dest('public/js'));
 });
-
 
 // CSS minification
 gulp.task('sass', function () {
 
-    return gulp.src('./app/css/app.scss')
+    return gulp.src(['./app/css/normalize.css', './app/css/app.scss', './app/css/style.scss'])
         .pipe(sass({
             includePaths: ['node_modules/bootstrap-sass/assets/stylesheets'],
         }))
+        .pipe(concat('style.min.css'))
+        //.pipe(minifyCSS())
         .pipe(gulp.dest('./public/css/'));
 
 });
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch('./app/**/*', ['js-dev', 'css', 'process-images'])
+    gulp.watch('./app/**/*', ['js-dev', 'sass', 'process-images'])
 });
 
 gulp.task('default', ['watch']);
 
-gulp.task('production', ['js-prod', 'css', 'process-images']);
+gulp.task('production', ['js-prod', 'sass', 'process-images']);

@@ -41,15 +41,15 @@ module.exports = function (config) {
 
 
     /* Log in */
-    router.get('/login', function (req, res, next) {
-        if (req.session.authenticated) {
-            res.redirect('/projects');
-        } else {
-            res.render('login', {
-                loggedin: req.session.authenticated
-            });
-        }
-    });
+    // router.get('/login', function (req, res, next) {
+    //     if (req.session.authenticated) {
+    //         res.redirect('/projects');
+    //     } else {
+    //         res.render('/', {
+    //             loggedin: req.session.authenticated
+    //         });
+    //     }
+    // });
 
     return router;
 };

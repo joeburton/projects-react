@@ -41,7 +41,7 @@ exports.auth = function (req, res) {
         res.redirect('/projects');
     } else {
         console.log('Login Failed.');
-        res.redirect('/login');
+        res.redirect('/');
     }
 
 };

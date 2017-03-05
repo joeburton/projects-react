@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 export default React.createClass({
     render () {
         return (
-            <div className='projects-page'>
+            <div className='container'>
                 <h3>Projects ({this.props.numberProjects})</h3>
                 <ul ref='projectscontainer'>
                     {this.props.projects.map((proj, i) => {

@@ -3,7 +3,7 @@ import React from 'react';
 export default React.createClass({
     render: function() {
         return (
-            <div className="companies-page">
+            <div className="container">
                 <h3>Companies</h3>
                 <ul>
                     {this.props.companies.map((proj, i) => {

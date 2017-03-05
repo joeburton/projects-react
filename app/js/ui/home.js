@@ -8,8 +8,8 @@ export default React.createClass({
     },
     render () {
         return (
-            <div className='project-banner'>
-                <b>Directory of companies and projects</b>
+            <div className='container splash'>
+                <h3>Directory of companies and projects</h3>
                 <img src='/images/projects.png' />
             </div>
         )
