@@ -15,6 +15,10 @@ export default React.createClass({
         e.preventDefault();
         $('#add').modal('show');
     },
+    setTab(e) {
+        $('.nav-tabs li').removeClass('active');
+        $(e.currentTarget).addClass('active');
+    },
     render() {
         return (
             <div className='app'>
@@ -23,9 +27,9 @@ export default React.createClass({
                     <div className="container">
                     <p className="intro-skills">React/ Redux, NodeJS and MongoDB CRUD Application.</p>
                     <ul className='nav nav-tabs'>
-                        <li role="presentation"><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
-                        <li role="presentation"><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
-                        <li role="presentation"><a href='#' onClick={this.openModalAddProject}>Add New Project / Company</a></li>
+                        <li role="presentation" onClick={this.setTab}><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
+                        <li role="presentation" onClick={this.setTab}><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
+                        <li role="presentation" onClick={this.setTab}><a href='#' onClick={this.openModalAddProject}>Add New Project / Company</a></li>
                     </ul>
                 </div>
                 </div>

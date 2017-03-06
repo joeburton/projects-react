@@ -47,12 +47,25 @@
     margin-top: 10px;
 }
 
+ul.projects-container,
+ul.companies-container {
+    padding: 0;
+}
+
+ul.companies-container li {
+    padding: 5px 5px 5px 0;
+}
+
 li.company,
 li.company li {
     list-style: none;
 }
 
-.companies-container li {
+li.company ul {
+    padding: 0;
+}
+
+ul.companies-container li {
     list-style: none;
 }
 

@@ -6,7 +6,7 @@ export default React.createClass({
         return (
             <div className='container'>
                 <h3>Projects ({this.props.numberProjects})</h3>
-                <ul ref='projects-container'>
+                <ul className="projects-container" ref='projects-container'>
                     {this.props.projects.map((proj, i) => {
                         return (
                             <li className='company' key={i}>

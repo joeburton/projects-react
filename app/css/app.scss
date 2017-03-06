@@ -1,4 +1,4 @@
 @import "normalize";
+@import "_customVariables"; // custom bootstrap files must be placed before bootstrap proper!
 @import "bootstrap";
-@import "_customVariables";
 @import "style";
