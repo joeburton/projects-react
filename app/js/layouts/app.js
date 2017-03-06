@@ -6,8 +6,16 @@ import NumberCompanies from '../ui/number-companies';
 import NumberProjects from '../ui/number-projects';
 import Login from '../ui/login';
 import axiosAjax from '../api/requests';
+import { connect } from 'react-redux';
 
-export default React.createClass({
+// pass in state data as props data
+const stateToProps = function(state) {
+    return {
+        loggedin: state.authReducer.authorised
+    }
+}
+
+const App = React.createClass({
     componentWillMount() {
         axiosAjax.getProjects();
     },
@@ -29,7 +37,7 @@ export default React.createClass({
                     <ul className='nav nav-tabs'>
                         <li role="presentation" onClick={this.setTab}><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
                         <li role="presentation" onClick={this.setTab}><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
-                        <li role="presentation" onClick={this.setTab}><a href='#' onClick={this.openModalAddProject}>Add New Project / Company</a></li>
+                        {this.props.loggedin ? <li role="presentation" onClick={this.setTab}><a href='#' onClick={this.openModalAddProject}>Add New Project Company</a></li> : '' }
                     </ul>
                 </div>
                 </div>
@@ -42,3 +50,5 @@ export default React.createClass({
         )
     }
 });
+
+export default connect(stateToProps)(App)
