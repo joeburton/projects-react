@@ -84,12 +84,11 @@ gulp.task('css', function () {
         .pipe(gulp.dest('./public/css'))
 });
 
-
-// Watch
 gulp.task('watch', function () {
     gulp.watch('./app/**/*', ['js-dev', 'sass', 'process-images'])
 });
     
 gulp.task('default', ['watch']);
 
+//@TODO issue with gulp-ruby-sass on the ser ver needing ruby Gem installed... So compile sass locally then push css.
 gulp.task('production', ['js-prod', 'css', 'process-images']);
