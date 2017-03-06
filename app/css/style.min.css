@@ -3939,7 +3939,7 @@ tbody.collapse.in {
       padding: 10px 15px; }
       .nav > li > a:hover, .nav > li > a:focus {
         text-decoration: none;
-        background-color: #eeeeee; }
+        background-color: #fff; }
     .nav > li.disabled > a {
       color: #777777; }
       .nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
@@ -3948,7 +3948,7 @@ tbody.collapse.in {
         background-color: transparent;
         cursor: not-allowed; }
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: #eeeeee;
+    background-color: #fff;
     border-color: #337ab7; }
   .nav .nav-divider {
     height: 1px;
@@ -3959,7 +3959,7 @@ tbody.collapse.in {
     max-width: none; }
 
 .nav-tabs {
-  border-bottom: 1px solid #ddd; }
+  border-bottom: 1px solid #fff; }
   .nav-tabs > li {
     float: left;
     margin-bottom: -1px; }
@@ -3969,7 +3969,7 @@ tbody.collapse.in {
       border: 1px solid transparent;
       border-radius: 4px 4px 0 0; }
       .nav-tabs > li > a:hover {
-        border-color: #eeeeee #eeeeee #ddd; }
+        border-color: #eeeeee #eeeeee #fff; }
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
       color: #555555;
       background-color: #fff;
@@ -6211,11 +6211,21 @@ button.close {
 .admin-controls {
   margin-top: 10px; }
 
+ul.projects-container,
+ul.companies-container {
+  padding: 0; }
+
+ul.companies-container li {
+  padding: 5px 5px 5px 0; }
+
 li.company,
 li.company li {
   list-style: none; }
 
-.companies-container li {
+li.company ul {
+  padding: 0; }
+
+ul.companies-container li {
   list-style: none; }
 
 .navbar-form input[type="text"],
