@@ -39,6 +39,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/populate-database', api.populateDatabase); // populate database
+app.get('/add-users', api.addUsers); // add users
 
 app.use(routes(config));
 
@@ -53,6 +54,7 @@ app.post('/deleteproject', api.deleteProject); // delete project or company
 
 app.post('/auth', api.auth); // login
 app.get('/logout', api.logout); // logout
+app.get('/users', api.users); // get all users
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -10,7 +10,6 @@ var url;
 var dbObj;
 var sess;
 
-
 // Connection URL 
 if (production) {
     // production
@@ -26,23 +25,30 @@ MongoClient.connect(url, function (err, db) {
     dbObj = db;
 });
 
-
 // login
 exports.auth = function (req, res) {
 
-    sess = req.session;
-
-    sess.username = req.body.username;
-    sess.password = req.body.password;
-
-    if (sess.username === 'projects' && sess.password === 'admin') {
-        console.log('Login Successful.');
-        sess.authenticated = true;
-        res.redirect('/projects');
-    } else {
-        console.log('Login Failed.');
-        res.redirect('/');
-    }
+    dbObj.collection('users', function (err, collection) {
+        
+        console.log(req.body.username);
+        
+        collection.findOne({ username: req.body.username }, function (err, user) {
+            
+            if (user && user.password === req.body.password) {
+                
+                console.log('Login Successful.');
+                sess = req.session;
+                sess.username = req.body.username;
+                sess.password = req.body.password;
+                sess.authenticated = true;
+                res.redirect('/projects');
+            } else {
+                
+                console.log('Login Failed.');
+                res.redirect('/');
+            }
+        });
+    });
 
 };
 
@@ -57,6 +63,24 @@ exports.logout = function (req, res) {
             console.log('Successful logout');
             res.redirect('/');
         }
+    });
+
+};
+
+
+// get all projects in the collection
+exports.users = function (req, res) {
+
+    var collection = dbObj.collection('users'),
+        authenticated = (req.session.authenticated) ? true : false;
+            
+    collection.find().toArray(function (err, users) {
+        console.log(users);
+        res.write(JSON.stringify({
+            users: users,
+            authorised: authenticated
+        }));
+        res.end();
     });
 
 };
@@ -387,4 +411,35 @@ exports.populateDatabase = function (req, res) {
         });
     });
 
+
+
+}
+
+// populate database
+exports.addUsers = function (req, res) {
+    
+    users = [{
+        name: 'Joe Burton',
+        email: 'joeburton@gmail.com',
+        username: 'burton',
+        password: 'snake'
+    },{
+        name: 'Joe Burton',
+        email: 'joeburton@gmail.com',
+        username: 'projects',
+        password: 'admin'
+    },
+    {
+        name: 'Miriam Burton',
+        email: 'heinkemiriam@gmail.com',
+        username: 'heinke',
+        password: 'snake'
+    }];
+
+    dbObj.collection('users', function (err, collection) {
+        collection.insert(users, { safe: true }, function (err, result) {
+            res.send(result);
+            console.log('ADD USERS...');
+        });
+    });
 }
