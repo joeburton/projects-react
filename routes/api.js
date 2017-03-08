@@ -318,7 +318,7 @@ exports.populateDatabase = function (req, res) {
                 project: 'Results Enquiries',
                 link: 'forms.admissionstestingservice.org/form/tmua-candidate',
                 skills: 'JavaScript, CSS, Web Components',
-                description: 'This project utilises a schema driven UI concept pioneered by Cambridge Assessment. The main Web Component used here is ca-form which creates a reusable component that consumes a JSON formatted schema that in-turn builds the responsive HTML form. The initial Web Components were developed in ES5. We later refactored and ported the components to ES6. You can view this Open Source project here. https://github.com/cambridgeweblab/common-ui'
+                description: 'This project utilises a schema driven UI concept pioneered by Cambridge Assessment. The main Web Component used is called ca-form which consumes a JSON formatted schema that in-turn builds the responsive HTML form. The initial Web Components were developed in ES5, we later refactored and ported the components to ES6. You can view this Open Source project here. https://github.com/cambridgeweblab/common-ui'
             }]
     },{
         company: 'Tribal Worldwide',
