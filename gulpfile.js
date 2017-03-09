@@ -67,12 +67,13 @@ gulp.task('js-bootstrap', function () {
 gulp.task('sass', function () {
 
     return sass('./app/css/app.scss', {
-        // style: 'compressed',
+        style: 'compressed',
         loadPath: ['node_modules/bootstrap-sass/assets/stylesheets']
     })
         .pipe(concat('style.min.css'))
-        // .pipe(minifyCSS())
-        .pipe(gulp.dest('./public/css/'));
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('./public/css/'))
+        .pipe(gulp.dest('./app/css/'));
 
 });
 
