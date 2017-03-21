@@ -61,7 +61,7 @@ gulp.task('sass', function () {
 
     return sass('./app/css/app.scss', {
         style: 'compressed',
-        sourcemap: true,
+        sourcemap: false,
         loadPath: ['node_modules/bootstrap-sass/assets/stylesheets']
     })
         .pipe(concat('style.min.css'))

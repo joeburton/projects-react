@@ -18,5 +18,5 @@ $ use DB_NAME
 ```
 start the App
 $ npm install
-$ node app.js
+$ nodemon
 ```
