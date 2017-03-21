@@ -31,7 +31,7 @@ gulp.task('process-images', () => {
 
 // http://egorsmirnov.me/2015/05/22/react-and-es6-part1.html
 gulp.task('js', ['js-bootstrap'], function () {
-    console.log(isDevelopment);
+
     // Turn debug to false to remove source maps
     return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: isDevelopment })
         .transform('babelify', { presets: ['es2015', 'react'] })
@@ -52,11 +52,7 @@ gulp.task('js-bootstrap', function () {
 // CSS minification
 gulp.task('sass', function () {
     
-    console.log('sass: ', isDevelopment);
-
     var compressed = isDevelopment ? 'expanded' : 'compressed';
-    
-    console.log('compressed: ', compressed);   
     
     return sass('./app/css/app.scss', {
         style: compressed,
@@ -110,5 +106,10 @@ gulp.task('set-env', () => {
     isDevelopment = false;
 });
 
+
 // Build production:
-gulp.task('production', ['set-env', 'js', 'sass', 'fonts', 'process-images']);
+gulp.task('production', ['set-env', 'js', 'css', 'fonts', 'process-images']);
+
+
+// Prepare css for production - work around due to ruby gems issue on the server
+gulp.task('prepare', ['set-env', 'sass']);
