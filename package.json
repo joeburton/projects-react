@@ -50,6 +50,8 @@
     "gulp-ruby-sass": "^2.1.1"
   },
   "devDependencies": {
-    "gulp-sourcemaps": "^2.4.1"
+    "gulp-if": "^2.0.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "yargs": "^7.0.2"
   }
 }

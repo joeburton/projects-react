@@ -10,7 +10,10 @@ var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var sass = require('gulp-ruby-sass');
 var sourcemaps = require('gulp-sourcemaps');
+var args = require('yargs').argv;
+var gulpif = require('gulp-if');
 
+var isDevelopment = true;
 
 // Optimize images
 gulp.task('process-images', () => {
@@ -27,27 +30,17 @@ gulp.task('process-images', () => {
 
 
 // http://egorsmirnov.me/2015/05/22/react-and-es6-part1.html
-gulp.task('js-dev', ['js-bootstrap'], function () {
+gulp.task('js', ['js-bootstrap'], function () {
+    console.log(isDevelopment);
     // Turn debug to false to remove source maps
-    return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: true })
+    return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: isDevelopment })
         .transform('babelify', { presets: ['es2015', 'react'] })
         .bundle()
         .pipe(source('app.js'))
+        .pipe(gulpif(!isDevelopment, streamify(uglify())))
         .pipe(gulp.dest('public/js'));
+
 });
-
-
-// Build js for production
-gulp.task('js-prod', ['js-bootstrap'], function () {
-    // make sure debug is false otherwise output JS is MASSIVE!
-    return browserify({ entries: './app/js/app.js', extensions: ['.js'], debug: false })
-        .transform('babelify', { presets: ['es2015', 'react'] })
-        .bundle()
-        .pipe(source('app.js'))
-        .pipe(streamify(uglify()))
-        .pipe(gulp.dest('public/js'));
-});
-
 
 // Include bootstrap JS
 gulp.task('js-bootstrap', function () {
@@ -58,20 +51,26 @@ gulp.task('js-bootstrap', function () {
 
 // CSS minification
 gulp.task('sass', function () {
+    
+    console.log('sass: ', isDevelopment);
 
+    var compressed = isDevelopment ? 'expanded' : 'compressed';
+    
+    console.log('compressed: ', compressed);   
+    
     return sass('./app/css/app.scss', {
-        style: 'compressed',
-        sourcemap: false,
+        style: compressed,
+        sourcemap: isDevelopment,
         loadPath: ['node_modules/bootstrap-sass/assets/stylesheets']
     })
         .pipe(concat('style.min.css'))
-        .pipe(minifyCSS())
-        .pipe(sourcemaps.write())
+        .pipe(gulpif(!isDevelopment, minifyCSS()))
+        .pipe(gulpif(isDevelopment, sourcemaps.write()))
 		// for file sourcemaps
-		.pipe(sourcemaps.write('maps', {
+		.pipe(gulpif(isDevelopment, sourcemaps.write('maps', {
 			includeContent: false,
 			sourceRoot: 'source'
-		}))
+		})))
         .pipe(gulp.dest('./public/css/'))
         .pipe(gulp.dest('./app/css/'));
 
@@ -94,7 +93,7 @@ gulp.task('css', function () {
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch('./app/**/*', ['js-dev', 'sass', 'fonts', 'process-images'])
+    gulp.watch('./app/**/*', ['js', 'sass', 'fonts', 'process-images'])
 });
 
 
@@ -103,8 +102,13 @@ gulp.task('default', ['watch']);
 
 
 // Dev build
-gulp.task('dev', ['js-dev', 'sass', 'fonts', 'process-images']);
+gulp.task('dev', ['js', 'sass', 'fonts', 'process-images']);
 
 
-// Dev production: @TODO issue with gulp-ruby-sass on the server needing ruby Gem installed... So compile sass locally then push css.
-gulp.task('production', ['js-prod', 'css', 'fonts', 'process-images']);
+// Set to prod
+gulp.task('set-env', () => {
+    isDevelopment = false;
+});
+
+// Build production:
+gulp.task('production', ['set-env', 'js', 'sass', 'fonts', 'process-images']);
