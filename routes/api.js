@@ -71,18 +71,26 @@ exports.logout = function (req, res) {
 // get all projects in the collection
 exports.users = function (req, res) {
 
-    var collection = dbObj.collection('users'),
-        authenticated = (req.session.authenticated) ? true : false;
-            
-    collection.find().toArray(function (err, users) {
-        console.log(users);
+    if (req.session.authenticated) {
+
+        var collection = dbObj.collection('users'),
+            authenticated = (req.session.authenticated) ? true : false;
+                
+        collection.find().toArray(function (err, users) {
+            console.log(users);
+            res.write(JSON.stringify({
+                users: users,
+                authorised: authenticated
+            }));
+            res.end();
+        });
+    } else {
+
         res.write(JSON.stringify({
-            users: users,
-            authorised: authenticated
+            'message': 'You are not authorised. Get the Fu.... out!'
         }));
         res.end();
-    });
-
+    }
 };
 
 
