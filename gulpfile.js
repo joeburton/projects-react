@@ -107,8 +107,8 @@ gulp.task('set-env', () => {
 
 
 // Build production:
-gulp.task('production', ['set-env', 'js', 'sass', 'fonts', 'process-images']);
+gulp.task('production', ['set-env', 'js', 'css', 'fonts', 'process-images']);
 
 
 // Prepare css for production - work around due to ruby gems issue on the server
-gulp.task('prepare', ['set-env', 'sass']);
+gulp.task('prod-css', ['set-env', 'sass']);
