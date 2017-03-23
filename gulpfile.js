@@ -78,7 +78,6 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest('./public/fonts'));
 });
 
-
 // CSS minification
 gulp.task('css', function () {
 
@@ -108,7 +107,7 @@ gulp.task('set-env', () => {
 
 
 // Build production:
-gulp.task('production', ['set-env', 'js', 'css', 'fonts', 'process-images']);
+gulp.task('production', ['set-env', 'js', 'sass', 'fonts', 'process-images']);
 
 
 // Prepare css for production - work around due to ruby gems issue on the server
