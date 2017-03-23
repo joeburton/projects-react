@@ -1,4 +1,4 @@
 node_modules
 public
 .DS_Store
-.sass_cache
+.sass-cache
