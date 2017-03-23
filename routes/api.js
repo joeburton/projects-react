@@ -419,24 +419,32 @@ exports.populateDatabase = function (req, res) {
         });
     });
 
-
-
 }
 
 // populate database
 exports.addUsers = function (req, res) {
     
-    users = [{
-        name: 'xxx',
-        email: 'xxx',
-        username: 'xxx',
-        password: 'xxx'
-    }];
+    if (req.session.authenticated) {
 
-    dbObj.collection('users', function (err, collection) {
-        collection.insert(users, { safe: true }, function (err, result) {
-            res.send(result);
-            console.log('ADD USERS...');
+        users = [{
+            name: 'xxx',
+            email: 'xxx',
+            username: 'xxx',
+            password: 'xxx'
+        }];
+
+        dbObj.collection('users', function (err, collection) {
+            collection.insert(users, { safe: true }, function (err, result) {
+                res.send(result);
+                console.log('ADD USERS...');
+            });
         });
-    });
+    
+    } else {
+
+        res.write(JSON.stringify({
+            'message': 'You are not authorised.'
+        }));
+    }
+
 }
