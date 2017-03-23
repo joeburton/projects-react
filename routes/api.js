@@ -10,7 +10,6 @@ var url;
 var dbObj;
 var sess;
 
-
 // Connection URL 
 if (production) {
     // production
@@ -26,23 +25,30 @@ MongoClient.connect(url, function (err, db) {
     dbObj = db;
 });
 
-
 // login
 exports.auth = function (req, res) {
 
-    sess = req.session;
-
-    sess.username = req.body.username;
-    sess.password = req.body.password;
-
-    if (sess.username === 'projects' && sess.password === 'admin') {
-        console.log('Login Successful.');
-        sess.authenticated = true;
-        res.redirect('/projects');
-    } else {
-        console.log('Login Failed.');
-        res.redirect('/');
-    }
+    dbObj.collection('users', function (err, collection) {
+        
+        console.log(req.body.username);
+        
+        collection.findOne({ username: req.body.username }, function (err, user) {
+            
+            if (user && user.password === req.body.password) {
+                
+                console.log('Login Successful.');
+                sess = req.session;
+                sess.username = req.body.username;
+                sess.password = req.body.password;
+                sess.authenticated = true;
+                res.redirect('/projects');
+            } else {
+                
+                console.log('Login Failed.');
+                res.redirect('/');
+            }
+        });
+    });
 
 };
 
@@ -57,6 +63,24 @@ exports.logout = function (req, res) {
             console.log('Successful logout');
             res.redirect('/');
         }
+    });
+
+};
+
+
+// get all projects in the collection
+exports.users = function (req, res) {
+
+    var collection = dbObj.collection('users'),
+        authenticated = (req.session.authenticated) ? true : false;
+            
+    collection.find().toArray(function (err, users) {
+        console.log(users);
+        res.write(JSON.stringify({
+            users: users,
+            authorised: authenticated
+        }));
+        res.end();
     });
 
 };
@@ -287,6 +311,16 @@ exports.deleteProject = function (req, res) {
 exports.populateDatabase = function (req, res) {
 
     var projects = [{
+        company: 'Cambridge Assessment',
+        projects: [
+            {
+                id: new ObjectId(),
+                project: 'Results Enquiries',
+                link: 'forms.admissionstestingservice.org/form/tmua-candidate',
+                skills: 'JavaScript, CSS, Web Components',
+                description: 'This project utilises a schema driven UI concept pioneered by Cambridge Assessment. The main Web Component used is called ca-form which consumes a JSON formatted schema that in-turn builds the responsive HTML form. The initial Web Components were developed in ES5, we later refactored and ported the components to ES6. You can view this Open Source project here. https://github.com/cambridgeweblab/common-ui'
+            }]
+    },{
         company: 'Tribal Worldwide',
         projects: [
             {
@@ -339,7 +373,7 @@ exports.populateDatabase = function (req, res) {
             project: 'Closer Magazine',
             link: 'http://www.closeronline.co.uk',
             skills: 'JavaScript, Backbone, Jasmine, Require',
-            description: ' I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary'
+            description: 'I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates.'
         }]
     }, {
         company: 'Rank Interactive',
@@ -348,14 +382,14 @@ exports.populateDatabase = function (req, res) {
             project: 'Blue Star',
             link: 'http://joe-burton.com/bluestar/',
             skills: 'Backbone, JavaScript, Jasmine, Require',
-            description: 'I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tabvar and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.'
+            description: 'I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tablet and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.'
         }]
     }, {
         company: 'Engine',
         projects: [{
             id: new ObjectId(),
             project: 'Fabulous Magazine',
-            link: 'http://www.thesun.co.uk/sol/homepage/fabulous',
+            link: 'http://fabulousmag.co.uk',
             skills: 'HTML5, CSS3, JavaScript/jQuery',
             description: 'I worked for Jam @ The Engine Group in Soho as a Mobile Front-end Developer building HTML5, CSS3, JavaScript/jQuery smart-phone and desktop websites. This contract was a great opportunity to develop my Mobile development skills working on the mobile version of the fabulous magazine http://fabulousmag.co.uk and several small Sky mobile promotional sites.'
         }]
@@ -377,4 +411,35 @@ exports.populateDatabase = function (req, res) {
         });
     });
 
+
+
+}
+
+// populate database
+exports.addUsers = function (req, res) {
+    
+    users = [{
+        name: 'Joe Burton',
+        email: 'joeburton@gmail.com',
+        username: 'burton',
+        password: 'snake'
+    },{
+        name: 'Joe Burton',
+        email: 'joeburton@gmail.com',
+        username: 'projects',
+        password: 'admin'
+    },
+    {
+        name: 'Miriam Burton',
+        email: 'heinkemiriam@gmail.com',
+        username: 'heinke',
+        password: 'snake'
+    }];
+
+    dbObj.collection('users', function (err, collection) {
+        collection.insert(users, { safe: true }, function (err, result) {
+            res.send(result);
+            console.log('ADD USERS...');
+        });
+    });
 }

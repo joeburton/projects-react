@@ -1,6 +1,7 @@
 ### Node, Express, Handlebars, MongoDB, React & Redux CRUD Apllication
 
 ```
+// Create and connect to your mongoDB
 // Step 1: Install MongoDB and cd in to it's directory
 $ cd /usr/local/mongodb
 

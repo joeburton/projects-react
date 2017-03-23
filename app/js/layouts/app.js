@@ -6,14 +6,26 @@ import NumberCompanies from '../ui/number-companies';
 import NumberProjects from '../ui/number-projects';
 import Login from '../ui/login';
 import axiosAjax from '../api/requests';
+import { connect } from 'react-redux';
 
-export default React.createClass({
+// pass in state data as props data
+const stateToProps = function(state) {
+    return {
+        loggedin: state.authReducer.authorised
+    }
+}
+
+const App = React.createClass({
     componentWillMount() {
         axiosAjax.getProjects();
     },
     openModalAddProject(e) {
         e.preventDefault();
         $('#add').modal('show');
+    },
+    setTab(e) {
+        $('.nav-tabs li').removeClass('active');
+        $(e.currentTarget).addClass('active');
     },
     render() {
         return (
@@ -23,9 +35,9 @@ export default React.createClass({
                     <div className="container">
                     <p className="intro-skills">React/ Redux, NodeJS and MongoDB CRUD Application.</p>
                     <ul className='nav nav-tabs'>
-                        <li role="presentation"><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
-                        <li role="presentation"><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
-                        <li role="presentation"><a href='#' onClick={this.openModalAddProject}>Add New Project / Company</a></li>
+                        <li role="presentation" onClick={this.setTab}><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
+                        <li role="presentation" onClick={this.setTab}><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
+                        {this.props.loggedin ? <li role="presentation" onClick={this.setTab}><a href='#' onClick={this.openModalAddProject}>Add New Project Company</a></li> : '' }
                     </ul>
                 </div>
                 </div>
@@ -38,3 +50,5 @@ export default React.createClass({
         )
     }
 });
+
+export default connect(stateToProps)(App)

@@ -47,16 +47,34 @@
     margin-top: 10px;
 }
 
+ul.projects-container,
+ul.companies-container {
+    padding: 0;
+}
+
+ul.companies-container li {
+    padding: 5px 5px 5px 0;
+}
+
 li.company,
 li.company li {
     list-style: none;
 }
 
-.companies-container li {
+li.company ul {
+    padding: 0;
+}
+
+ul.companies-container li {
     list-style: none;
 }
 
 .navbar-form input[type="text"],
 .navbar-form input[type="password"] {
     margin-right: 5px;
+}
+
+.add-fields .description,
+.edit-project .description {
+    min-height: 150px;
 }

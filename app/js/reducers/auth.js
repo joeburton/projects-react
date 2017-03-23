@@ -10,10 +10,10 @@ export default function (state = projectsInitialState, action) {
 
 			var newState = Object.assign({}, state)
 			newState.authorised = action.authorised;
-
-			console.log(newState, action); 
-
-			return newState;
+			
+            console.log(newState, action); 
+			
+            return newState;
 
 		default: return state;
 
