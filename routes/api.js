@@ -427,21 +427,10 @@ exports.populateDatabase = function (req, res) {
 exports.addUsers = function (req, res) {
     
     users = [{
-        name: 'Joe Burton',
-        email: 'joeburton@gmail.com',
-        username: 'burton',
-        password: 'snake'
-    },{
-        name: 'Joe Burton',
-        email: 'joeburton@gmail.com',
-        username: 'projects',
-        password: 'admin'
-    },
-    {
-        name: 'Miriam Burton',
-        email: 'heinkemiriam@gmail.com',
-        username: 'heinke',
-        password: 'snake'
+        name: 'xxx',
+        email: 'xxx',
+        username: 'xxx',
+        password: 'xxx'
     }];
 
     dbObj.collection('users', function (err, collection) {
