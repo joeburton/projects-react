@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var routes = require('./routes/routes');
 var api = require('./routes/api');
-
 var config = require('config');
 
 // set static file directory
@@ -18,7 +17,6 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
@@ -30,21 +28,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(session({
     secret: 'ssshhhhh',
     resave: true,
     saveUninitialized: true
 }));
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get('/populate-database', api.populateDatabase); // populate database
-app.get('/add-users', api.addUsers); // add users
-
 app.use(routes(config));
 
-console.log(config, staticFileDir);
 
+// handle company and project details
+app.get('/populate-database', api.populateDatabase); // populate database
 app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id
 app.post('/addproject', api.addProject); // add addproject
@@ -52,9 +49,17 @@ app.post('/addcompany', api.addCompany); // add addcompany
 app.post('/updateproject', api.updateProject); // update project
 app.post('/deleteproject', api.deleteProject); // delete project or company
 
+
+// handle users
+app.get('/users', api.users); // get all users
+app.get('/adduser/:name/:email/:username/:password', api.addUser); // add user
+app.get('/deleteuser/:id', api.deleteUser); // delete user
+
+
+// handle authentication
 app.post('/auth', api.auth); // login
 app.get('/logout', api.logout); // logout
-app.get('/users', api.users); // get all users
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -63,7 +68,6 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-// error handlers
 
 // development error handler
 // will print stacktrace
@@ -76,6 +80,7 @@ if (app.get('env') === 'development') {
         });
     });
 }
+
 
 // production error handler
 // no stacktraces leaked to user

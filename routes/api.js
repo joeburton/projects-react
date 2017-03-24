@@ -16,7 +16,7 @@ if (production) {
     url = 'mongodb://projectDirectory:f63f339f3f171d17473f3995a570e290@dokku-mongo-projectDirectory:27017/projectDirectory';
 } else {
     // local dev
-    url = 'mongodb://localhost:27017/projectDirectory';
+    url = 'mongodb://127.0.0.1:27017/projectDirectory';
 }
 
 // Use connect method to connect to the Server 
@@ -315,6 +315,71 @@ exports.deleteProject = function (req, res) {
 }
 
 
+// delete user
+exports.deleteUser = function (req, res) {
+
+    if (req.session.authenticated) {
+        
+        var id = req.params.id;
+
+        dbObj.collection('users', function (err, collection) {
+
+            collection.remove({ '_id': new ObjectId(id) }, { safe: true }, function (err, result) {
+                console.log('DELETE USER: ', JSON.stringify(result));
+                collection.find().toArray(function (error, users) {
+                    res.write(JSON.stringify(users));
+                    res.end();
+                });
+            });
+
+        });    
+    } else {
+        
+        res.write(JSON.stringify({
+            'message': 'You are not authorised to use this service'
+        }));
+        res.end();       
+    }
+
+}
+
+
+// add user
+exports.addUser = function (req, res) {
+    
+    // http://localhost:3000/adduser/joe/joeburton@gmail.com/username/password
+
+    if (req.session.authenticated) {
+
+        var name = req.params.name;
+        var email = req.params.email;
+        var username = req.params.username;
+        var password = req.params.password;
+
+        var users = [{
+            name: name,
+            email: email,
+            username: username,
+            password: password
+        }];
+
+        dbObj.collection('users', function (err, collection) {
+            collection.insert(users, { safe: true }, function (err, result) {
+                res.send(result);
+                console.log('ADD USER...');
+            });
+        });
+    
+    } else {
+
+        res.write(JSON.stringify({
+            'message': 'You are not authorised.'
+        }));
+    }
+
+}
+
+
 // populate database
 exports.populateDatabase = function (req, res) {
 
@@ -418,33 +483,5 @@ exports.populateDatabase = function (req, res) {
             console.log('ADD DATA...');
         });
     });
-
-}
-
-// populate database
-exports.addUsers = function (req, res) {
-    
-    if (req.session.authenticated) {
-
-        users = [{
-            name: 'xxx',
-            email: 'xxx',
-            username: 'xxx',
-            password: 'xxx'
-        }];
-
-        dbObj.collection('users', function (err, collection) {
-            collection.insert(users, { safe: true }, function (err, result) {
-                res.send(result);
-                console.log('ADD USERS...');
-            });
-        });
-    
-    } else {
-
-        res.write(JSON.stringify({
-            'message': 'You are not authorised.'
-        }));
-    }
 
 }

@@ -100,7 +100,7 @@ gulp.task('default', ['watch']);
 gulp.task('dev', ['js', 'sass', 'fonts', 'process-images']);
 
 
-// Set to prod
+// Set to production environment
 gulp.task('set-env', () => {
     isDevelopment = false;
 });
