@@ -29,13 +29,13 @@ MongoClient.connect(url, function (err, db) {
 exports.auth = function (req, res) {
 
     dbObj.collection('users', function (err, collection) {
-        
+
         console.log(req.body.username);
-        
+
         collection.findOne({ username: req.body.username }, function (err, user) {
-            
+
             if (user && user.password === req.body.password) {
-                
+
                 console.log('Login Successful.');
                 sess = req.session;
                 sess.username = req.body.username;
@@ -43,7 +43,7 @@ exports.auth = function (req, res) {
                 sess.authenticated = true;
                 res.redirect('/projects');
             } else {
-                
+
                 console.log('Login Failed.');
                 res.redirect('/');
             }
@@ -75,7 +75,7 @@ exports.users = function (req, res) {
 
         var collection = dbObj.collection('users'),
             authenticated = (req.session.authenticated) ? true : false;
-                
+
         collection.find().toArray(function (err, users) {
             console.log(users);
             res.write(JSON.stringify({
@@ -99,7 +99,7 @@ exports.findAll = function (req, res) {
 
     var collection = dbObj.collection('projects'),
         authenticated = (req.session.authenticated) ? true : false;
-            
+
     collection.find().toArray(function (err, projects) {
         console.log(projects);
         res.write(JSON.stringify({
@@ -319,7 +319,7 @@ exports.deleteProject = function (req, res) {
 exports.deleteUser = function (req, res) {
 
     if (req.session.authenticated) {
-        
+
         var id = req.params.id;
 
         dbObj.collection('users', function (err, collection) {
@@ -332,13 +332,13 @@ exports.deleteUser = function (req, res) {
                 });
             });
 
-        });    
+        });
     } else {
-        
+
         res.write(JSON.stringify({
             'message': 'You are not authorised to use this service'
         }));
-        res.end();       
+        res.end();
     }
 
 }
@@ -346,8 +346,16 @@ exports.deleteUser = function (req, res) {
 
 // add user
 exports.addUser = function (req, res) {
-    
+
     // http://localhost:3000/adduser/joe/joeburton@gmail.com/username/password
+
+    // create database
+    // db.users.insert([{
+    //     name: 'joe',
+    //     email: 'joeburton@gmail.com',
+    //     username: '',
+    //     password: ''
+    // }]);
 
     if (req.session.authenticated) {
 
@@ -369,7 +377,7 @@ exports.addUser = function (req, res) {
                 console.log('ADD USER...');
             });
         });
-    
+
     } else {
 
         res.write(JSON.stringify({
@@ -393,7 +401,7 @@ exports.populateDatabase = function (req, res) {
                 skills: 'JavaScript, CSS, Web Components',
                 description: 'This project utilises a schema driven UI concept pioneered by Cambridge Assessment. The main Web Component used is called ca-form which consumes a JSON formatted schema that in-turn builds the responsive HTML form. The initial Web Components were developed in ES5, we later refactored and ported the components to ES6. You can view this Open Source project here. https://github.com/cambridgeweblab/common-ui'
             }]
-    },{
+    }, {
         company: 'Tribal Worldwide',
         projects: [
             {
