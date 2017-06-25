@@ -16,6 +16,24 @@ $ use DB_NAME
 ```
 
 ```
+// Useful mongo client commands
+$ show dbs
+$ use projectDirector
+$ db.getCollection('projects').find()
+$ db.getCollection('users').find()
+```
+
+```
+// Create user account
+db.users.insert([{
+    name: 'james',
+    email: 'jamesburton@gmail.com',
+    username: 'name',
+    password: '*******'
+}]);
+```
+
+```
 start the App
 $ npm install
 $ nodemon
