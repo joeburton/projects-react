@@ -38,3 +38,9 @@ start the App
 $ npm install
 $ nodemon
 ```
+
+```
+git add .
+git commit -m "do something amazing"
+git push dokku master
+```
