@@ -2,21 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Login = React.createClass({
+	
 	getInitialState() {
 		return {
 			username: '',
 			password: ''
 		};
 	},
+
 	componentDidMount () {
 		console.log(this.state);
     },
+
 	handleUsernameChange(e) {
 		this.setState({ username: e.target.value });
 	},
+
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value });
 	},
+
 	render() {
 		return (
 			<nav className="navbar navbar-inverse navbar-fixed-top">
@@ -67,6 +72,7 @@ const Login = React.createClass({
 			</nav>
 		)
 	}
+	
 });
 
 const stateToProps = function(state) {
