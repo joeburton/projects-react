@@ -103,7 +103,7 @@ exports.findAll = function (req, res) {
 
     // collection.find().sort({date: 1}).limit(50, callback);
     
-    collection.find().sort({datefield: 1}).toArray(function (err, projects) {
+    collection.find().toArray(function (err, projects) {
         console.log(projects);
         res.write(JSON.stringify({
             projects: projects,
