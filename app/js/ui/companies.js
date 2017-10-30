@@ -5,7 +5,7 @@ export default React.createClass({
     render: function() {
         return (
             <div className="container list-inline nick">
-                <h3>Companies - Projects: (<NumberProjects/>)</h3>
+                <h3>Companies (<NumberProjects/>)</h3>
                 <ul className="companies-container">
                     {this.props.companies.map((proj, i) => {
                         return (
