@@ -10,14 +10,16 @@ export default React.createClass({
             description: ''
         };
     },
+
+
     render (state) {
         return (
             <div className="modal fade" id="edit" role="dialog" aria-labelledby="edit">
                 <div className='edit-project modal-dialog'>
                     <div className='modal-content'>
                         <div className="modal-header">
+                            <h5 className="modal-title" id="edit">Edit Project</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 className="modal-title" id="edit">Edit Project</h4>
                         </div>
                         <div className='modal-body edit-fields' data-id={this.props.id}>
                             <div className="form-group">

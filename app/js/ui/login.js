@@ -26,7 +26,7 @@ const Login = React.createClass({
         return (
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div className="container">
-                    <a className="navbar-brand" href="#">Project Directory</a>
+                    <a className="navbar-brand" href="/">Project Directory</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
