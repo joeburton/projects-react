@@ -1,5 +1,9 @@
-@import "normalize";
-@import "_customVariables"; // custom bootstrap files must be placed before bootstrap proper!
-@import "bootstrap";
+// @import "normalize";
+// @import "_customVariables"; // custom bootstrap files must be placed before bootstrap proper!
+// @import "bootstrap";
+// @import "buttons";
+// @import "main";
+
+@import "~bootstrap/scss/bootstrap";
 @import "buttons";
 @import "main";

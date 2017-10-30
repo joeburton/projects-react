@@ -1,3 +1,14 @@
+////
+
+window.$ = window.jQuery = require('jquery')
+window.Popper = require('popper.js')
+
+require('bootstrap')
+
+import '../css/app.scss'
+
+////
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
