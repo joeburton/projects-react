@@ -101,9 +101,7 @@ exports.findAll = function (req, res) {
     var collection = dbObj.collection('projects'),
         authenticated = (req.session.authenticated) ? true : false;
 
-    // collection.find().sort({date: 1}).limit(50, callback);
-    
-    collection.find().sort({datefield: 1}).toArray(function (err, projects) {
+    collection.find().toArray(function (err, projects) {
         console.log(projects);
         res.write(JSON.stringify({
             projects: projects,
