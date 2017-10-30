@@ -35,9 +35,9 @@ const App = React.createClass({
                     <div className="container">
                     <p className="intro-skills">React/ Redux, NodeJS and MongoDB CRUD Application.</p>
                     <ul className='nav nav-tabs'>
-                        <li role="presentation" onClick={this.setTab}><Link to='/companies'>Companies (<NumberCompanies />) </Link></li>
-                        <li role="presentation" onClick={this.setTab}><Link to='/projects'>Projects (<NumberProjects />)</Link></li>
-                        {this.props.loggedin ? <li role="presentation" onClick={this.setTab}><a href='#' onClick={this.openModalAddProject}>Add New Project Company</a></li> : '' }
+                        <li role="presentation" onClick={this.setTab} className="nav-item"><Link to='/companies' className="nav-link">Companies (<NumberCompanies />) </Link></li>
+                        <li role="presentation" onClick={this.setTab} className="nav-item"><Link to='/projects' className="nav-link">Projects (<NumberProjects />)</Link></li>
+                        {this.props.loggedin ? <li role="presentation" onClick={this.setTab} className="nav-item"><a href='#' onClick={this.openModalAddProject} className="nav-link">Add New Project Company</a></li> : '' }
                     </ul>
                 </div>
                 </div>
