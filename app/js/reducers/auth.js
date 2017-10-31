@@ -4,19 +4,19 @@ var projectsInitialState = {
 
 export default function (state = projectsInitialState, action) {
 
-	switch (action.type) {
+    switch (action.type) {
 
-		case 'LOG_IN':
+        case 'LOG_IN':
 
-			var newState = Object.assign({}, state)
-			newState.authorised = action.authorised;
-			
-            console.log(newState, action); 
-			
+            var newState = Object.assign({}, state)
+            newState.authorised = action.authorised;
+
+            console.log(newState, action);
+
             return newState;
 
-		default: return state;
+        default: return state;
 
-	}
+    }
 
 }

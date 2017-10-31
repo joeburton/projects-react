@@ -4,17 +4,17 @@ var projectsInitialState = {
 
 export default function (state = projectsInitialState, action) {
 
-	switch (action.type) {
+    switch (action.type) {
 
-		case 'GET_PROJECTS':
+        case 'GET_PROJECTS':
 
-			var newState = Object.assign({}, state)
-			newState.projects = action.projects;
+            var newState = Object.assign({}, state)
+            newState.projects = action.projects;
 
-			return newState;
+            return newState;
 
-		default: return state;
+        default: return state;
 
-	}
+    }
 
 }
