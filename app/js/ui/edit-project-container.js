@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EditProject from './edit-project';
 import { connect } from 'react-redux';
 import axiosAjax from '../api/requests';
@@ -20,6 +20,10 @@ const dispatchToProps = function(state) {
         }
     }
 }
+
+EditProjectContainer.propTypes = {
+    disptachProjectUpdate: PropTypes.func
+};
 
 export default connect(dispatchToProps)(EditProjectContainer);
 

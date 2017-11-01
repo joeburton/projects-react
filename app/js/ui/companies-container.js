@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Companies from './companies';
 import { connect } from 'react-redux';
 
@@ -16,5 +16,9 @@ const stateToProps = function(state) {
         companies: state.projectReducer.projects
     }
 }
+
+CompaniesContainer.propTypes = {
+    companies: PropTypes.array
+};
 
 export default connect(stateToProps)(CompaniesContainer)

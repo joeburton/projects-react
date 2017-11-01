@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import NumberProjects from './number-projects.js'
 
-export default React.createClass({
+const Companies = React.createClass({
     render: function() {
         return (
             <div className="container list-inline nick">
@@ -17,3 +17,9 @@ export default React.createClass({
         )
     }
 });
+
+Companies.propTypes = {
+    companies: PropTypes.array
+};
+
+export default Companies;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
 const Login = React.createClass({
@@ -78,5 +78,9 @@ const stateToProps = function (state) {
         loggedin: state.authReducer.authorised
     }
 }
+
+Login.propTypes = {
+    loggedin: PropTypes.bool
+};
 
 export default connect(stateToProps)(Login);

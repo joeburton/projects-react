@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Projects from './projects';
 import { connect } from 'react-redux';
 import axiosAjax from '../api/requests';
@@ -78,5 +78,13 @@ const dispatchToProps = function(state) {
         }
     }
 }
+
+ProjectContainer.propTypes = {
+    numberProjects: PropTypes.number,
+    projects: PropTypes.array,
+    deleteProject: PropTypes.func,
+    loggedin: PropTypes.bool,
+    openEditInput: PropTypes.func
+};
 
 export default connect(stateToProps, dispatchToProps)(ProjectContainer)

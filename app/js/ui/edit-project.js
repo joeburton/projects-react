@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
-export default React.createClass({
+const EditProject = React.createClass({
     getInitialState () {
         return {
             company: '',
@@ -10,8 +10,6 @@ export default React.createClass({
             description: ''
         };
     },
-
-
     render (state) {
         return (
             <div className="modal fade" id="edit" role="dialog" aria-labelledby="edit">
@@ -21,7 +19,7 @@ export default React.createClass({
                             <h5 className="modal-title" id="edit">Edit Project</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <div className='modal-body edit-fields' data-id={this.props.id}>
+                        <div className='modal-body test edit-fields'>
                             <div className="form-group">
                                 <input type='text' className='company form-control' value={this.state.company} onChange= {this.handleChange} />
                             </div>
@@ -110,3 +108,9 @@ export default React.createClass({
         $('#edit').modal('hide');
     }
 });
+
+EditProject.propTypes = {
+    disptachProjectUpdate: PropTypes.func
+};
+
+export default EditProject;

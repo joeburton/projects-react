@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
 const NumCompanies = React.createClass({
@@ -15,6 +15,10 @@ const stateToProps = function(state) {
     return {
         numberProjects: state.projectReducer.projects.length
     }
+}
+
+NumCompanies.propTypes = {
+    numberProjects: PropTypes.number
 }
 
 export default connect(stateToProps)(NumCompanies);

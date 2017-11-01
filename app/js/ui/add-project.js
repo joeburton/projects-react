@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default React.createClass({
+const AddProject = React.createClass({
     render () {
         return (
             <div className="modal fade" id="add" role="dialog" aria-labelledby="add">
@@ -63,3 +63,9 @@ export default React.createClass({
         $('#add').modal('hide');
     }
 });
+
+AddProject.propTypes = {
+    disptachAddProject: PropTypes.func
+};
+
+export default AddProject;

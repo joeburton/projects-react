@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
-export default React.createClass({
+const Projects = React.createClass({
     render () {
         return (
             <div className='container'>
@@ -44,5 +44,14 @@ export default React.createClass({
     deleteProject(e) {
         this.props.deleteProject(e);
     }
-
 });
+
+Projects.propTypes = {
+    numberProjects: PropTypes.number,
+    projects: PropTypes.array,
+    deleteProject: PropTypes.func,
+    loggedin: PropTypes.bool,
+    openEditInput: PropTypes.func
+};
+
+export default Projects;
