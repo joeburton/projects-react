@@ -46,6 +46,7 @@ const EditProject = React.createClass({
         )
     },
     setValue (e) {
+
         let fieldValues = this.getValues();
 
     	this.setState({
@@ -71,6 +72,7 @@ const EditProject = React.createClass({
         this.closeEditProjectOverlay();
     },
     handleChange (e) {
+
         let fieldValues = this.getValues();
         
         this.setState({
