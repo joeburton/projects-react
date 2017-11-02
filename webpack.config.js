@@ -6,13 +6,16 @@ const extractSass = new ExtractTextPlugin({
     filename: "css/styles.min.css",
 });
 
+if (process.env.NODE_ENV !== 'production') {
+    console.log('Looks like we are in development mode!');
+}
+
 module.exports = {
     entry: './app/js/app.js',
     output: {
         filename: 'js/app.js',
         path: path.resolve(__dirname, 'public')
     },
-    devtool: "source-map", // any "source-map"-like devtool is possible
     module: {
         rules: [
             {
@@ -43,6 +46,7 @@ module.exports = {
             }
         ]
     },
+    devtool: "source-map", // any "source-map"-like devtool is possible
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
