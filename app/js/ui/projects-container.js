@@ -28,28 +28,28 @@ const dispatchToProps = function(state) {
 
             $('#edit').modal('show');
             
-            // edit field elements
-            let editProjectEle = document.querySelectorAll('.edit-project')[0],
-                fieldsWrapper = editProjectEle.querySelectorAll('.edit-fields')[0],
-                project = editProjectEle.querySelectorAll('.project-name')[0],
-                company = editProjectEle.querySelectorAll('.company')[0],
-                link = editProjectEle.querySelectorAll('.link')[0],
-                skills = editProjectEle.querySelectorAll('.skills')[0],
-                description = editProjectEle.querySelectorAll('.description')[0];
+            // edit form fields elements
+            let editProjectEle = document.querySelector('.edit-project');
+            let fieldsWrapper = editProjectEle.querySelector('.edit-fields');
+            let project = editProjectEle.querySelector('.project-name');
+            let company = editProjectEle.querySelector('.company');
+            let link = editProjectEle.querySelector('.link');
+            let skills = editProjectEle.querySelector('.skills');
+            let description = editProjectEle.querySelector('.description');
 
-            // project values
-            let projectContainerEl = e.target.parentElement.parentNode,
-                projectContainerUl = projectContainerEl.parentNode,
-                currentValueCompany = projectContainerUl.parentNode.querySelector('.company-name').textContent.split(':')[1],
-                currentValueProject = projectContainerEl.getElementsByClassName('project')[0].textContent,
-                currentValueLink = projectContainerEl.getElementsByClassName('link')[0].textContent,
-                currentValueSkills = projectContainerEl.getElementsByClassName('skills')[0].textContent,
-                currentValueDescription = projectContainerEl.getElementsByClassName('description')[0].textContent;
+            // get edit form field values
+            let projectContainerEl = e.target.parentElement.parentNode;
+            let projectContainerUl = projectContainerEl.parentNode;
+            let currentValueCompany = projectContainerUl.parentNode.querySelector('.company-name').textContent.split(':')[1];
+            let currentValueProject = projectContainerEl.getElementsByClassName('project')[0].textContent;
+            let currentValueLink = projectContainerEl.getElementsByClassName('link')[0].textContent;
+            let currentValueSkills = projectContainerEl.getElementsByClassName('skills')[0].textContent;
+            let currentValueDescription = projectContainerEl.getElementsByClassName('description')[0].textContent;
 
             // open edit project form overlay
-            if (editProjectEle.classList.contains('hidden')) {
-                editProjectEle.classList.remove('hidden');    
-            }
+            // if (editProjectEle.classList.contains('hidden')) {
+            //     editProjectEle.classList.remove('hidden');    
+            // }
 
             // set edit field values
             fieldsWrapper.setAttribute('data-company-id', e.target.getAttribute('data-company-id'));
@@ -61,30 +61,28 @@ const dispatchToProps = function(state) {
             link.value = currentValueLink.trim();
             skills.value = currentValueSkills.trim();
             description.value = currentValueDescription.trim();
-
         },
-        deleteProject(e) {
+        deleteProject (e) {
             e.preventDefault();
 
-            let ele = e.target,
-                companyId = ele.getAttribute('data-company-id'),
-                projectId = ele.getAttribute('data-project-id'),
-                projectList = document.getElementById(companyId),
-                projectListItems = projectList.getElementsByTagName('li'),
-                projectListItemsLength = projectListItems.length;
+            let ele = e.target;
+            let companyId = ele.getAttribute('data-company-id');
+            let projectId = ele.getAttribute('data-project-id');
+            let projectList = document.getElementById(companyId);
+            let projectListItems = projectList.getElementsByTagName('li');
+            let projectListItemsLength = projectListItems.length;
 
             axiosAjax.deleteProject(companyId, projectId, projectListItemsLength);
-            
         }
     }
 }
 
 ProjectContainer.propTypes = {
-    numberProjects: PropTypes.number,
     projects: PropTypes.array,
-    deleteProject: PropTypes.func,
+    numberProjects: PropTypes.number,
     loggedin: PropTypes.bool,
-    openEditInput: PropTypes.func
+    openEditInput: PropTypes.func,
+    deleteProject: PropTypes.func
 };
 
 export default connect(stateToProps, dispatchToProps)(ProjectContainer)

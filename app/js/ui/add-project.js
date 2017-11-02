@@ -37,15 +37,16 @@ const AddProject = React.createClass({
         )
     },
     addProject (e) {
+
         // wrapping el
         let projectEl = document.getElementsByClassName('add-fields')[0];
         
         // get elements
-        let company = projectEl.querySelectorAll('.company')[0],
-            name = projectEl.querySelectorAll('.project-name')[0],
-            link = projectEl.querySelectorAll('.link')[0],
-            skills = projectEl.querySelectorAll('.skills')[0],
-            description = projectEl.querySelectorAll('.description')[0];
+        let company = projectEl.querySelector('.company');
+        let name = projectEl.querySelector('.project-name');
+        let link = projectEl.querySelector('.link');
+        let skills = projectEl.querySelector('.skills');
+        let description = projectEl.querySelector('.description');
 
         this.props.disptachAddProject(e, {
             company: company.value,

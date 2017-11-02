@@ -32,7 +32,7 @@ const Projects = React.createClass({
                             { this.props.loggedin &&
                                 <div className="admin-controls">
                                     <a className="btn btn-default btn-primary btn-edit" href='#' data-company-id={id} data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>EDIT</a>
-                                    <a className="btn btn-default btn-danger" href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.deleteProject}>DELETE</a>
+                                    <a className="btn btn-default btn-danger" href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.deleteProject}>DELETE</a>
                                 </div>
                               }
                         </li>
@@ -40,9 +40,6 @@ const Projects = React.createClass({
                 })}
             </ul>
         )
-    },
-    deleteProject(e) {
-        this.props.deleteProject(e);
     }
 });
 

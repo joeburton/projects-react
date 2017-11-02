@@ -52,9 +52,8 @@ const App = React.createClass({
 });
 
 App.propTypes = {
-    loggedin: PropTypes.bool
+    loggedin: PropTypes.bool,
+    children: PropTypes.node.isRequired
 };
-
-// console.log(App);
 
 export default connect(stateToProps)(App)

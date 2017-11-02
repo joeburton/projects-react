@@ -82,17 +82,18 @@ const EditProject = React.createClass({
         });
     },
     getValues () {
+        
         // wrapping el
-        let projectEl = document.getElementsByClassName('edit-fields')[0],
+        let projectEl = document.getElementsByClassName('edit-fields')[0];
 
-            // get elements
-            companyId = projectEl.getAttribute('data-company-id'),
-            projectId = projectEl.getAttribute('data-project-id'),
-            company = projectEl.querySelectorAll('.company')[0],
-            name = projectEl.querySelectorAll('.project-name')[0],
-            link = projectEl.querySelectorAll('.link')[0],
-            skills = projectEl.querySelectorAll('.skills')[0],
-            description = projectEl.querySelectorAll('.description')[0];
+        // get elements
+        let companyId = projectEl.getAttribute('data-company-id');
+        let projectId = projectEl.getAttribute('data-project-id');
+        let company = projectEl.querySelectorAll('.company')[0];
+        let name = projectEl.querySelectorAll('.project-name')[0];
+        let link = projectEl.querySelectorAll('.link')[0];
+        let skills = projectEl.querySelectorAll('.skills')[0];
+        let description = projectEl.querySelectorAll('.description')[0];
 
         return {
             companyId: companyId,
@@ -102,7 +103,7 @@ const EditProject = React.createClass({
             link: link.value,
             skills: skills.value,
             description: description.value
-        };      
+        };
     },
     closeEditProjectOverlay () {
         $('#edit').modal('hide');
