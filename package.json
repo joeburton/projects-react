@@ -54,8 +54,5 @@
         "vinyl-source-stream": "^1.1.0",
         "webpack": "^3.7.1",
         "yargs": "^7.0.2"
-    },
-    "devDependencies": {
-        "uglifyjs-webpack-plugin": "^1.0.1"
     }
 }
