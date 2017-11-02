@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { Link } from 'react-router';
 import EditProjectContainer from '../ui/edit-project-container';
 import AddProjectContainer from '../ui/add-project-container';
@@ -50,5 +50,11 @@ const App = React.createClass({
         )
     }
 });
+
+App.propTypes = {
+    loggedin: PropTypes.bool
+};
+
+// console.log(App);
 
 export default connect(stateToProps)(App)

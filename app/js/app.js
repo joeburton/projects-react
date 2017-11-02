@@ -1,10 +1,10 @@
-////
+// Include jQuery and Bootstrap 4
 window.$ = window.jQuery = require('jquery')
 window.Popper = require('popper.js')
-
 require('bootstrap')
+
+// Import CSS
 import '../css/app.scss'
-////
 
 import React from 'react';
 import ReactDOM from 'react-dom';
