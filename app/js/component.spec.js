@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Button from './component';
+import store from './store';
 
 describe('Button', () => {
     let wrapper;
