@@ -46,7 +46,8 @@ module.exports = {
             }
         ]
     },
-    devtool: "source-map", // any "source-map"-like devtool is possible
+    // devtool: "source-map", // any "source-map"-like devtool is possible
+    devtool: 'inline-source-map', // don't use for production
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Button from './component';
-import store from './store';
+import Button from '../js/component';
+import store from '../js/store';
 
 describe('Button', () => {
     let wrapper;

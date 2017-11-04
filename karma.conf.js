@@ -10,14 +10,14 @@ var config = function (config) {
             'jasmine'
         ],
         files: [
-            'app/js/**/*.spec.js',
+            'app/tests/*.spec.js',
         ],
         preprocessors: {
             'app/js/**/*.js': [
                 'webpack',
                 'sourcemap',
             ],
-            'app/js/**/*.spec.js': [
+            'app/tests/*.spec.js': [
                 'webpack',
                 'sourcemap',
             ],
