@@ -47,7 +47,7 @@ module.exports = {
         ]
     },
     devtool: "source-map", // any "source-map"-like devtool is possible
-    // devtool: 'inline-source-map', // don't use for production
+    // devtool: 'inline-source-map', // don't use for production; good for debugging test specs
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
