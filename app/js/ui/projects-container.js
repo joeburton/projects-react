@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Projects from './projects';
 import { connect } from 'react-redux';
 import axiosAjax from '../api/requests';
