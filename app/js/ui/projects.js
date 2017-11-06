@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {PropTypes} from 'react';
+// import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 const Projects = React.createClass({

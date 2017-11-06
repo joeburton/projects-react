@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {PropTypes} from 'react';
+// import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import EditProjectContainer from '../ui/edit-project-container';
 import AddProjectContainer from '../ui/add-project-container';

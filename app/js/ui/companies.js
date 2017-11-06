@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {PropTypes} from 'react';
+// import PropTypes from 'prop-types';
 import NumberProjects from './number-projects.js'
 
 const Companies = React.createClass({
