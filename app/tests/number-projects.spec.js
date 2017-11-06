@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from '../js/store';
 import App from '../js/layouts/app';
