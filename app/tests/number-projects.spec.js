@@ -13,6 +13,7 @@ describe('NumberProjects', () => {
     const props = {
         numberProjects: 10
     };
+    
 
     beforeEach(() => {
         wrapper = shallow(
