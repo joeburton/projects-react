@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const NumberProjects = React.createClass({
-    render: function() {
+class NumberProjects extends React.Component {
+    render () {
         return (
             <span>
                 {this.props.numberProjects}
             </span>
         )
     }
-});
+};
 
 const stateToProps = function(state) {
     return {

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NumberProjects from './number-projects.js'
 
-const Companies = React.createClass({
-    render: function() {
+class Companies extends React.Component {
+    render () {
         return (
             <div className="container list-inline nick">
                 <h3>Companies (<NumberProjects/>)</h3>
@@ -17,7 +17,7 @@ const Companies = React.createClass({
             </div>
         )
     }
-});
+};
 
 Companies.propTypes = {
     companies: PropTypes.array

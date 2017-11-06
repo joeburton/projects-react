@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import axiosAjax from '../api/requests';
 
 class EditProjectContainer extends React.Component {
-    render() {
+    render () {
         return (
             <EditProject {...this.props} />
         )

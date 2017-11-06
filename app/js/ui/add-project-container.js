@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import AddProject from './add-project';
 import { connect } from 'react-redux';
 import axiosAjax from '../api/requests';
-
-const AddProjectContainer = React.createClass({
-    render: function () {
+class AddProjectContainer extends React.Component {
+    render () {
         return (
             <AddProject {...this.props} />
         )
     }
-});
+};
 
 const stateToProps = function (state) {
     return {

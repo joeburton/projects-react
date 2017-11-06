@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EditProject = React.createClass({
-    getInitialState () {
-        return {
+class EditProject extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             company: '',
             name: '',
             link: '',
             skills: '',
             description: ''
         };
-    },
-    render (state) {
+        this.setValue = this.setValue.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.getValues = this.getValues.bind(this);
+        this.closeEditProjectOverlay = this.closeEditProjectOverlay.bind(this);
+    }
+    render(state) {
         return (
             <div className="modal fade" id="edit" role="dialog" aria-labelledby="edit">
                 <div className='edit-project modal-dialog'>
@@ -22,14 +27,14 @@ const EditProject = React.createClass({
                         </div>
                         <div className='modal-body test edit-fields'>
                             <div className="form-group">
-                                <input type='text' className='company form-control' value={this.state.company} onChange= {this.handleChange} />
+                                <input type='text' className='company form-control' value={this.state.company} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
                                 <input type='text' className='project-name form-control' value={this.state.name} onChange={this.handleChange} />
                             </div>
                             <div className="form-group">
                                 <input type='text' className='link form-control' value={this.state.link} onChange={this.handleChange} />
-                            </div> 
+                            </div>
                             <div className="form-group">
                                 <textarea type='textarea' className='skills form-control' value={this.state.skills} onChange={this.handleChange} />
                             </div>
@@ -45,12 +50,12 @@ const EditProject = React.createClass({
                 </div>
             </div>
         )
-    },
-    setValue (e) {
+    }
+    setValue(e) {
 
         let fieldValues = this.getValues();
 
-    	this.setState({
+        this.setState({
             company: fieldValues.company,
             name: fieldValues.name,
             link: fieldValues.link,
@@ -71,11 +76,11 @@ const EditProject = React.createClass({
 
         // close overlay
         this.closeEditProjectOverlay();
-    },
-    handleChange (e) {
+    }
+    handleChange(e) {
 
         let fieldValues = this.getValues();
-        
+
         this.setState({
             company: fieldValues.company,
             name: fieldValues.name,
@@ -83,9 +88,9 @@ const EditProject = React.createClass({
             skills: fieldValues.skills,
             description: fieldValues.description
         });
-    },
-    getValues () {
-        
+    }
+    getValues() {
+
         // wrapping el
         let projectEl = document.getElementsByClassName('edit-fields')[0];
 
@@ -107,11 +112,11 @@ const EditProject = React.createClass({
             skills: skills.value,
             description: description.value
         };
-    },
-    closeEditProjectOverlay () {
+    }
+    closeEditProjectOverlay() {
         $('#edit').modal('hide');
     }
-});
+};
 
 EditProject.propTypes = {
     disptachProjectUpdate: PropTypes.func

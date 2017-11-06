@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default React.createClass({
+class Home extends React.Component {
     componentDidMount () {
         window.onhashchange = function() { 
             console.log('url change');
         }
-    },
+    }
     render () {
         return (
             <div className='container splash'>
@@ -14,5 +14,7 @@ export default React.createClass({
             </div>
         )
     }
-});
+};
+
+export default Home;
 

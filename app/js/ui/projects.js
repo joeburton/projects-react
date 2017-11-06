@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-const Projects = React.createClass({
+class Projects extends React.Component {
     render () {
         return (
             <div className='container'>
@@ -19,7 +19,7 @@ const Projects = React.createClass({
                 </ul>
             </div>
         )
-    },
+    }
     renderProjects (projects, id) {
         return (
             <ul id={id}>
@@ -42,7 +42,7 @@ const Projects = React.createClass({
             </ul>
         )
     }
-});
+};
 
 Projects.propTypes = {
     numberProjects: PropTypes.number,

@@ -4,13 +4,11 @@ import Projects from './projects';
 import { connect } from 'react-redux';
 import axiosAjax from '../api/requests';
 
-const ProjectContainer = React.createClass({
-    render: function() {
-        return (
-            <Projects {...this.props} />
-        )
+class ProjectContainer extends React.Component {
+    render() {
+        return <Projects {...this.props} />
     }
-});
+};
 
 // pass in state data as props data
 const stateToProps = function(state) {

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Companies from './companies';
 import { connect } from 'react-redux';
 
-const CompaniesContainer = React.createClass({
-    render() {
+class CompaniesContainer extends React.Component {
+    render () {
         return (
             <Companies {...this.props} />
         )
     }
-});
+};
 
 // pass down data as props
 const stateToProps = function(state) {

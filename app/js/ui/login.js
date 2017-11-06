@@ -2,22 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Login = React.createClass({
-    getInitialState() {
-        return {
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             username: '',
             password: ''
         };
-    },
+        this.componentDidMount = this.componentDidMount.bind(this)
+        this.handleUsernameChange = this.handleUsernameChange.bind(this)
+        this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    }
     componentDidMount() {
         console.log(this.state);
-    },
+    }
     handleUsernameChange(e) {
         this.setState({ username: e.target.value });
-    },
+    }
     handlePasswordChange(e) {
         this.setState({ password: e.target.value });
-    },
+    }
     render() {
         return (
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -66,8 +70,7 @@ const Login = React.createClass({
             </nav>
         )
     }
-
-});
+};
 
 const stateToProps = function (state) {
     return {

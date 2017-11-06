@@ -16,18 +16,18 @@ const stateToProps = function(state) {
     }
 }
 
-const App = React.createClass({
+class App extends React.Component {
     componentWillMount() {
         axiosAjax.getProjects();
-    },
+    }
     openModalAddProject(e) {
         e.preventDefault();
         $('#add').modal('show');
-    },
+    }
     setTab(e) {
         $('.nav-tabs li').removeClass('active');
         $(e.currentTarget).addClass('active');
-    },
+    }
     render() {
         return (
             <div className='app'>
@@ -50,7 +50,7 @@ const App = React.createClass({
             </div>
         )
     }
-});
+};
 
 App.propTypes = {
     loggedin: PropTypes.bool,

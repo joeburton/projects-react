@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AddProject = React.createClass({
+class AddProject extends React.Component {
+    constructor(props) {
+        super(props);
+        this.addProject = this.addProject.bind(this);
+        this.closeOverlay = this.closeOverlay.bind(this);
+    }
     render () {
         return (
             <div className="modal fade" id="add" role="dialog" aria-labelledby="add">
@@ -36,7 +41,7 @@ const AddProject = React.createClass({
                 </div>
             </div>
         )
-    },
+    }
     addProject (e) {
 
         // wrapping el
@@ -60,11 +65,11 @@ const AddProject = React.createClass({
         });
 
         this.closeOverlay();
-    },
+    }
     closeOverlay () {
         $('#add').modal('hide');
     }
-});
+};
 
 AddProject.propTypes = {
     disptachAddProject: PropTypes.func
