@@ -30,36 +30,33 @@ const dispatchToProps = function(state) {
             // edit form fields elements
             let editProjectEle = document.querySelector('.edit-project');
             let fieldsWrapper = editProjectEle.querySelector('.edit-fields');
-            let project = editProjectEle.querySelector('.project-name');
             let company = editProjectEle.querySelector('.company');
+            let project = editProjectEle.querySelector('.project-name');
             let link = editProjectEle.querySelector('.link');
             let skills = editProjectEle.querySelector('.skills');
             let description = editProjectEle.querySelector('.description');
 
-            // get edit form field values
-            let projectContainerEl = e.target.parentElement.parentNode;
-            let projectContainerUl = projectContainerEl.parentNode;
-            let currentValueCompany = projectContainerUl.parentNode.querySelector('.company-name').textContent.split(':')[1];
-            let currentValueProject = projectContainerEl.getElementsByClassName('project')[0].textContent;
-            let currentValueLink = projectContainerEl.getElementsByClassName('link')[0].textContent;
-            let currentValueSkills = projectContainerEl.getElementsByClassName('skills')[0].textContent;
-            let currentValueDescription = projectContainerEl.getElementsByClassName('description')[0].textContent;
+            // get selected parent DOM element
+            let projectContainerUL = e.target.parentElement.parentNode.parentNode;
 
-            // open edit project form overlay
-            // if (editProjectEle.classList.contains('hidden')) {
-            //     editProjectEle.classList.remove('hidden');    
-            // }
+            // get selected project values
+            let currentValueCompany = projectContainerUL.parentNode.querySelector('.company-name').textContent.split(':')[1];
+            let currentValueProject = projectContainerUL.getElementsByClassName('project')[0].textContent;
+            let currentValueLink = projectContainerUL.getElementsByClassName('link')[0].textContent;
+            let currentValueSkills = projectContainerUL.getElementsByClassName('skills')[0].textContent;
+            let currentValueDescription = projectContainerUL.getElementsByClassName('description')[0].textContent;
 
-            // set edit field values
+            // set edit field data attribute values
             fieldsWrapper.setAttribute('data-company-id', e.target.getAttribute('data-company-id'));
             fieldsWrapper.setAttribute('data-project-id', e.target.getAttribute('data-project-id'));
 
-            // set edit field values
+            // set edit form field values
             company.value = currentValueCompany.trim();
             project.value = currentValueProject.trim();
             link.value = currentValueLink.trim();
             skills.value = currentValueSkills.trim();
             description.value = currentValueDescription.trim();
+
         },
         deleteProject (e) {
             e.preventDefault();
