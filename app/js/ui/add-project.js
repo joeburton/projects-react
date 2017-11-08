@@ -18,19 +18,19 @@ class AddProject extends React.Component {
                         </div>
                         <div className='modal-body add-fields'>
                             <div className="form-group">
-                                <input type='text' className='company form-control' placeholder='Company name' />
+                                <input type='text' ref="company" className='company form-control' placeholder='Company name' />
                             </div>
                             <div className="form-group">
-                                <input type='text' className='project-name form-control' placeholder='Project name' />
+                                <input type='text' ref="name" className='project-name form-control' placeholder='Project name' />
                             </div>
                             <div className="form-group">
-                                <input type='text' className='link form-control' placeholder='Link' />
+                                <input type='text' ref="link" className='link form-control' placeholder='Link' />
                             </div>
                             <div className="form-group">
-                                <textarea type='textarea' className='skills form-control' placeholder='Skills used' />
+                                <textarea type='textarea' ref="skills" className='skills form-control' placeholder='Skills used' />
                             </div>
                             <div className="form-group">
-                                <textarea type='textarea' className='description form-control' placeholder='Description' />
+                                <textarea type='textarea' ref="description" className='description form-control' placeholder='Description' />
                             </div>
                         </div>
                         <div className="modal-footer">
@@ -44,23 +44,13 @@ class AddProject extends React.Component {
     }
     addProject (e) {
 
-        // wrapping el
-        let projectEl = document.getElementsByClassName('add-fields')[0];
-        
-        // get elements
-        let company = projectEl.querySelector('.company');
-        let name = projectEl.querySelector('.project-name');
-        let link = projectEl.querySelector('.link');
-        let skills = projectEl.querySelector('.skills');
-        let description = projectEl.querySelector('.description');
-
         this.props.disptachAddProject(e, {
-            company: company.value,
+            company: this.refs.company.value,
             projects: [{
-                project: name.value,
-                link: link.value,
-                skills: skills.value,
-                description: description.value                
+                project: this.refs.name.value,
+                link: this.refs.link.value,
+                skills: this.refs.skills.value,
+                description: this.refs.description.value
             }]
         });
 

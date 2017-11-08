@@ -92,16 +92,16 @@ class EditProject extends React.Component {
     getValues() {
 
         // wrapping el
-        let projectEl = document.getElementsByClassName('edit-fields')[0];
+        let projectEl = document.querySelector('.edit-fields');
 
         // get elements
         let companyId = projectEl.getAttribute('data-company-id');
         let projectId = projectEl.getAttribute('data-project-id');
-        let company = projectEl.querySelectorAll('.company')[0];
-        let name = projectEl.querySelectorAll('.project-name')[0];
-        let link = projectEl.querySelectorAll('.link')[0];
-        let skills = projectEl.querySelectorAll('.skills')[0];
-        let description = projectEl.querySelectorAll('.description')[0];
+        let company = projectEl.querySelector('.company');
+        let name = projectEl.querySelector('.project-name');
+        let link = projectEl.querySelector('.link');
+        let skills = projectEl.querySelector('.skills');
+        let description = projectEl.querySelector('.description');
 
         return {
             companyId: companyId,
