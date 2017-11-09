@@ -1,5 +1,7 @@
 import React from 'react';
 
+const directoryImage = require('../../images/projects.png');
+
 class Home extends React.Component {
     componentDidMount () {
         window.onhashchange = function() { 
@@ -10,7 +12,7 @@ class Home extends React.Component {
         return (
             <div className='container splash'>
                 <h3>Directory of companies and projects</h3>
-                <img src='/images/projects.png' />
+                <img src={directoryImage} />
             </div>
         )
     }

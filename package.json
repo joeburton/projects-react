@@ -35,6 +35,7 @@
         "express-handlebars": "^3.0.0",
         "express-session": "^1.14.0",
         "extract-text-webpack-plugin": "^3.0.1",
+        "file-loader": "^1.1.5",
         "jasmine-core": "^2.5.2",
         "jquery": "^3.2.1",
         "json-loader": "^0.5.4",
@@ -54,6 +55,7 @@
         "popper.js": "^1.12.5",
         "postcss-loader": "^2.0.7",
         "precss": "^2.0.0",
+        "prop-types": "^15.6.0",
         "react": "^15.3.2",
         "react-addons-test-utils": "^15.3.2",
         "react-dom": "^15.3.2",
@@ -68,7 +70,6 @@
         "uglify-js": "^3.1.6",
         "vinyl-source-stream": "^1.1.0",
         "webpack": "^3.7.1",
-        "yargs": "^7.0.2",
-        "prop-types": "^15.6.0"
+        "yargs": "^7.0.2"
     }
 }
