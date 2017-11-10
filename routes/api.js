@@ -5,7 +5,7 @@ var ObjectId = require('mongodb').ObjectID;
 var config = require('config');
 
 // API
-var production = (config.env === 'prod') ? true : false;
+var production = (config.env === 'production') ? true : false;
 var url;
 var dbObj;
 var sess;
@@ -18,6 +18,8 @@ if (production) {
     // local dev
     url = 'mongodb://127.0.0.1:27017/projectDirectory';
 }
+
+console.log(config.env);
 
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function (err, db) {
