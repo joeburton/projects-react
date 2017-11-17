@@ -7,6 +7,23 @@ class AddProject extends React.Component {
         this.addProject = this.addProject.bind(this);
         this.closeOverlay = this.closeOverlay.bind(this);
     }
+    addProject (e) {
+        
+        this.props.disptachAddProject(e, {
+            company: this.company.value,
+            projects: [{
+                project: this.name.value,
+                link: this.link.value,
+                skills: this.skills.value,
+                description: this.description.value
+            }]
+        });
+
+        this.closeOverlay();
+    }
+    closeOverlay () {
+        $('#add').modal('hide');
+    }
     render () {
         return (
             <div className="modal fade" id="add" role="dialog" aria-labelledby="add">
@@ -18,19 +35,19 @@ class AddProject extends React.Component {
                         </div>
                         <div className='modal-body add-fields'>
                             <div className="form-group">
-                                <input type='text' ref="company" className='company form-control' placeholder='Company name' />
+                                <input type='text' ref={ (el) => this.company = el } className='company form-control' placeholder='Company name' />
                             </div>
                             <div className="form-group">
-                                <input type='text' ref="name" className='project-name form-control' placeholder='Project name' />
+                                <input type='text' ref={ (el) => this.name = el } className='project-name form-control' placeholder='Project name' />
                             </div>
                             <div className="form-group">
-                                <input type='text' ref="link" className='link form-control' placeholder='Link' />
+                                <input type='text' ref={ (el) => this.link = el } className='link form-control' placeholder='Link' />
                             </div>
                             <div className="form-group">
-                                <textarea type='textarea' ref="skills" className='skills form-control' placeholder='Skills used' />
+                                <textarea type='textarea' ref={ (el) => this.skills = el } className='skills form-control' placeholder='Skills used' />
                             </div>
                             <div className="form-group">
-                                <textarea type='textarea' ref="description" className='description form-control' placeholder='Description' />
+                                <textarea type='textarea' ref={ (el) => this.description = el } className='description form-control' placeholder='Description' />
                             </div>
                         </div>
                         <div className="modal-footer">
@@ -41,23 +58,6 @@ class AddProject extends React.Component {
                 </div>
             </div>
         )
-    }
-    addProject (e) {
-
-        this.props.disptachAddProject(e, {
-            company: this.refs.company.value,
-            projects: [{
-                project: this.refs.name.value,
-                link: this.refs.link.value,
-                skills: this.refs.skills.value,
-                description: this.refs.description.value
-            }]
-        });
-
-        this.closeOverlay();
-    }
-    closeOverlay () {
-        $('#add').modal('hide');
     }
 };
 
