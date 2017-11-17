@@ -8,8 +8,11 @@ export default function (state = projectsInitialState, action) {
 
         case 'GET_PROJECTS':
 
-            var newState = Object.assign({}, state)
-            newState.projects = action.projects;
+            let newState = Object.assign({}, state, {
+                authorised: action.projects
+            });
+
+            console.log(newState, action);
 
             return newState;
 
