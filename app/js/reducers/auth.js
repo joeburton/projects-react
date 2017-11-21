@@ -8,12 +8,14 @@ export default function (state = projectsInitialState, action) {
 
         case 'LOG_IN':
 
-            var newState = Object.assign({}, state)
-            newState.authorised = action.authorised;
+            var newState = { 
+                ...state, 
+                authorised: action.authorised 
+            };
 
-            console.log(newState, action);
+            console.log(newState);
 
-            return newState;
+            return newState
 
         default: return state;
 
