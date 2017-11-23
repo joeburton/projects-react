@@ -39,11 +39,9 @@ class App extends React.Component {
         $('#add').modal('show');
     }
     setTab(type) {
-
         this.setState({
             activeTab: type
         });
-
     }
     render() {
         return (
