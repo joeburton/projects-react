@@ -20,6 +20,11 @@ import Home from './ui/home';
 import CompaniesContainer from './ui/companies-container';
 import ProjectsContainer from './ui/projects-container';
 
+// log state changes
+const unsubscribe = store.subscribe(() =>
+    console.log('Store updated: ', store.getState())
+)
+
 ReactDOM.render((
     <Provider store={store}>
         <Router history={browserHistory}>
