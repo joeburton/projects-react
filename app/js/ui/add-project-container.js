@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddProject from './add-project';
 import { connect } from 'react-redux';
-import axiosAjax from '../api/requests';
+
+import AddProject from './add-project';
+import api from '../api/api';
+
 class AddProjectContainer extends React.Component {
     render () {
         return (
@@ -21,7 +23,7 @@ const dispatchToProps = function (state) {
     return {
         disptachAddProject(e, data) {
             e.preventDefault();
-            axiosAjax.addProject(data, this.projects);
+            api.addProject(data, this.projects);
         }
     }
 }

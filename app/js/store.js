@@ -6,13 +6,13 @@ import projectReducer from './reducers/projects';
 import authReducer from './reducers/auth';
 
 // Combine Reducers
-var reducers = combineReducers({
+let reducers = combineReducers({
     projectReducer: projectReducer,
     authReducer: authReducer
 });
 
 // Create Store
-var store = createStore(
+let store = createStore(
     reducers,
     applyMiddleware(thunk)
 );

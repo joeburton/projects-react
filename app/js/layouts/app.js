@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+
 import EditProjectContainer from '../ui/edit-project-container';
 import AddProjectContainer from '../ui/add-project-container';
 import NumberCompanies from '../ui/number-companies';
 import NumberProjects from '../ui/number-projects';
 import Login from '../ui/login';
-import axiosAjax from '../api/requests';
-import { connect } from 'react-redux';
+import api from '../api/api';
+
 
 // pass in state data as props data
 const stateToProps = function(state) {
@@ -18,7 +20,7 @@ const stateToProps = function(state) {
 
 class App extends React.Component {
     componentWillMount() {
-        axiosAjax.getProjects();
+        api.getProjects();
     }
     openModalAddProject(e) {
         e.preventDefault();

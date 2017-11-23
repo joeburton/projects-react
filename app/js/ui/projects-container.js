@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Projects from './projects';
 import { connect } from 'react-redux';
-import axiosAjax from '../api/requests';
+
+import api from '../api/api';
+import Projects from './projects';
 
 class ProjectContainer extends React.Component {
     render() {
@@ -68,7 +69,7 @@ const dispatchToProps = function(state) {
             let projectListItems = projectList.getElementsByTagName('li');
             let projectListItemsLength = projectListItems.length;
 
-            axiosAjax.deleteProject(companyId, projectId, projectListItemsLength);
+            api.deleteProject(companyId, projectId, projectListItemsLength);
         }
     }
 }

@@ -1,4 +1,4 @@
-var projectsInitialState = {
+let projectsInitialState = {
     authorised: false
 };
 
@@ -8,7 +8,7 @@ export default function (state = projectsInitialState, action) {
 
         case 'LOG_IN':
 
-            var newState = { 
+            let newState = { 
                 ...state, 
                 authorised: action.authorised 
             };
