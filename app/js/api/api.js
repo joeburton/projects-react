@@ -28,17 +28,23 @@ let api = {
         // logic to check if the company already exists. 
         // if it does add the project to the exisiting company projects array
         // if it does not set a flag to add a new company.
-        for (let i in projects) {
-            if (projects[i]['company'] === data.company) {
-                data.id = projects[i]['_id'];
-                postData = data;
-                companyExists = true;
-                break;
-            } else {
-                companyExists = false;
-                postData = data;
+        if (projects.length) {
+            for (let i in projects) {
+                if (projects[i]['company'] === data.company) {
+                    data.id = projects[i]['_id'];
+                    postData = data;
+                    companyExists = true;
+                    break;
+                } else {
+                    companyExists = false;
+                    postData = data;
+                }
             }
+        } else {
+            companyExists = false;
+            postData = data;
         }
+
 
         let addType = (companyExists) ? 'addproject' : 'addcompany';
 
