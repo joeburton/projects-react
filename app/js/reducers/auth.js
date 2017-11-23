@@ -13,8 +13,6 @@ export default function (state = projectsInitialState, action) {
                 authorised: action.authorised 
             };
 
-            console.log(newState);
-
             return newState
 
         default: return state;

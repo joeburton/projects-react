@@ -14,7 +14,6 @@ class Login extends React.Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
     }
     componentDidMount() {
-        console.log(this.state);
     }
     handleUsernameChange(e) {
         this.setState({ username: e.target.value });

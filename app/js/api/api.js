@@ -11,7 +11,7 @@ let api = {
         return axios.get(apiUrl + '/source').then(function (response) {
             store.dispatch(getProjects(response.data.projects));
             store.dispatch(logIn(response.data.authorised));
-            store.getState();
+            // console.log('state: ', store.getState());
         }).catch(function (err) {
             console.error(err);
         });
