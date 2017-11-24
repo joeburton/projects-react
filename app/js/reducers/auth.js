@@ -9,7 +9,6 @@ export default function (state = projectsInitialState, action) {
         case 'LOG_IN':
 
             let newState = { 
-                ...state, 
                 authorised: action.authorised 
             };
 
