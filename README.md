@@ -18,7 +18,7 @@ $ use DB_NAME
 ```
 // Useful mongo client commands
 $ show dbs
-$ use projectDirector
+$ use projectDirectory
 $ db.getCollection('projects').find()
 $ db.getCollection('users').find()
 ```
