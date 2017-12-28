@@ -5,32 +5,22 @@ import _ from 'lodash';
 class EditProject extends React.Component {
     constructor(props) {
         super(props);
+
+        let project = _.find(this.props.company.projects, 'id', this.props.projectId);
+
         this.state = {
             formValues: {
-                company: '',
-                name: '',
-                link: '',
-                skills: '',
-                description: ''
+                company: this.props.company.company,
+                name: project.project,
+                link: project.link,
+                skills: project.skills,
+                description: project.description
             }
         };
 
         this.update = this.update.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
-        let project = _.find(this.props.company.projects, 'id', this.props.projectId);
-
-        // @todo update state and populate form
-
-        // if (this.props.open) {
-        //     this.setState({
-        //         company: this.props.company,
-        //         name: project.name,
-        //         link: project.link,
-        //         skills: project.skills,
-        //         description: project.description
-        //     });
-        // }
         console.log('company id', this.props.companyId);
         console.log('project id', this.props.projectId);
         console.log('company', this.props.company);
