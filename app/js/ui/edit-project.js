@@ -9,6 +9,8 @@ class EditProject extends React.Component {
         let project = _.find(this.props.company.projects, 'id', this.props.projectId);
 
         this.state = {
+            companyId: this.props.company._id,
+            projectId: project.id,
             formValues: {
                 company: this.props.company.company,
                 name: project.project,
@@ -20,30 +22,29 @@ class EditProject extends React.Component {
 
         this.update = this.update.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
-        console.log('company id', this.props.companyId);
-        console.log('project id', this.props.projectId);
-        console.log('company', this.props.company);
-        console.log('project', project);
-
     }
     componentDidMount () {
 
-        (this.props.open) ? $('#edit').modal('show') : $('#edit').modal('hide');
+        let self = this;
+
+        $("#edit").on("hidden.bs.modal", function () {
+            console.log('close edit project modal')
+            self.props.closeEditProjectModal();
+        });
+
+        $('#edit').modal('show');
     }
     update(e) {
 
-        // @todo get values from state
-
         // send object to dispatch in container component.
         this.props.disptachProjectUpdate(e, {
-            companyId: fieldValues.companyId,
-            projectId: fieldValues.projectId,
-            company: fieldValues.company,
-            name: fieldValues.name,
-            link: fieldValues.link,
-            skills: fieldValues.skills,
-            description: fieldValues.description
+            companyId: this.state.companyId,
+            projectId: this.state.projectId,
+            company: this.state.formValues.company,
+            name: this.state.formValues.name,
+            link: this.state.formValues.link,
+            skills: this.state.formValues.skills,
+            description: this.state.formValues.description
         });
 
     }
@@ -66,7 +67,7 @@ class EditProject extends React.Component {
                     <div className='modal-content'>
                         <div className="modal-header">
                             <h5 className="modal-title" id="edit">Edit Project</h5>
-                            <button type="button" className="close" aria-label="Close" onClick={this.props.closeEditProjectModal}><span aria-hidden="true">&times;</span></button>
+                            <button type="button" className="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div className='modal-body test edit-fields'>
                             <div className="form-group">
@@ -86,8 +87,8 @@ class EditProject extends React.Component {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button name='button' className="btn btn-default" onClick={this.props.closeEditProjectModal}>CANCEL</button>
-                            <button name='button' className="btn btn-primary" onClick={this.update}>UPDATE</button>
+                            <button name='button' className="btn btn-default" data-dismiss="modal">CANCEL</button>
+                            <button name='button' className="btn btn-primary" data-dismiss="modal" onClick={this.update}>UPDATE</button>
                         </div>
                     </div>
                 </div>
