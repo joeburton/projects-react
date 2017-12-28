@@ -14,7 +14,8 @@ import api from '../api/api';
 // pass in state data as props data
 const stateToProps = function (state) {
     return {
-        loggedin: state.authReducer.authorised
+        loggedin: state.authReducer.authorised,
+        editProjectModal: state.modalsReducer.editProjectModal.open
     }
 }
 
@@ -60,7 +61,9 @@ class App extends React.Component {
                 <main>
                     {this.props.children}
                 </main>
+                {this.props.editProjectModal &&
                 <EditProjectContainer />
+                }
                 <AddProjectContainer />
             </div>
         )
