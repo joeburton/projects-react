@@ -23,20 +23,31 @@ class Projects extends React.Component {
     renderProjects (projects, id) {
         return (
             <ul id={id}>
-                {projects.map((proj, i) => {
+                {projects.map((project, i) => {
                     return (
-                        <li key={i} className="project">
-                            <div>Project: <span className='project-item project'> {proj.project} </span></div>
-                            <div>URL: <span className='project-item link'> <a href={proj.link} target='_blank'>{proj.link}</a> </span></div>
-                            <div>Skills: <span className='project-item skills'> {proj.skills} </span></div>
-                            <div>Description: <span className='project-item description'> {proj.description} </span></div>
-                            { this.props.loggedin &&
-                                <div className="admin-controls">
-                                    <a className="btn btn-default btn-primary btn-edit" href='#' data-company-id={id} data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.openEditInput}>EDIT</a>
-                                    <a className="btn btn-default btn-danger" href='#' data-company-id={id}  data-project-id={proj.id} data-project={proj.project} data-project-key={i} onClick={this.props.deleteProject}>DELETE</a>
-                                </div>
-                              }
-                        </li>
+                        <li  key={i} className="project">
+                        <div>Project: <span className='project-item project'> {project.project} </span></div>
+                        <div>URL: <span className='project-item link'> <a href={project.link} target='_blank'>{project.link}</a> </span></div>
+                        <div>Skills: <span className='project-item skills'> {project.skills} </span></div>
+                        <div>Description: <span className='project-item description'> {project.description} </span></div>
+                        {this.props.loggedin &&
+                            <div className="admin-controls">
+
+                                <a className="btn btn-default btn-primary btn-edit" href='#' 
+                                data-company-id={id} 
+                                data-project-id={project.id} 
+                                data-project={project.project} 
+                                onClick={this.props.editProject}>EDIT</a>
+            
+                                <a className="btn btn-default btn-danger" href='#' 
+                                data-company-id={id} 
+                                data-project-id={project.id} 
+                                data-project={project.project} 
+                                onClick={this.props.deleteProject}>DELETE</a>
+            
+                            </div>
+                        }
+                    </li>
                     );
                 })}
             </ul>
@@ -48,8 +59,8 @@ Projects.propTypes = {
     numberProjects: PropTypes.number,
     projects: PropTypes.array,
     deleteProject: PropTypes.func,
-    loggedin: PropTypes.bool,
-    openEditInput: PropTypes.func
+    editProject: PropTypes.func,
+    loggedin: PropTypes.bool
 };
 
 export default Projects;
