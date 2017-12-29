@@ -54,7 +54,9 @@ const dispatchToProps = function(state) {
 ProjectContainer.propTypes = {
     projects: PropTypes.array,
     numberProjects: PropTypes.number,
-    loggedin: PropTypes.bool
+    loggedin: PropTypes.bool,
+    editProject: PropTypes.func,
+    deleteProject: PropTypes.func
 };
 
 export default connect(stateToProps, dispatchToProps)(ProjectContainer)

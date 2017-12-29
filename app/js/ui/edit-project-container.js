@@ -45,7 +45,11 @@ const stateToProps = function (state) {
 
 EditProjectContainer.propTypes = {
     disptachProjectUpdate: PropTypes.func,
-    closeEditProjectModal: PropTypes.func
+    closeEditProjectModal: PropTypes.func,
+    open: PropTypes.bool,
+    companyId: PropTypes.string,
+    projectId: PropTypes.string,
+    company: PropTypes.object
 };
 
 export default connect(stateToProps, dispatchToProps)(EditProjectContainer);

@@ -36,7 +36,6 @@ class EditProject extends React.Component {
     }
     update(e) {
 
-        // send object to dispatch in container component.
         this.props.disptachProjectUpdate(e, {
             companyId: this.state.companyId,
             projectId: this.state.projectId,
@@ -46,7 +45,6 @@ class EditProject extends React.Component {
             skills: this.state.formValues.skills,
             description: this.state.formValues.description
         });
-
     }
     handleChange(e) {
 
@@ -98,7 +96,8 @@ class EditProject extends React.Component {
 };
 
 EditProject.propTypes = {
-    disptachProjectUpdate: PropTypes.func
+    disptachProjectUpdate: PropTypes.func,
+    company: PropTypes.object
 };
 
 export default EditProject;
