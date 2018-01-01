@@ -28,7 +28,6 @@ class EditProject extends React.Component {
         let self = this;
 
         $("#edit").on("hidden.bs.modal", function () {
-            console.log('close edit project modal')
             self.props.closeEditProjectModal();
         });
 
@@ -96,6 +95,7 @@ class EditProject extends React.Component {
 };
 
 EditProject.propTypes = {
+    closeEditProjectModal: PropTypes.func,
     disptachProjectUpdate: PropTypes.func,
     company: PropTypes.object
 };

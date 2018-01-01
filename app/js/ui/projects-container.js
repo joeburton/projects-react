@@ -25,28 +25,20 @@ const stateToProps = function(state) {
 // pass down events as props
 const dispatchToProps = function(state) {
     return {
-        editProject (e) {
+        editProject (e, data) {
             e.preventDefault();
 
-            let data = {
-                companyId: e.target.getAttribute('data-company-id'),
-                projectId: e.target.getAttribute('data-project-id'),
-                open: true
-            }
-
+            data.open = true;
             store.dispatch(editProjectModal(data));
         },
-        deleteProject (e) {
+        deleteProject (e, data) {
             e.preventDefault();
 
-            let ele = e.target;
-            let companyId = ele.getAttribute('data-company-id');
-            let projectId = ele.getAttribute('data-project-id');
-            let projectList = document.getElementById(companyId);
+            let projectList = document.getElementById(data.companyId);
             let projectListItems = projectList.getElementsByTagName('li');
             let projectListItemsLength = projectListItems.length;
 
-            api.deleteProject(companyId, projectId, projectListItemsLength);
+            api.deleteProject(data.companyId, data.projectId, projectListItemsLength);
         }
     }
 }

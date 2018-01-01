@@ -22,7 +22,7 @@ const dispatchToProps = function(state) {
     return {
         disptachProjectUpdate (e, data) {
             e.preventDefault();
-            api.updateProject(data); 
+            api.updateProject(data);
         },
         closeEditProjectModal () {
             store.dispatch(editProjectModal({

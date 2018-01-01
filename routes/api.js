@@ -281,7 +281,7 @@ exports.deleteProject = function (req, res) {
             } else {
 
                 if (projectListItemsLength > 1) {
-
+                    // delete project not the company as there is more than one project listed
                     collection.update(
                         { _id: new ObjectId(companyId) },
                         { $pull: { 'projects': { 'id': new ObjectId(projectId) } } }, function (err, result) {
@@ -293,7 +293,7 @@ exports.deleteProject = function (req, res) {
                         });
 
                 } else {
-
+                    // delete company and project
                     collection.remove({ '_id': new ObjectId(companyId) }, { safe: true }, function (err, result) {
                         console.log('DELETE COMPANY: ', JSON.stringify(result));
                         collection.find().toArray(function (error, projects) {
