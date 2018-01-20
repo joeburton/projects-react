@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import store from '../store';
 
+import { addProjectModal } from '../actions/actions';
 import AddProject from './add-project';
 import api from '../api/api';
 
@@ -24,6 +26,9 @@ const dispatchToProps = function (state) {
         disptachAddProject(e, data) {
             e.preventDefault();
             api.addProject(data, this.projects);
+        },
+        closeAddProjectModal () {
+            store.dispatch(addProjectModal(false));
         }
     }
 }

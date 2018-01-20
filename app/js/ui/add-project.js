@@ -5,10 +5,19 @@ class AddProject extends React.Component {
     constructor(props) {
         super(props);
         this.addProject = this.addProject.bind(this);
-        this.closeOverlay = this.closeOverlay.bind(this);
+    }
+    componentDidMount () {
+
+        let self = this;
+
+        $("#add").on("hidden.bs.modal", function () {
+            self.props.closeAddProjectModal();
+        });
+
+        $('#add').modal('show');
     }
     addProject (e) {
-        
+
         this.props.disptachAddProject(e, {
             company: this.company.value,
             projects: [{
@@ -19,10 +28,6 @@ class AddProject extends React.Component {
             }]
         });
 
-        this.closeOverlay();
-    }
-    closeOverlay () {
-        $('#add').modal('hide');
     }
     render () {
         return (
@@ -52,7 +57,7 @@ class AddProject extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <button name='button' className="btn btn-default" data-dismiss="modal">CANCEL</button>
-                            <button name='button' className="btn btn-primary" onClick={this.addProject}>SAVE</button>
+                            <button name='button' className="btn btn-primary" data-dismiss="modal" onClick={this.addProject}>SAVE</button>
                         </div>
                     </div>
                 </div>

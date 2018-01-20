@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { addProjectModal } from '../actions/actions';
+
+import store from '../store';
 
 import EditProjectContainer from '../ui/edit-project-container';
 import AddProjectContainer from '../ui/add-project-container';
@@ -15,23 +18,26 @@ import api from '../api/api';
 const stateToProps = function (state) {
     return {
         loggedin: state.authReducer.authorised,
-        editProjectModal: state.modalsReducer.editProjectModal.open
+        editProjectModal: state.modalsReducer.editProjectModal.open,
+        addProjectModal: state.modalsReducer.addProjectModal
     }
 }
 
 class App extends React.Component {
 
     constructor(props) {
-        
+
         super(props);
         api.getProjects();
 
-        this.state = { 
+        this.state = {
             activeTab: 'companies'
         };
 
         this.openModalAddProject = this.openModalAddProject.bind(this);
         this.setTab = this.setTab.bind(this);
+
+        // console.log(this.getState())
 
     }
 
@@ -43,6 +49,10 @@ class App extends React.Component {
         this.setState({
             activeTab: type
         });
+
+        if (type === 'add') {
+            store.dispatch(addProjectModal(true));
+        }
     }
     render() {
         return (
@@ -62,9 +72,11 @@ class App extends React.Component {
                     {this.props.children}
                 </main>
                 {this.props.editProjectModal &&
-                <EditProjectContainer />
+                    <EditProjectContainer />
                 }
-                <AddProjectContainer />
+                {this.props.addProjectModal &&
+                    <AddProjectContainer />
+                }
             </div>
         )
     }
