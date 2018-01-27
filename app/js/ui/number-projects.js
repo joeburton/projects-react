@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class NumberProjects extends React.Component {
     render () {
         return (
-            <span>
+            <span className='number-projects'>
                 {this.props.numberProjects}
             </span>
         )
