@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Projects from '../js/ui/projects';
+import Project from '../js/ui/project';
 
-describe('#NumberProjects', () => {
+describe('#Projects', () => {
 
     let wrapper;
 
@@ -50,10 +51,23 @@ describe('#NumberProjects', () => {
         );
     });
 
-    it('should contain 10 projects', () => {
+    it('should contain 4 projects', () => {
         // console.log(wrapper.debug());
-        console.log(wrapper.find('h3').text());
+        // console.log(wrapper.find('h3').text());
+        // console.log(wrapper.find(Project).at(0).find('li'));
+        // console.log(wrapper.find(Project).at(0))
+        console.log(wrapper.find(Project).at(0).find('li').debug());
+
+        expect(wrapper.find(Project).at(0).find('li').hasClass('project')).toBeTruthy();
         expect(wrapper.find('h3').text()).toBe('Projects (4)');
+    });
+
+    it('should contain the correct company title', () => {
+        expect(wrapper.find('.company-name').at(0).text()).toEqual('Company: Tribal Worldwide')
+    });
+
+    it('should contain the correct skills list', () => {
+        expect(wrapper.find('.skills').at(0).text()).toEqual(' Backbone, Require, Jasmine, jQuery, HTML5, CSS3/SASS & Gulp ')
     });
 
 });

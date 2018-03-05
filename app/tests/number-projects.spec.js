@@ -19,9 +19,9 @@ describe('#NumberProjects', () => {
 
     beforeEach(() => {
         
-        store.subscribe(() =>
-            console.log('Store updated: ', store.getState())
-        )
+        // store.subscribe(() =>
+        //     console.log('Store updated: ', store.getState())
+        // )
 
         store.dispatch(getProjects([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]));
         
