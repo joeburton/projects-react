@@ -5,11 +5,14 @@ import Project from './project';
 
 class Projects extends React.Component {
     render () {
+
+        let projects = this.props.projects.length ? this.props.projects : [];
+
         return (
             <div className='container'>
                 <h3>Projects ({this.props.numberProjects})</h3>
                 <ul className="projects-container" ref='projects-container'>
-                    {this.props.projects.map((proj, i) => {
+                    {projects.map((proj, i) => {
                         return (
                             <li className='company' key={i}>
                             <i className='company-name'><strong>{'Company: ' + proj.company}</strong></i>

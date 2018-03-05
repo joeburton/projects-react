@@ -10,16 +10,21 @@ import { getProjects } from '../js/actions/actions';
 
 import NumberProjects from '../js/ui/number-projects';
 
-describe('NumberProjects', () => {
+describe('#NumberProjects', () => {
+
     let wrapper;
+
     const props = {
     };
 
     beforeEach(() => {
+        
         store.subscribe(() =>
             console.log('Store updated: ', store.getState())
         )
+
         store.dispatch(getProjects([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]));
+        
         wrapper = mount(
             <Provider store={store}>
                 <NumberProjects {...props} />
