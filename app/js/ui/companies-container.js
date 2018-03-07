@@ -12,7 +12,7 @@ class CompaniesContainer extends React.Component {
     }
 };
 
-// pass down data as props
+// pass down data as props.
 const stateToProps = function(state) {
     return {
         companies: state.projectReducer.projects

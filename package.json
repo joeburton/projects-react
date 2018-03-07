@@ -30,7 +30,6 @@
         "cookie-parser": "~1.4.3",
         "css-loader": "^0.28.7",
         "debug": "~2.2.0",
-        "enzyme": "^2.4.1",
         "express": "~4.13.4",
         "express-handlebars": "^3.0.0",
         "express-session": "^1.14.0",
@@ -57,11 +56,11 @@
         "postcss-loader": "^2.0.7",
         "precss": "^2.0.0",
         "prop-types": "^15.6.0",
-        "react": "^15.3.2",
-        "react-addons-test-utils": "^15.3.2",
-        "react-dom": "^15.3.2",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
         "react-redux": "^4.0.6",
-        "react-router": "^2.0.0",
+        "react-router": "^3.2.0",
+        "raf": "^3.3.2",
         "react-test-renderer": "^16.0.0",
         "redux": "^3.3.1",
         "redux-thunk": "^1.0.3",
@@ -74,6 +73,8 @@
         "yargs": "^7.0.2"
     },
     "devDependencies": {
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
         "redux-test-utils": "^0.2.2"
     }
 }
