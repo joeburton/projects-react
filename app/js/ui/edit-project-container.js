@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import api from '../api/api';
 import EditProject from './edit-project';
-import store from '../store';
 import { editProjectModal } from '../actions/actions';
 
 class EditProjectContainer extends React.Component {
@@ -18,14 +17,14 @@ class EditProjectContainer extends React.Component {
 };
 
 // pass down events as props
-const dispatchToProps = function(state) {
+const dispatchToProps = function(dispatch) {
     return {
         disptachProjectUpdate (e, data) {
             e.preventDefault();
             api.updateProject(data);
         },
         closeEditProjectModal () {
-            store.dispatch(editProjectModal({
+            dispatch(editProjectModal({
                 companyId: '',
                 projectId: '',
                 open: false

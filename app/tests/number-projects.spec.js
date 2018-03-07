@@ -4,6 +4,7 @@ import { shallow, mount, render } from 'enzyme';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from '../js/store'; 
+
 // @todo mock up store?? or work from the real store 
 // https://github.com/reactjs/redux/issues/2179
 import { getProjects } from '../js/actions/actions';
@@ -21,7 +22,7 @@ describe('#NumberProjects', () => {
         
         // store.subscribe(() =>
         //     console.log('Store updated: ', store.getState())
-        // )
+        // );
 
         store.dispatch(getProjects([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]));
         

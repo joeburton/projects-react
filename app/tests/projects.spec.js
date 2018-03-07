@@ -56,7 +56,7 @@ describe('#Projects', () => {
         // console.log(wrapper.find('h3').text());
         // console.log(wrapper.find(Project).at(0).find('li'));
         // console.log(wrapper.find(Project).at(0))
-        console.log(wrapper.find(Project).at(0).find('li').debug());
+        // console.log(wrapper.find(Project).at(0).find('li').debug());
 
         expect(wrapper.find(Project).at(0).find('li').hasClass('project')).toBeTruthy();
         expect(wrapper.find('h3').text()).toBe('Projects (4)');
