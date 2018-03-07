@@ -6,7 +6,7 @@ class EditProject extends React.Component {
     constructor(props) {
         super(props);
 
-        let project = _.find(this.props.company.projects, 'id', this.props.projectId);
+        let project = _.find(this.props.company.projects, {'id': this.props.projectId});
 
         this.state = {
             companyId: this.props.company._id,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import store from '../store';
+// import store from '../store';
 import { editProjectModal } from '../actions/actions';
 
 import api from '../api/api';
@@ -23,13 +23,13 @@ const stateToProps = function(state) {
 }
 
 // pass down events as props
-const dispatchToProps = function(state) {
+const dispatchToProps = function(dispatch) {
     return {
         editProject (e, data) {
             e.preventDefault();
 
             data.open = true;
-            store.dispatch(editProjectModal(data));
+            dispatch(editProjectModal(data));
         },
         deleteProject (e, data) {
             e.preventDefault();

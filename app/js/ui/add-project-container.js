@@ -21,7 +21,7 @@ const stateToProps = function (state) {
     }
 }
 
-const dispatchToProps = function (state) {
+const dispatchToProps = function (dispatch) {
     return {
         disptachAddProject(e, data) {
             e.preventDefault();

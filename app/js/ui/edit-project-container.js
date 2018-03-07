@@ -32,16 +32,16 @@ const dispatchToProps = function(state) {
             }));
         }
     }
-}
+};
 
 const stateToProps = function (state) {
     return {
         open: state.modalsReducer.editProjectModal.open,
         companyId: state.modalsReducer.editProjectModal.companyId,
         projectId: state.modalsReducer.editProjectModal.projectId,
-        company: _.find(state.projectReducer.projects, '_id', state.modalsReducer.editProjectModal.companyId)
+        company: _.find(state.projectReducer.projects, {'_id': state.modalsReducer.editProjectModal.companyId})
     }
-}
+};
 
 EditProjectContainer.propTypes = {
     disptachProjectUpdate: PropTypes.func,
