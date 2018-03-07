@@ -11,14 +11,15 @@ class Project extends React.Component {
     }
     getCompanyProjectId(e) {
         this.props.editProject(e, {
-            companyId: this.props.id,
+            companyId: this.props.companyId,
             projectId: this.props.project.id
         });
     }
     deleteProject(e) {
         this.props.deleteProject(e, {
-            companyId: this.props.id,
-            projectId: this.props.project.id
+            companyId: this.props.companyId,
+            projectId: this.props.project.id,
+            numberProjects: this.props.numberProjects
         });
     }
     render() {

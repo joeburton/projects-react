@@ -73,7 +73,7 @@ exports.logout = function (req, res) {
 
 // get all projects in the collection
 exports.users = function (req, res) {
-    
+
     if (req.session.authenticated) {
 
         var collection = dbObj.collection('users'),

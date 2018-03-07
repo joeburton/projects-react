@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Project from './project';
 
 class Projects extends React.Component {
-    render () {
+    render() {
 
         let projects = this.props.projects.length ? this.props.projects : [];
 
@@ -15,8 +15,8 @@ class Projects extends React.Component {
                     {projects.map((proj, i) => {
                         return (
                             <li className='company' key={i}>
-                            <i className='company-name'><strong>{'Company: ' + proj.company}</strong></i>
-                            {this.renderProjects(proj.projects, proj._id)}
+                                <i className='company-name'><strong>{'Company: ' + proj.company}</strong></i>
+                                {this.renderProjects(proj.projects, proj._id, proj.projects.length)}
                             </li>
                         );
                     })}
@@ -24,12 +24,12 @@ class Projects extends React.Component {
             </div>
         )
     }
-    renderProjects (projects, id) {
+    renderProjects(projects, companyId, numberProjects) {
         return (
-            <ul id={id}>
+            <ul>
                 {projects.map((project, i) => {
                     return (
-                        <Project key={i} project={project} deleteProject={this.props.deleteProject} editProject={this.props.editProject} id={id} loggedin={this.props.loggedin} />
+                        <Project key={i} project={project} numberProjects={numberProjects} deleteProject={this.props.deleteProject} editProject={this.props.editProject} companyId={companyId} loggedin={this.props.loggedin} />
                     );
                 })}
             </ul>

@@ -33,11 +33,7 @@ const dispatchToProps = function(dispatch) {
         deleteProject (e, data) {
             e.preventDefault();
 
-            let projectList = document.getElementById(data.companyId);
-            let projectListItems = projectList.getElementsByTagName('li');
-            let projectListItemsLength = projectListItems.length;
-
-            api.deleteProject(data.companyId, data.projectId, projectListItemsLength);
+            api.deleteProject(data.companyId, data.projectId, data.numberProjects);
         }
     }
 }
