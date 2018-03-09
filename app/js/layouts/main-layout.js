@@ -13,7 +13,6 @@ import NumberProjects from '../ui/number-projects';
 import Login from '../ui/login';
 import api from '../api/api';
 
-
 // pass in state data as props data
 const stateToProps = function (state) {
     return {
@@ -23,7 +22,7 @@ const stateToProps = function (state) {
     }
 }
 
-class App extends React.Component {
+class MainLayout extends React.Component {
 
     constructor(props) {
 
@@ -36,16 +35,15 @@ class App extends React.Component {
 
         this.openModalAddProject = this.openModalAddProject.bind(this);
         this.setTab = this.setTab.bind(this);
-
-        // console.log(this.getState())
-
     }
 
     openModalAddProject(e) {
+
         e.preventDefault();
         $('#add').modal('show');
     }
     setTab(type) {
+
         this.setState({
             activeTab: type
         });
@@ -62,9 +60,14 @@ class App extends React.Component {
                     <div className="container">
                         <p className="intro-skills">React/ Redux, NodeJS and MongoDB CRUD Application.</p>
                         <ul className='nav nav-tabs'>
-                            <li role="presentation" onClick={() => this.setTab('companies')} className={this.state.activeTab === 'companies' ? 'nav-item active' : 'nav-item'}><Link to='/companies' className="nav-link">Companies (<NumberCompanies />) </Link></li>
-                            <li role="presentation" onClick={() => this.setTab('projects')} className={this.state.activeTab === 'projects' ? 'nav-item active' : 'nav-item'}><Link to='/projects' className="nav-link">Projects (<NumberProjects />)</Link></li>
-                            {this.props.loggedin ? <li role="presentation" onClick={() => this.setTab('add')} className={this.state.activeTab === 'add' ? 'nav-item active' : 'nav-item'}><a href='#' onClick={this.openModalAddProject} className="nav-link">Add New Project Company</a></li> : ''}
+                            <li role="presentation" onClick={() => this.setTab('companies')} className={this.state.activeTab === 'companies' ? 'nav-item active' : 'nav-item'}>
+                            <Link to='/companies' className="nav-link">Companies (<NumberCompanies />)</Link></li>
+                            
+                            <li role="presentation" onClick={() => this.setTab('projects')} className={this.state.activeTab === 'projects' ? 'nav-item active' : 'nav-item'}>
+                            <Link to='/projects' className="nav-link">Projects (<NumberProjects />)</Link></li>
+
+                            {this.props.loggedin ? <li role="presentation" onClick={() => this.setTab('add')} className={this.state.activeTab === 'add' ? 'nav-item active' : 'nav-item'}>
+                            <a href='#' onClick={this.openModalAddProject} className="nav-link">Add New Project Company</a></li> : ''}
                         </ul>
                     </div>
                 </div>
@@ -84,7 +87,9 @@ class App extends React.Component {
 
 App.propTypes = {
     loggedin: PropTypes.bool,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    editProjectModal: PropTypes.bool,
+    addProjectModal: PropTypes.bool
 };
 
-export default connect(stateToProps)(App)
+export default connect(stateToProps)(MainLayout);

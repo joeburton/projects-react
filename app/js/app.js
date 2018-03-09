@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // Layouts
-import App from './layouts/app';
+import MainLayout from './layouts/main-layout';
 
 // Components
 import Home from './ui/home';
@@ -28,7 +28,7 @@ store.subscribe(() =>
 ReactDOM.render((
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route component={App}>
+            <Route component={MainLayout}>
                 <Route path="/" component={Home} />
                 <Route path="/projects" component={ProjectsContainer} />
                 <Route path="/companies" component={CompaniesContainer} />
