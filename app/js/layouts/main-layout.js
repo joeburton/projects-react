@@ -33,14 +33,7 @@ class MainLayout extends React.Component {
             activeTab: 'companies'
         };
 
-        this.openModalAddProject = this.openModalAddProject.bind(this);
         this.setTab = this.setTab.bind(this);
-    }
-
-    openModalAddProject(e) {
-
-        e.preventDefault();
-        $('#add').modal('show');
     }
     setTab(type) {
 
@@ -61,13 +54,13 @@ class MainLayout extends React.Component {
                         <p className="intro-skills">React/ Redux, NodeJS and MongoDB CRUD Application.</p>
                         <ul className='nav nav-tabs'>
                             <li role="presentation" onClick={() => this.setTab('companies')} className={this.state.activeTab === 'companies' ? 'nav-item active' : 'nav-item'}>
-                            <Link to='/companies' className="nav-link">Companies (<NumberCompanies />)</Link></li>
-                            
+                                <Link to='/companies' className="nav-link">Companies (<NumberCompanies />)</Link></li>
+
                             <li role="presentation" onClick={() => this.setTab('projects')} className={this.state.activeTab === 'projects' ? 'nav-item active' : 'nav-item'}>
-                            <Link to='/projects' className="nav-link">Projects (<NumberProjects />)</Link></li>
+                                <Link to='/projects' className="nav-link">Projects (<NumberProjects />)</Link></li>
 
                             {this.props.loggedin ? <li role="presentation" onClick={() => this.setTab('add')} className={this.state.activeTab === 'add' ? 'nav-item active' : 'nav-item'}>
-                            <a href='#' onClick={this.openModalAddProject} className="nav-link">Add New Project Company</a></li> : ''}
+                                <a href='#' className="nav-link">Add New Project Company</a></li> : ''}
                         </ul>
                     </div>
                 </div>
@@ -85,7 +78,7 @@ class MainLayout extends React.Component {
     }
 };
 
-App.propTypes = {
+MainLayout.propTypes = {
     loggedin: PropTypes.bool,
     children: PropTypes.node.isRequired,
     editProjectModal: PropTypes.bool,
