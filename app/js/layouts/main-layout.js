@@ -27,6 +27,7 @@ class MainLayout extends React.Component {
     constructor(props) {
 
         super(props);
+        
         api.getProjects();
 
         this.state = {
@@ -44,6 +45,10 @@ class MainLayout extends React.Component {
         if (type === 'add') {
             store.dispatch(addProjectModal(true));
         }
+    }
+    componentDidUpdate() {
+
+        console.log('component updated')
     }
     render() {
         return (
