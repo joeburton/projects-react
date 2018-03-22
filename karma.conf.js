@@ -10,18 +10,9 @@ var config = function (config) {
             'jasmine'
         ],
         files: [
-            // 'app/tests/**/*.spec.js',
-            'enzyme.webpack.js',
+            'enzyme.webpack.js'
         ],
         preprocessors: {
-            // 'app/js/**/*.js': [
-            //     'webpack',
-            //     'sourcemap',
-            // ],
-            // 'app/tests/**/*.spec.js': [
-            //     'webpack',
-            //     'sourcemap',
-            // ],
             'enzyme.webpack.js': ['webpack', 'sourcemap'],
         },
         webpack: Object.assign(
@@ -38,9 +29,6 @@ var config = function (config) {
         webpackServer: {
             noInfo: true,
         },
-        frameworks: [
-            'jasmine'
-        ],
         reporters: [
             'kjhtml',
             'spec'
