@@ -11,7 +11,7 @@ var config = function (config) {
         ],
         files: [
             // 'app/tests/**/*.spec.js',
-            'tests.webpack.js',
+            'enzyme.webpack.js',
         ],
         preprocessors: {
             // 'app/js/**/*.js': [
@@ -22,7 +22,7 @@ var config = function (config) {
             //     'webpack',
             //     'sourcemap',
             // ],
-            'tests.webpack.js': ['webpack', 'sourcemap'],
+            'enzyme.webpack.js': ['webpack', 'sourcemap'],
         },
         webpack: Object.assign(
             {},

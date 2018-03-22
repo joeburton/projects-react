@@ -41,9 +41,12 @@ describe('#NumberProjects2', () => {
 
     it('should test actions', () => {
 
-        debugger;
+        // debugger;
 
-        console.log(wrapper.debug());
+        // console.log(wrapper.debug());
+        // console.log(wrapper.getDOMNode());
+        // console.log(wrapper.instance());
+
         store.dispatch(action);
 
         expect(store.getAction(action.type)).toEqual(action);
@@ -51,6 +54,20 @@ describe('#NumberProjects2', () => {
         expect(store.isActionDispatched(action)).toBe(true);
         expect(store.isActionTypeDispatched(action.type)).toBe(true);
         expect(store.getState()).toBe(testState);
+    });
+
+    it('should be an instance on NumberProjects', () => {
+
+        // expect(wrapper.find(NumberProjects)).toEqual(NumberProjects);
+        // expect(wrapper.type()).toEqual('span');
+        expect(wrapper.type()).toEqual(NumberProjects);
+
+        wrapper.find('span').instance().innerHTML = 'new project details';
+
+        expect(wrapper.find('span').text()).toBe("new project details");
+
+        console.log(wrapper.find('span').text());
+        
     });
 
 });
