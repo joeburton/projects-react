@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { createMockStore } from 'redux-test-utils';
-import mountWithStore from './mountWithStore';
+// import mountWithStore from './mountWithStore';
 
 // @todo mock up store?? or work from the real store https://github.com/reactjs/redux/issues/2179 
 
@@ -29,7 +29,8 @@ describe('#NumberProjects2', () => {
     beforeEach(() => {
 
         store = createMockStore(testState);
-        wrapper = mountWithStore(<NumberProjects {...props} />, store);
+        // wrapper = mountWithStore(<NumberProjects {...props} />, store);
+        wrapper = mount(<NumberProjects store={store} /> )  
     });
 
     it('should contain 11 projects', () => {
