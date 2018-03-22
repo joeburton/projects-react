@@ -30,7 +30,7 @@ describe('#NumberProjects2', () => {
 
         store = createMockStore(testState);
         // wrapper = mountWithStore(<NumberProjects {...props} />, store);
-        wrapper = mount(<NumberProjects store={store} /> )  
+        wrapper = mount(<NumberProjects store={store} test={true} /> )  
     });
 
     it('should contain 11 projects', () => {
@@ -42,12 +42,6 @@ describe('#NumberProjects2', () => {
 
     it('should test actions', () => {
 
-        // debugger;
-
-        // console.log(wrapper.debug());
-        // console.log(wrapper.getDOMNode());
-        // console.log(wrapper.instance());
-
         store.dispatch(action);
 
         expect(store.getAction(action.type)).toEqual(action);
@@ -57,8 +51,13 @@ describe('#NumberProjects2', () => {
         expect(store.getState()).toBe(testState);
     });
 
-    it('should be an instance on NumberProjects', () => {
+    it('should be an instance of NumberProjects', () => {
 
+        // debugger;
+
+        // console.log(wrapper.debug());
+        // console.log(wrapper.getDOMNode());
+        // console.log(wrapper.instance());
         // expect(wrapper.find(NumberProjects)).toEqual(NumberProjects);
         // expect(wrapper.type()).toEqual('span');
         expect(wrapper.type()).toEqual(NumberProjects);

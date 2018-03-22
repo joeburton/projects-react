@@ -71,8 +71,9 @@ describe('#Projects', () => {
     });
 
     it('should pass', () => {
-
-        
+        // console.log(wrapper.debug());
+        // console.log(wrapper.getDOMNode());
+        // console.log(wrapper.instance());
     })
 
 });

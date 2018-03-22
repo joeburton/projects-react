@@ -14,12 +14,14 @@ class NumberProjects extends React.Component {
 
 const stateToProps = function(state) {
     return {
-        numberProjects: state.projectReducer.projects.length
+        numberProjects: state.projectReducer.projects.length,
+        projects: state.projectReducer.projects
     }
 }
 
 NumberProjects.propTypes = {
-    numberProjects: PropTypes.number
+    numberProjects: PropTypes.number,
+    projects: PropTypes.array
 }
 
 export default connect(stateToProps)(NumberProjects);
