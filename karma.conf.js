@@ -17,17 +17,10 @@ var config = function (config) {
         },
         webpack: Object.assign(
             {},
-            webpackConfig,
-            {
-                externals: {
-                    'react/addons': true,
-                    'react/lib/ExecutionEnvironment': true,
-                    'react/lib/ReactContext': true,
-                },
-            }
+            webpackConfig
         ),
         webpackServer: {
-            noInfo: true,
+            noInfo: true
         },
         reporters: [
             'kjhtml',
