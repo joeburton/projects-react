@@ -10,17 +10,19 @@ var config = function (config) {
             'jasmine'
         ],
         files: [
-            'app/tests/**/*.spec.js',
+            // 'app/tests/**/*.spec.js',
+            'tests.webpack.js',
         ],
         preprocessors: {
-            'app/js/**/*.js': [
-                'webpack',
-                'sourcemap',
-            ],
-            'app/tests/**/*.spec.js': [
-                'webpack',
-                'sourcemap',
-            ],
+            // 'app/js/**/*.js': [
+            //     'webpack',
+            //     'sourcemap',
+            // ],
+            // 'app/tests/**/*.spec.js': [
+            //     'webpack',
+            //     'sourcemap',
+            // ],
+            'tests.webpack.js': ['webpack', 'sourcemap'],
         },
         webpack: Object.assign(
             {},

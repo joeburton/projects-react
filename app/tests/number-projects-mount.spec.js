@@ -1,15 +1,9 @@
-import "raf/polyfill";
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
-
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { createMockStore } from 'redux-test-utils';
 import mountWithStore from './mountWithStore';
 
-// @todo mock up store?? or work from the real store 
-// https://github.com/reactjs/redux/issues/2179 
+// @todo mock up store?? or work from the real store https://github.com/reactjs/redux/issues/2179 
 
 import NumberProjects from '../js/ui/number-projects';
 
@@ -47,6 +41,9 @@ describe('#NumberProjects2', () => {
 
     it('should test actions', () => {
 
+        debugger;
+
+        console.log(wrapper.debug());
         store.dispatch(action);
 
         expect(store.getAction(action.type)).toEqual(action);
