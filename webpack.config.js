@@ -7,7 +7,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 if (process.env.NODE_ENV !== 'production') {
-    console.log('Looks like we are in development mode!');
+    console.log('Looks like we are in development mode!: ', process.env.NODE_ENV);
 }
 
 module.exports = {
