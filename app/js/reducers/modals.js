@@ -13,20 +13,12 @@ export default function (state = modalsInitialState, action) {
 
         case 'EDIT_PROJECT_MODAL':
 
-            // return Object.assign({}, state, {
-            //     editProjectModal: action.editProjectModal
-            // });
-
             return {
                 ...state,
                 editProjectModal: action.editProjectModal
             };
 
         case 'ADD_PROJECT_MODAL':
-
-            // return Object.assign({}, state, {
-            //     addProjectModal: action.addProjectModal
-            // });
 
             return {
                 ...state,

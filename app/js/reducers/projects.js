@@ -8,10 +8,6 @@ export default function (state = projectsInitialState, action) {
 
         case 'GET_PROJECTS':
 
-            // return Object.assign({}, state, {
-            //     projects: action.projects
-            // });
-
             return {
                 ...state,
                 projects: action.projects
