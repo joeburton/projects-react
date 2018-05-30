@@ -21,9 +21,9 @@ import CompaniesContainer from './ui/companies-container';
 import ProjectsContainer from './ui/projects-container';
 
 // log state changes
-store.subscribe(() =>
-    console.log('Store updated: ', store.getState())
-)
+store.subscribe(() => {
+    console.log('Store updated: ', store.getState());
+});
 
 ReactDOM.render((
     <Provider store={store}>

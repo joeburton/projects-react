@@ -8,10 +8,9 @@ export default function (state = projectsInitialState, action) {
         
         case 'GET_PROJECTS':
 
-            var newState = Object.assign({}, state)
-            newState.projects = action.projects;
-
-            return newState;
+            return Object.assign({}, state, {
+                projects: action.projects
+            });
 
         default: 
 
