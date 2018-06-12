@@ -35,6 +35,7 @@ class MainLayout extends React.Component {
         };
 
         this.setTab = this.setTab.bind(this);
+        this.setTabFromActiveRoute = this.setTabFromActiveRoute.bind(this);
     }
     setTab(type) {
 
@@ -48,9 +49,13 @@ class MainLayout extends React.Component {
     }
     componentDidMount() {
 
+        this.setTabFromActiveRoute();
+    }
+    setTabFromActiveRoute() {
+
         let route = this.props.location.pathname;
 
-        if (this.props.location.pathname === '/projects') {
+        if (route === '/projects') {
             this.setTab('projects');
         } else if (route === '/companies') {
             this.setTab('companies')
@@ -84,7 +89,7 @@ class MainLayout extends React.Component {
                     <EditProjectContainer />
                 }
                 {this.props.addProjectModal &&
-                    <AddProjectContainer setProjectTab={this.setTab} />
+                    <AddProjectContainer setProjectTab={this.setTabFromActiveRoute} />
                 }
             </div>
         )
