@@ -47,10 +47,15 @@ class MainLayout extends React.Component {
         }
     }
     componentDidMount() {
+
+        let route = this.props.location.pathname;
+
         if (this.props.location.pathname === '/projects') {
             this.setTab('projects');
-        } else {
+        } else if (route === '/companies') {
             this.setTab('companies')
+        } else {
+            this.setTab('homepage');
         }
     }
     render() {
