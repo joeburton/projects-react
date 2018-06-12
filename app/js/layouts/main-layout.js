@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { addProjectModal } from '../actions/actions';
 
@@ -46,9 +46,12 @@ class MainLayout extends React.Component {
             store.dispatch(addProjectModal(true));
         }
     }
-    componentDidUpdate() {
-
-        console.log('component updated')
+    componentDidMount() {
+        if (this.props.location.pathname === '/projects') {
+            this.setTab('projects');
+        } else {
+            this.setTab('companies')
+        }
     }
     render() {
         return (
