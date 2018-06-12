@@ -12,6 +12,7 @@ class AddProject extends React.Component {
 
         $("#add").on("hidden.bs.modal", function () {
             self.props.closeAddProjectModal();
+            self.props.setProjectTab('projects');
         });
 
         $('#add').modal('show');

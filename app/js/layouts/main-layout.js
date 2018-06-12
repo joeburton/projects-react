@@ -29,9 +29,9 @@ class MainLayout extends React.Component {
         super(props);
         
         api.getProjects();
-
+        
         this.state = {
-            activeTab: 'companies'
+            activeTab: 'homepage'
         };
 
         this.setTab = this.setTab.bind(this);
@@ -84,7 +84,7 @@ class MainLayout extends React.Component {
                     <EditProjectContainer />
                 }
                 {this.props.addProjectModal &&
-                    <AddProjectContainer />
+                    <AddProjectContainer setProjectTab={this.setTab} />
                 }
             </div>
         )
