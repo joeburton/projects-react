@@ -395,6 +395,26 @@ exports.addUser = function (req, res) {
 exports.populateDatabase = function (req, res) {
 
     var projects = [{
+        company: 'CashFlows',
+        projects: [
+            {
+                id: new ObjectId(),
+                project: 'Payr Reloaded',
+                link: 'https://www.payrcard.com/payr',
+                skills: 'React, Redux, JavaScript, Jest, Enzyme & SASS',
+                description: 'Whilst at CashFlows I worked on a product called Payr Reloaded, a Visa prepaid wallet. We built the front-end in React/ JavaScript, SASS and Webpack. When I started with CashFlows some early development had already taken place on the project, but the site wasn’t responsive and only worked in Chrome. I took the site from here to a fully responsive SPA (Single Page Application). I introduced a test framework using Jest and Enzyme, added linting for the SASS and JavaScript, refactored and optimised the code and introduced new features. We worked in an agile manner managing our stories and tasks through Jira. Our Sprints worked in three-week cycles with sizing sessions, breakdown sessions and retrospectives.'
+            }]
+    },{
+        company: 'BoilerJuice',
+        projects: [
+            {
+                id: new ObjectId(),
+                project: 'Mobile First Site Rebuild',
+                link: 'www.boilerjuice.com',
+                skills: 'JavaScript/ jQuery, Gulp, Browserify, Jasmine, Karma & SASS',
+                description: 'For this project I was tasked with re-building the front-end of the existing website. In places replicating the existing look and feel and in others introducing a new style and set of HTML templates. We completely re-wrote the JavaScript untangling many years of un-documented business logic and functionality.'
+            }]
+    }, {
         company: 'Cambridge Assessment',
         projects: [
             {
@@ -489,7 +509,7 @@ exports.populateDatabase = function (req, res) {
     }];
 
     dbObj.collection('projects', function (err, collection) {
-        collection.insert(projects, { safe: true }, function (err, result) {
+        collection.insert(projects, { ordered: true }, function (err, result) {
             res.send(result);
             console.log('ADD DATA...');
         });
