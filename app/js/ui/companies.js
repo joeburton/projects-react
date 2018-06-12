@@ -5,7 +5,7 @@ import NumberProjects from './number-projects.js'
 class Companies extends React.Component {
     render () {
         return (
-            <div className="container list-inline nick">
+            <div className="container list-inline">
                 <h3>Companies (<NumberProjects/>)</h3>
                 <ul className="companies-container">
                     {this.props.companies.map((proj, i) => {

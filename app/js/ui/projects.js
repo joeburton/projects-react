@@ -15,7 +15,7 @@ class Projects extends React.Component {
                     {projects.map((proj, i) => {
                         return (
                             <li className='company' key={i}>
-                                <i className='company-name'><strong>{'Company: ' + proj.company}</strong></i>
+                                <h4>{proj.company}</h4>
                                 {this.renderProjects(proj.projects, proj._id, proj.projects.length)}
                             </li>
                         );

@@ -1,4 +1,6 @@
 // Include jQuery and Bootstrap 4
+
+// @todo remove jQuery and all the other guff.
 window.$ = window.jQuery = require('jquery')
 window.Popper = require('popper.js')
 require('bootstrap')
@@ -20,7 +22,7 @@ import Home from './ui/home';
 import CompaniesContainer from './ui/companies-container';
 import ProjectsContainer from './ui/projects-container';
 
-// log state changes
+// Log state changes
 store.subscribe(() => {
     console.log('Store updated: ', store.getState());
 });

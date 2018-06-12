@@ -54,9 +54,9 @@ class MainLayout extends React.Component {
         return (
             <div className='app'>
                 <Login />
-                <div className="jumbotron">
+                <div className="nav-container">
                     <div className="container">
-                        <p className="intro-skills">React/ Redux, NodeJS and MongoDB CRUD Application.</p>
+                        <p className="intro-skills">React/ Redux, NodeJS and MongoDB Directory.</p>
                         <ul className='nav nav-tabs'>
                             <li role="presentation" onClick={() => this.setTab('companies')} className={this.state.activeTab === 'companies' ? 'nav-item active' : 'nav-item'}>
                                 <Link to='/companies' className="nav-link">Companies (<NumberCompanies />)</Link></li>
@@ -65,13 +65,13 @@ class MainLayout extends React.Component {
                                 <Link to='/projects' className="nav-link">Projects (<NumberProjects />)</Link></li>
 
                             {this.props.loggedin ? <li role="presentation" onClick={() => this.setTab('add')} className={this.state.activeTab === 'add' ? 'nav-item active' : 'nav-item'}>
-                                <a href='#' className="nav-link">Add New Project Company</a></li> : ''}
+                                <a href='#' className="nav-link">Add</a></li> : ''}
                         </ul>
                     </div>
                 </div>
-                <main>
-                    {this.props.children}
-                </main>
+                
+                {this.props.children}
+
                 {this.props.editProjectModal &&
                     <EditProjectContainer />
                 }

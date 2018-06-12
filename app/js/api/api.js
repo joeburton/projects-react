@@ -6,6 +6,7 @@ import store from '../store';
 let api = {
     getProjects() {
 
+        // @todo store API info somewhere else.
         let apiUrl = document.querySelector('.main').getAttribute('data-api-url');
 
         return axios.get(apiUrl + '/source').then(function (response) {

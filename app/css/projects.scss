@@ -1,0 +1,21 @@
+ul.projects-container {
+    padding: 0;
+    margin-bottom: 70px;
+
+    .project {
+        margin-bottom: 30px;
+        border-bottom: dashed 1px #ccc;
+        padding-bottom: 10px;
+    }
+
+    .admin-controls {
+        margin-top: 10px;
+    
+        .add-fields .description,
+        .edit-project .description {
+            min-height: 150px;
+        }
+    }
+}
+
+

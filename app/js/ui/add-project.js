@@ -56,8 +56,8 @@ class AddProject extends React.Component {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button name='button' className="btn btn-default" data-dismiss="modal">CANCEL</button>
-                            <button name='button' className="btn btn-primary" data-dismiss="modal" onClick={this.addProject}>SAVE</button>
+                            <button name='button' className="btn btn-outline-secondary my-2 my-sm-0" data-dismiss="modal">CANCEL</button>
+                            <button name='button' className="btn btn-outline-success my-2 my-sm-0" data-dismiss="modal" onClick={this.addProject}>SAVE</button>
                         </div>
                     </div>
                 </div>

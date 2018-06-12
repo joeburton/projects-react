@@ -12,7 +12,7 @@ class Home extends React.Component {
     render () {
         return (
             <div className='container splash'>
-                <h3>Directory of companies and projects</h3>
+                <h2>Project and Company Directory</h2>
                 <img src={directoryImage} alt="Directory" />
             </div>
         )

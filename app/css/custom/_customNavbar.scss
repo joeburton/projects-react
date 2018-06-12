@@ -1,0 +1,29 @@
+.navbar {
+    
+    .navbar-brand {
+        font-weight: 200;
+    }
+
+    .navbar-toggler {
+        cursor: pointer;
+    }
+
+    .navbar-form input[type="text"],
+    .navbar-form input[type="password"] {
+        margin-right: 5px;
+    }
+}
+
+@media screen and ($sm-max) {
+    .navbar .form-inline {
+        .form-group {
+            width: 100%;
+            padding-bottom: 10px;
+            input {
+                width: 100%;
+                margin-right: 0 !important;
+            }
+        }
+    }
+}
+

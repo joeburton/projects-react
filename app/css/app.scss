@@ -1,7 +1,25 @@
 @import "normalize";
+
+@import "breakpoints";
+
+// Good reference https://github.com/benabraham/bs4-nodejs-static
+@import "custom/_customVariables"; // Override bootstrap SASS variables, must be loaded before the bootstrap framework so the variables exist.
+@import "custom/_customNavbar";
+
 @import "~bootstrap/scss/bootstrap";
-@import "_custom";
-@import "_global";
-@import "_fonts";
-@import "_buttons";
-@import "_main";
+
+// Project specific SASS files
+
+// Structural
+@import "footer";
+@import "navigation";
+@import "fonts";
+@import "buttons";
+
+// Page specific
+@import "mainpage";
+
+// Components
+@import "companies";
+@import "projects";
+

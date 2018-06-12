@@ -1,0 +1,23 @@
+ul.companies-container {
+    padding: 0;
+}
+
+ul.companies-container li {
+    padding: 5px 5px 5px 0;
+    font-size: 17px;
+    font-weight: 200;
+}
+
+li.company,
+li.company li {
+    list-style: none;
+    overflow-wrap: break-word;
+}
+
+li.company ul {
+    padding: 0;
+}
+
+ul.companies-container li {
+    list-style: none;
+}
