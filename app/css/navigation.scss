@@ -39,6 +39,11 @@
                 background: #fff;
                 border-bottom: 1px solid #fff;
             }
+
+            &:visited,
+            &:active {
+                border-bottom: 1px solid #fff;
+            }
         }
     }
 
