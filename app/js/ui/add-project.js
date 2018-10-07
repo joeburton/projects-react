@@ -36,7 +36,7 @@ class AddProject extends React.Component {
                 <div className='modal-dialog'>
                     <div className='modal-content'>
                         <div className="modal-header">
-                            <h5 className="modal-title" id="add">Add a new Project or Company</h5>
+                            <h5 className="modal-title" id="add">Add a new Project or Company.</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div className='modal-body add-fields'>
