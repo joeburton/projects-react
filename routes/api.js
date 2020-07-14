@@ -12,13 +12,14 @@ var sess;
 // Connection URL
 if (production) {
   // production
-  url = `mongodb+srv://prod_db_041079:space_1979@cluster0-dhtvx.mongodb.net/companies?retryWrites=true&w=majority`;
+  url =
+    "mongodb+srv://prod_db_041079:space_1979@cluster0-dhtvx.mongodb.net/companies?retryWrites=true&w=majority";
 } else {
   // local dev
   url = "mongodb://127.0.0.1:27017/companies";
 }
 
-console.log(config.env);
+console.log(config.env, url);
 
 // Use connect method to connect to the Server
 MongoClient.connect(url, function (err, db) {
@@ -59,7 +60,7 @@ exports.logout = function (req, res) {
   });
 };
 
-// get all users in the collection
+// get all projects in the collection
 exports.users = function (req, res) {
   if (req.session.authenticated) {
     var collection = dbObj.collection("users"),
@@ -91,7 +92,7 @@ exports.findAll = function (req, res) {
     authenticated = req.session.authenticated ? true : false;
 
   collection.find().toArray(function (err, projects) {
-    console.log(projects);
+    // console.log(projects);
     res.write(
       JSON.stringify({
         projects: projects,
@@ -318,17 +319,15 @@ exports.deleteUser = function (req, res) {
 
 // add user
 exports.addUser = function (req, res) {
-  // http://localhost:3000/adduser/joe/joeburton@gmail.com/joeburton/admin
+  // http://localhost:3000/adduser/joe/joeburton@gmail.com/username/password
 
   // create database
-  dbObj.users.insert([
-    {
-      name: "joe",
-      email: "joeburton@gmail.com",
-      username: "joeburton",
-      password: "admin",
-    },
-  ]);
+  // db.users.insert([{
+  //     name: 'joe',
+  //     email: 'joeburton@gmail.com',
+  //     username: '',
+  //     password: ''
+  // }]);
 
   if (req.session.authenticated) {
     var name = req.params.name;
