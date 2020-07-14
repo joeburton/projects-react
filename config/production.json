@@ -1,5 +1,5 @@
 {
-    "debug": true,
-    "url": "http://directory.joe-burton.com",
-    "env": "production"
+  "debug": true,
+  "url": "https://vert-vin-07405.herokuapp.com",
+  "env": "production"
 }

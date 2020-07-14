@@ -16,7 +16,7 @@ if (production) {
     "mongodb+srv://prod_db_041079:space_1979@cluster0-dhtvx.mongodb.net/test?retryWrites=true&w=majority";
 } else {
   // local dev
-  url = "mongodb://127.0.0.1:27017/projectDirectory";
+  url = "mongodb://127.0.0.1:27017/companies";
 }
 
 console.log(config.env);
