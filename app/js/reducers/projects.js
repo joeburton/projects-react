@@ -1,22 +1,16 @@
 let projectsInitialState = {
-    projects: []
+  projects: [],
 };
 
 export default function (state = projectsInitialState, action) {
+  switch (action.type) {
+    case "GET_PROJECTS":
+      return {
+        ...state,
+        projects: action.projects,
+      };
 
-    switch (action.type) {
-
-        case 'GET_PROJECTS':
-
-            return {
-                ...state,
-                projects: action.projects
-            };
-
-        default: 
-
-            return state;
-
-    }
-
+    default:
+      return state;
+  }
 }
