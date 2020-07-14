@@ -13,7 +13,7 @@ var sess;
 if (production) {
   // production
   url =
-    "mongodb+srv://prod_db_041079:space_1979@cluster0-dhtvx.mongodb.net/test?retryWrites=true&w=majority";
+    "mongodb+srv://prod_db_041079:space_1979@cluster0-dhtvx.mongodb.net/companies?retryWrites=true&w=majority";
 } else {
   // local dev
   url = "mongodb://127.0.0.1:27017/companies";
@@ -319,15 +319,17 @@ exports.deleteUser = function (req, res) {
 
 // add user
 exports.addUser = function (req, res) {
-  // http://localhost:3000/adduser/joe/joeburton@gmail.com/username/password
+  // http://localhost:3000/adduser/joe/joeburton@gmail.com/joeburton/admin
 
   // create database
-  // db.users.insert([{
-  //     name: 'joe',
-  //     email: 'joeburton@gmail.com',
-  //     username: '',
-  //     password: ''
-  // }]);
+  // db.users.insert([
+  //   {
+  //     name: "joe",
+  //     email: "joeburton@gmail.com",
+  //     username: "joeburton",
+  //     password: "admin",
+  //   },
+  // ]);
 
   if (req.session.authenticated) {
     var name = req.params.name;
