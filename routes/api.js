@@ -11,10 +11,8 @@ var sess;
 
 // Connection URL
 if (production) {
-  // production
   url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-dhtvx.mongodb.net/directory?retryWrites=true&w=majority`;
 } else {
-  // local dev
   url = "mongodb://127.0.0.1:27017/companies";
 }
 
