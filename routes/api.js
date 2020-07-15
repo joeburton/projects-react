@@ -6,13 +6,13 @@ var config = require("config");
 // API
 var production = config.env === "production" ? true : false;
 var url;
-var dbObj;
+var _db;
 var sess;
 
 // Connection URL
-if (production) {
+if (!production) {
   // production
-  url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-dhtvx.mongodb.net/companies?retryWrites=true&w=majority`;
+  url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-dhtvx.mongodb.net/directory?retryWrites=true&w=majority`;
 } else {
   // local dev
   url = "mongodb://127.0.0.1:27017/companies";
@@ -21,14 +21,21 @@ if (production) {
 console.log(config.env, url);
 
 // Use connect method to connect to the Server
-MongoClient.connect(url, function (err, db) {
-  console.log("Connected correctly to server: http://localhost:3000.");
-  dbObj = db;
-});
+MongoClient.connect(
+  url,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err, client) => {
+    console.log("MongoDB Connected");
+    _db = client.db("companies");
+  }
+);
 
 // login
 exports.auth = function (req, res) {
-  dbObj.collection("users", function (err, collection) {
+  _db.collection("users", function (err, collection) {
     console.log(req.body.username);
 
     collection.findOne({ username: req.body.username }, function (err, user) {
@@ -62,7 +69,7 @@ exports.logout = function (req, res) {
 // get all projects in the collection
 exports.users = function (req, res) {
   if (req.session.authenticated) {
-    var collection = dbObj.collection("users"),
+    var collection = _db.collection("users"),
       authenticated = req.session.authenticated ? true : false;
 
     collection.find().toArray(function (err, users) {
@@ -87,7 +94,7 @@ exports.users = function (req, res) {
 
 // get all projects in the collection
 exports.findAll = function (req, res) {
-  var collection = dbObj.collection("projects"),
+  var collection = _db.collection("projects"),
     authenticated = req.session.authenticated ? true : false;
 
   collection.find().toArray(function (err, projects) {
@@ -108,7 +115,7 @@ exports.findById = function (req, res) {
 
   console.log("Retrieving project: " + id);
 
-  dbObj.collection("projects", function (err, collection) {
+  _db.collection("projects", function (err, collection) {
     collection.findOne({ _id: new ObjectId(id) }, function (err, item) {
       res.send(item);
     });
@@ -125,7 +132,7 @@ exports.addProject = function (req, res) {
 
     console.log(JSON.stringify(project));
 
-    dbObj.collection("projects", function (err, collection) {
+    _db.collection("projects", function (err, collection) {
       collection.update(
         { _id: new ObjectId(company.id) },
         { $push: { projects: project } },
@@ -162,7 +169,7 @@ exports.addCompany = function (req, res) {
 
     console.log(JSON.stringify(company));
 
-    dbObj.collection("projects", function (err, collection) {
+    _db.collection("projects", function (err, collection) {
       collection.insert(company, { safe: true }, function (err, result) {
         if (err) {
           res.send({ Error: "an error has occurred" });
@@ -190,7 +197,7 @@ exports.updateProject = function (req, res) {
     var project = req.body;
 
     // if there's more than one project update the array don't delete company wrapper....
-    dbObj.collection("projects", function (err, collection) {
+    _db.collection("projects", function (err, collection) {
       if (err) {
         res.send({ Error: "an error has occurred" });
       } else {
@@ -246,7 +253,7 @@ exports.deleteProject = function (req, res) {
       projectListItemsLength = postData.projectListItemsLength;
 
     // if there's more than one project update the array don't delete company wrapper....
-    dbObj.collection("projects", function (err, collection) {
+    _db.collection("projects", function (err, collection) {
       if (err) {
         res.send({ error: "An error has occurred - " + err });
       } else {
@@ -294,7 +301,7 @@ exports.deleteUser = function (req, res) {
   if (req.session.authenticated) {
     var id = req.params.id;
 
-    dbObj.collection("users", function (err, collection) {
+    _db.collection("users", function (err, collection) {
       collection.remove({ _id: new ObjectId(id) }, { safe: true }, function (
         err,
         result
@@ -343,7 +350,7 @@ exports.addUser = function (req, res) {
       },
     ];
 
-    dbObj.collection("users", function (err, collection) {
+    _db.collection("users", function (err, collection) {
       collection.insert(users, { safe: true }, function (err, result) {
         res.send(result);
         console.log("ADD USER...");
@@ -510,7 +517,7 @@ exports.populateDatabase = function (req, res) {
     },
   ];
 
-  dbObj.collection("projects", function (err, collection) {
+  _db.collection("projects", function (err, collection) {
     collection.insert(projects, { ordered: true }, function (err, result) {
       res.send(result);
       console.log("ADD DATA...");
