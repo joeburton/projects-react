@@ -10,7 +10,7 @@ var _db;
 var sess;
 
 // Connection URL
-if (!production) {
+if (production) {
   // production
   url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-dhtvx.mongodb.net/directory?retryWrites=true&w=majority`;
 } else {
