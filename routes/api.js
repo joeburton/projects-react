@@ -480,7 +480,7 @@ exports.populateDatabase = function (req, res) {
         {
           id: new ObjectId(),
           project: "Blue Star, (Sports book)",
-          link: "http://joe-burton.com/bluestar/",
+          link: "https://www.rank.com/",
           skills: "Backbone, JavaScript, Jasmine, Require",
           description:
             "I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tablet and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team.",
