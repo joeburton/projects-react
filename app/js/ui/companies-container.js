@@ -1,26 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import Companies from './companies';
+import Companies from "./companies";
 
 class CompaniesContainer extends React.Component {
-    render () {
-        return (
-            <Companies {...this.props} />
-        )
-    }
-};
-
-// pass down data as props.
-const stateToProps = function(state) {
-    return {
-        companies: state.projectReducer.projects
-    }
+  render() {
+    return <Companies {...this.props} />;
+  }
 }
 
-CompaniesContainer.propTypes = {
-    companies: PropTypes.array
+// pass down data as props.
+const stateToProps = function (state) {
+  return {
+    companies: state.projectReducer.projects,
+  };
 };
 
-export default connect(stateToProps)(CompaniesContainer)
+CompaniesContainer.propTypes = {
+  companies: PropTypes.array,
+};
+
+export default connect(stateToProps)(CompaniesContainer);

@@ -1,22 +1,16 @@
 let projectsInitialState = {
-    authorised: false
+  authorised: false,
 };
 
 export default function (state = projectsInitialState, action) {
+  switch (action.type) {
+    case "LOG_IN":
+      return {
+        ...state,
+        authorised: action.authorised,
+      };
 
-    switch (action.type) {
-
-        case 'LOG_IN':
-
-            return {
-                ...state,
-                authorised: action.authorised
-            };
-
-        default: 
-
-            return state;
-
-    }
-
+    default:
+      return state;
+  }
 }
